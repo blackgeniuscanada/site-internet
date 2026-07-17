@@ -1,6 +1,6 @@
 /* Inscription — complément au style principal */
-.wizard-panel { display: none; }
-.wizard-panel.active { display: block; }
+.wizard-step { display: none; }
+.wizard-step.active { display: block; }
 .wizard-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
 .wizard-nav .btn { min-width: 140px; justify-content: center; }
 .form-confirm { background: var(--green-light); border: 1px solid var(--green); border-radius: var(--radius); padding: 2rem; text-align: center; }

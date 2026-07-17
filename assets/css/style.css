@@ -780,7 +780,7 @@ section.compact  { padding: 48px 0; }
   padding: .35rem;
   overflow: hidden;
 }
-.wizard-step {
+.wizard-dot {
   flex: 1; text-align: center;
   font-family: var(--mono);
   font-size: .65rem;
@@ -790,13 +790,18 @@ section.compact  { padding: 48px 0; }
   border-radius: 100px;
   color: var(--muted);
   transition: all .25s;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center; gap: .3rem;
 }
-.wizard-step.active {
+.wizard-dot .dot-num, .wizard-dot .dot-label { pointer-events: none; }
+.wizard-dot.active {
   background: var(--green);
   color: #fff;
   font-weight: 600;
 }
-.wizard-step.done { color: var(--green); }
+.wizard-dot.done { color: var(--green); }
 
 .radio-card {
   display: flex; align-items: center; gap: .75rem;
