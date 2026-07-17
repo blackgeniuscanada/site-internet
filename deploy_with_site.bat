@@ -1,0 +1,12 @@
+@echo off
+echo.
+echo === DERNIER DÉPLOIEMENT AVEC CONFIGURATION 'SITE' ===
+echo.
+echo Suppression du cache Wrangler...
+rmdir /s /q .wrangler
+echo.
+echo Redéploiement avec la configuration 'site'...
+call npx wrangler deploy
+echo.
+echo Déploiement terminé!
+pause

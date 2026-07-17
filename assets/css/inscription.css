@@ -1,0 +1,11 @@
+/* Inscription — complément au style principal */
+.wizard-panel { display: none; }
+.wizard-panel.active { display: block; }
+.wizard-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+.wizard-nav .btn { min-width: 140px; justify-content: center; }
+.form-confirm { background: var(--green-light); border: 1px solid var(--green); border-radius: var(--radius); padding: 2rem; text-align: center; }
+.form-confirm .ref { font-family: var(--mono); font-size: 1.1rem; color: var(--green); font-weight: 600; letter-spacing: .1em; margin: .5rem 0 1rem; }
+.form-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+@media(max-width:540px) { .form-grid-2 { grid-template-columns: 1fr; } }
+.seuils-info { background: var(--gold-light); border: 1px solid rgba(184,146,61,.3); border-radius: 8px; padding: 1rem 1.25rem; margin-bottom: 1.5rem; font-size: .875rem; }
+.seuils-info strong { color: var(--gold); }

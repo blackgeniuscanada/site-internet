@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guide des Boutons — BlackGenius Canada</title>
+  <link rel="stylesheet" href="assets/css/style.css?v=2">
+  <style>
+    .button-section {
+      padding: 3rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .button-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+    .button-card {
+      padding: 2rem;
+      background: var(--ivory);
+      border-radius: 12px;
+      border: 1px solid var(--border);
+    }
+    .button-card h4 {
+      margin-bottom: 1rem;
+      color: var(--green);
+    }
+    .button-card p {
+      font-size: 0.85rem;
+      margin-bottom: 1.5rem;
+      color: var(--muted);
+    }
+    .button-example {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+    code {
+      background: #f5f5f5;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-family: var(--mono);
+      color: #d95f2b;
+    }
+    .green-bg .button-card { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.2); }
+    .green-bg .button-card h4 { color: #fff; }
+    .green-bg .button-card p { color: rgba(255,255,255,0.8); }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a class="brand" href="index.html" aria-label="Accueil BlackGenius Canada">
+      <img src="assets/img/favicon-192.png" alt="BlackGenius Canada" style="width:36px;height:36px;border-radius:6px;">
+      <span class="brand-text">
+        <span class="name">Black<em>Genius</em> Canada</span>
+        <span class="tagline"><em class="tagline-orange">Design System</em></span>
+      </span>
+    </a>
+  </div>
+</header>
+
+<div class="container" style="padding: 3rem 1.5rem;">
+  <h1>🎨 Guide des Boutons — BlackGenius Canada</h1>
+  <p class="lead" style="max-width: 640px;">Tous les styles de boutons avec couleurs distinctes pour une meilleure hiérarchie visuelle.</p>
+
+  <!-- SECTION 1: BOUTONS PRIMAIRES -->
+  <section class="button-section">
+    <h2>🟢 Boutons Primaires <em>(Vert)</em></h2>
+    <p>Utilisez ces boutons pour les appels à l'action principaux (inscriptions, actions principales).</p>
+    <div class="button-grid">
+      <div class="button-card">
+        <h4>Standard</h4>
+        <p><code>.btn.btn-primary</code></p>
+        <div class="button-example">
+          <a href="#" class="btn btn-primary">Inscrire mon enfant</a>
+        </div>
+      </div>
+      <div class="button-card">
+        <h4>Large</h4>
+        <p>Ajouter <code>.btn-lg</code> pour agrandir</p>
+        <div class="button-example">
+          <a href="#" class="btn btn-primary btn-lg">Inscrire maintenant</a>
+        </div>
+      </div>
+      <div class="button-card">
+        <h4>Avec Icône</h4>
+        <p>Gap automatique avec icône</p>
+        <div class="button-example">
+          <a href="#" class="btn btn-primary">✓ Continuer</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2: BOUTONS SECONDAIRES (OR) -->
+  <section class="button-section">
+    <h2>🟡 Boutons Secondaires <em>(Or)</em></h2>
+    <p>Utilisez ces boutons pour les appels à l'action alternatifs (actions secondaires, donations).</p>
+    <div class="button-grid">
+      <div class="button-card">
+        <h4>Standard</h4>
+        <p><code>.btn.btn-gold</code></p>
+        <div class="button-example">
+          <a href="#" class="btn btn-gold">Faire un don</a>
+        </div>
+      </div>
+      <div class="button-card">
+        <h4>Large</h4>
+        <p>Ajouter <code>.btn-lg</code></p>
+        <div class="button-example">
+          <a href="#" class="btn btn-gold btn-lg">Contribuer 100 $</a>
+        </div>
+      </div>
+      <div class="button-card">
+        <h4>Avec Icône</h4>
+        <p>Parfait pour les icônes</p>
+        <div class="button-example">
+          <a href="#" class="btn btn-gold">💰 Soutenir</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3: BOUTONS ACCENTUÉS (ORANGE) -->
+  <section class="button-section">
+    <h2>🟠 Boutons Accentués <em>(Orange)</em></h2>
+    <p>Utilisez ces boutons pour les actions urgentes ou accentuées (limité, important).</p>
+    <div class="button-grid">
+      <div class="button-card">
+        <h4>Standard</h4>
+        <p><code>.btn.btn-orange</code></p>
+        <div class="button-example">
+          <a href="#" class="btn btn-orange">Accès Limité</a>
+        </div>
+      </div>
+      <div class="button-card">
+        <h4>Urgent</h4>
+        <p>Pour les actions urgentes</p>
+        <div class="button-example">
+          <a href="#" class="btn btn-orange">⏰ Inscription fermée</a>
+        </div>
+      </div>
+      <div class="button-card">
+        <h4>Événement</h4>
+        <p>Pour les événements/calendrier</p>
+        <div class="button-example">
+          <a href="#" class="btn btn-orange">📅 Voir les dates</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4: BOUTONS OUTLINE -->
+  <section class="button-section" style="background: var(--green); color: white; margin: 0 -1.5rem; padding: 3rem 1.5rem;">
+    <h2 style="color: white;">⚪ Boutons Outline <em>(Texte + Bordure)</em></h2>
+    <p style="color: rgba(255,255,255,0.8); opacity: 1;">Utilisez sur fond coloré pour une alternative discrète.</p>
+    <div class="button-grid">
+      <div class="button-card">
+        <h4>Outline</h4>
+        <p><code>.btn.btn-outline</code></p>
+        <div class="button-example">
+          <a href="#" class="btn btn-outline">En savoir plus</a>
+        </div>
+      </div>
+      <div class="button-card">
+        <h4>Outline Vert</h4>
+        <p><code>.btn.btn-outline-green</code></p>
+        <div class="button-example">
+          <a href="#" class="btn btn-outline-green">Découvrir</a>
+        </div>
+      </div>
+      <div class="button-card">
+        <h4>Outline Or</h4>
+        <p><code>.btn.btn-outline-gold</code></p>
+        <div class="button-example">
+          <a href="#" class="btn btn-outline-gold">Consulter</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 5: COMPARAISON AVANT/APRÈS -->
+  <section class="button-section" style="margin-top: 3rem;">
+    <h2>📊 Comparaison Avant / Après</h2>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 2rem;">
+      <div>
+        <h3 style="color: #999;">❌ Avant (confus)</h3>
+        <p>Couleurs similaires, pas de distinction claire</p>
+        <ul style="list-style: disc; padding-left: 1.5rem; color: var(--muted);">
+          <li>Contraste faible</li>
+          <li>Pas de hiérarchie visuelle</li>
+          <li>Pas d'effet au survol</li>
+          <li>Ombres minimalistes</li>
+        </ul>
+      </div>
+      <div>
+        <h3 style="color: var(--green);">✅ Après (clair)</h3>
+        <p>Couleurs distinctes avec hiérarchie claire</p>
+        <ul style="list-style: disc; padding-left: 1.5rem; color: var(--green);">
+          <li>✓ Contraste maximal</li>
+          <li>✓ Hiérarchie visuelle claire</li>
+          <li>✓ Effets fluides au survol</li>
+          <li>✓ Ombres et profondeur</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 6: GUIDE D'UTILISATION -->
+  <section class="button-section">
+    <h2>📋 Guide d'Utilisation</h2>
+    <div class="button-grid">
+      <div class="button-card">
+        <h4>🟢 Vert (Primary)</h4>
+        <p><strong>Quand l'utiliser:</strong></p>
+        <ul style="list-style: disc; padding-left: 1.5rem;">
+          <li>Inscriptions</li>
+          <li>Appels à l'action principaux</li>
+          <li>Continuations</li>
+          <li>Actions par défaut</li>
+        </ul>
+      </div>
+      <div class="button-card">
+        <h4>🟡 Or (Gold)</h4>
+        <p><strong>Quand l'utiliser:</strong></p>
+        <ul style="list-style: disc; padding-left: 1.5rem;">
+          <li>Donations</li>
+          <li>Actions secondaires</li>
+          <li>Appels alternatifs</li>
+          <li>Liens VIP/Premium</li>
+        </ul>
+      </div>
+      <div class="button-card">
+        <h4>🟠 Orange (Accent)</h4>
+        <p><strong>Quand l'utiliser:</strong></p>
+        <ul style="list-style: disc; padding-left: 1.5rem;">
+          <li>Actions urgentes</li>
+          <li>Alertes positives</li>
+          <li>Événements</li>
+          <li>Accès limité</li>
+        </ul>
+      </div>
+      <div class="button-card">
+        <h4>⚪ Outline</h4>
+        <p><strong>Quand l'utiliser:</strong></p>
+        <ul style="list-style: disc; padding-left: 1.5rem;">
+          <li>Sur fond coloré</li>
+          <li>Actions tertiaires</li>
+          <li>Alternatives discrètes</li>
+          <li>Liens secondaires</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 7: TAILLES -->
+  <section class="button-section">
+    <h2>📏 Tailles de Boutons</h2>
+    <p>Quatre tailles disponibles pour s'adapter à tous les contextes.</p>
+    <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 2rem;">
+      <a href="#" class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.8rem;">Small</a>
+      <a href="#" class="btn btn-primary">Normal (défaut)</a>
+      <a href="#" class="btn btn-primary btn-lg">Large</a>
+      <a href="#" class="btn btn-primary" style="padding: 1rem 2rem; font-size: 1rem; font-weight: 700;">XL</a>
+    </div>
+  </section>
+
+  <section class="button-section" style="border: none;">
+    <h3>💡 Conseil</h3>
+    <p>Chaque page devrait avoir <strong>un seul bouton primaire (vert)</strong> comme action principale.</p>
+    <p>Les boutons secondaires (or) et tertiaires (orange) doivent être utilisés avec parcimonie pour ne pas diluer l'attention de l'utilisateur.</p>
+  </section>
+
+</div>
+
+<footer style="background: var(--text); color: white; padding: 2rem 0; margin-top: 3rem;">
+  <div class="container">
+    <p style="color: rgba(255,255,255,0.7);">Redesign des boutons — BlackGenius Canada 2026</p>
+  </div>
+</footer>
+
+</body>
+</html>

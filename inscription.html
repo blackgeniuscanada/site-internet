@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inscription · BlackGenius Canada</title>
+  <meta name="description" content="Inscription en ligne à BlackGenius Canada. Formulaire complet en 6 étapes guidées. Un coordinateur vous contacte sous 5 jours ouvrables.">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/img/favicon-192.png">
+  <link rel="apple-touch-icon" href="assets/img/favicon-192.png">
+  <meta property="og:title" content="Inscription · BlackGenius Canada">
+  <meta property="og:description" content="Rejoignez BlackGenius Canada — formulaire d'inscription en ligne en 6 étapes.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://blackgeniuscanada.org/inscription.html">
+  <meta property="og:image" content="https://blackgeniuscanada.org/assets/img/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="assets/css/style.css?v=2">
+  <link rel="stylesheet" href="assets/css/inscription.css">
+</head>
+<body>
+
+
+<header class="site-header"><div class="container">
+  <a class="brand" href="index.html"><img src="assets/img/favicon-192.png" alt="BlackGenius Canada" style="width:36px;height:36px;border-radius:6px;"><span class="brand-text"><span class="name">Black<em>Genius</em> Canada</span><span class="tagline">Ensemble pour l'Excellence</span></span></a>
+  <button class="menu-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  <nav class="main-nav"><ul>
+    <li><a href="mission.html">Mission</a></li><li><a href="programmes.html">Programmes</a></li>
+    <li><a href="evenements.html">Événements</a></li><li><a href="https://maths.blackgeniuscanada.org/" target="_blank" rel="noopener" style="color:var(--gold);">Jeux Maths</a></li>
+    <li><a href="actualites.html">Journal</a></li><li><a href="contact.html">Contact</a></li>
+    <li><a href="https://parents.blackgeniuscanada.org/" target="_blank" rel="noopener" style="color:var(--gold);">Espace famille</a></li><li><a class="cta-nav" href="inscription.html">S'inscrire</a></li>
+  </ul></nav>
+</div></header>
+
+<section class="page-hero">
+  <div class="container">
+    <div class="breadcrumb"><a href="index.html">Accueil</a> &nbsp;·&nbsp; Inscription</div>
+    <h1>Rejoindre <em>BlackGenius</em> Canada.</h1>
+    <p class="lead">Un formulaire en ligne, six étapes guidées. Préparez le dernier bulletin de votre enfant — vous y êtes en moins de quinze minutes. Un coordinateur revient vers vous sous cinq jours ouvrables.</p>
+    <div class="hero-cta-row" style="margin-top: 36px;">
+      <a class="btn btn-primary" href="#formulaire">Commencer mon inscription →</a>
+      <a class="btn btn-outline" href="#seuils">Vérifier les seuils d'admission</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== LE PARCOURS EN 4 ÉTAPES ===== -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <span class="section-eyebrow">Le parcours en quatre étapes</span>
+      <h2>De l'intérêt à l'admission.</h2>
+    </div>
+
+    <div class="steps">
+      <div class="step"><span class="step-num">Étape 01</span><h4>Le formulaire en ligne</h4><p>Vous remplissez la fiche d'inscription directement sur cette page, en six sections. Vos données sont chiffrées et stockées de façon sécurisée.</p></div>
+      <div class="step"><span class="step-num">Étape 02</span><h4>Pièces complémentaires</h4><p>Après soumission, vous recevez un courriel avec les instructions pour nous envoyer les bulletins scolaires du dernier trimestre.</p></div>
+      <div class="step"><span class="step-num">Étape 03</span><h4>Entretien famille</h4><p>Un coordinateur vous contacte sous 5 jours ouvrables pour un échange de 30 minutes, en visio ou en personne.</p></div>
+      <div class="step"><span class="step-num">Étape 04</span><h4>Décision</h4><p>Sous 10 jours après l'entretien, vous recevez la confirmation et le kit d'adhésion.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FORMULAIRE EN LIGNE ===== -->
+<section id="formulaire" class="darker-bg">
+  <div class="container-narrow">
+    <div class="section-head centered">
+      <span class="section-eyebrow no-line">Fiche d'inscription</span>
+      <h2>Remplir le <em>formulaire</em>.</h2>
+      <p class="lead">Six sections — informations enfant, résultats académiques, parent ou tuteur, disponibilités, profil et motivations, engagements et signature. Comptez environ 12 à 15 minutes.</p>
+    </div>
+
+    <!-- ===== Wizard ===== -->
+    <div class="wizard" id="wizard">
+
+      <!-- Barre de progression -->
+      <div class="wizard-progress" aria-label="Progression du formulaire">
+        <div class="wizard-progress-bar"><div class="wizard-progress-fill" id="progressFill"></div></div>
+        <div class="wizard-progress-dots">
+          <button type="button" class="wizard-dot active" data-go="1"><span class="dot-num">01</span><span class="dot-label">Enfant</span></button>
+          <button type="button" class="wizard-dot" data-go="2"><span class="dot-num">02</span><span class="dot-label">Bulletin</span></button>
+          <button type="button" class="wizard-dot" data-go="3"><span class="dot-num">03</span><span class="dot-label">Parent</span></button>
+          <button type="button" class="wizard-dot" data-go="4"><span class="dot-num">04</span><span class="dot-label">Dispo</span></button>
+          <button type="button" class="wizard-dot" data-go="5"><span class="dot-num">05</span><span class="dot-label">Profil</span></button>
+          <button type="button" class="wizard-dot" data-go="6"><span class="dot-num">06</span><span class="dot-label">Engagements</span></button>
+        </div>
+      </div>
+
+      <form id="inscription-form" novalidate>
+        <!-- Honeypot anti-bot — invisible aux humains, rempli par les bots -->
+        <div aria-hidden="true" style="position:absolute; left:-10000px; top:auto; width:1px; height:1px; overflow:hidden;">
+          <label>Ne pas remplir ce champ</label>
+          <input type="text" name="website_url" tabindex="-1" autocomplete="off">
+        </div>
+
+
+        <!-- ====== STEP 01 — Enfant ====== -->
+        <fieldset class="wizard-step active" data-step="1">
+          <header class="wizard-step-head">
+            <span class="wizard-step-eyebrow">01 — Informations sur l'enfant</span>
+            <h3>Présentez-nous votre <em>enfant</em>.</h3>
+            <p class="wizard-step-lead">Identification de base. Ces données restent confidentielles et ne servent qu'à constituer le dossier d'admission.</p>
+          </header>
+
+          <div class="form-grid">
+            <div class="field"><label>Prénom <span class="req">*</span></label><input name="prenom_enfant" required></div>
+            <div class="field"><label>Nom de famille <span class="req">*</span></label><input name="nom_enfant" required></div>
+            <div class="field"><label>Date de naissance <span class="req">*</span></label><input type="date" name="date_naissance" required></div>
+            <div class="field">
+              <label>Sexe <span class="req">*</span></label>
+              <select name="sexe" required>
+                <option value="">— Choisir —</option>
+                <option>Garçon</option>
+                <option>Fille</option>
+                <option>Non précisé</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Langue maternelle <span class="req">*</span></label>
+              <select name="langue_maternelle" required>
+                <option value="">— Choisir —</option>
+                <option>Français</option>
+                <option>Anglais</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Niveau scolaire <span class="req">*</span></label>
+              <select name="niveau_scolaire" required>
+                <option value="">— Choisir —</option>
+                <option>1ʳᵉ année du primaire</option>
+                <option>2ᵉ année du primaire</option>
+                <option>3ᵉ année du primaire</option>
+                <option>4ᵉ année du primaire</option>
+                <option>5ᵉ année du primaire</option>
+                <option>6ᵉ année du primaire</option>
+                <option>Secondaire 1</option>
+                <option>Secondaire 2</option>
+                <option>Secondaire 3</option>
+                <option>Secondaire 4</option>
+                <option>Secondaire 5</option>
+                <option>Cégep / Autre</option>
+              </select>
+            </div>
+            <div class="field full"><label>École actuelle <span class="req">*</span></label><input name="ecole" required></div>
+            <div class="field"><label>Ville de résidence <span class="req">*</span></label><input name="ville_enfant" required></div>
+            <div class="field"><label>Code postal <span class="req">*</span></label><input name="code_postal_enfant" placeholder="H1A 1A1" required></div>
+            <div class="field full">
+              <label>Programme scolaire <span class="req">*</span></label>
+              <div class="radio-group" role="radiogroup">
+                <label class="radio-card"><input type="radio" name="programme_scolaire" value="Régulier" required><span>Régulier</span></label>
+                <label class="radio-card"><input type="radio" name="programme_scolaire" value="Enrichi"><span>Enrichi</span></label>
+                <label class="radio-card"><input type="radio" name="programme_scolaire" value="PEI/IB"><span>PEI / IB</span></label>
+                <label class="radio-card"><input type="radio" name="programme_scolaire" value="Autre"><span>Autre</span></label>
+              </div>
+            </div>
+          </div>
+
+          <div class="wizard-nav">
+            <button type="button" class="btn btn-outline" disabled>← Précédent</button>
+            <button type="button" class="btn btn-primary" data-next>Continuer →</button>
+          </div>
+        </fieldset>
+
+        <!-- ====== STEP 02 — Résultats académiques ====== -->
+        <fieldset class="wizard-step" data-step="2">
+          <header class="wizard-step-head">
+            <span class="wizard-step-eyebrow">02 — Résultats académiques</span>
+            <h3>Le dernier <em>bulletin</em>.</h3>
+            <p class="wizard-step-lead">Indiquez les notes en pourcentage (notes entières). Seuils d'admission : <strong style="color: var(--gold);">Math ≥ 80 · Sciences ≥ 80 · Anglais ≥ 70 · Français ≥ 70</strong>.</p>
+          </header>
+
+          <div class="form-grid">
+            <div class="field">
+              <label>Mathématiques (%) <span class="req">*</span></label>
+              <input type="number" min="0" max="100" step="1" name="note_math" required data-threshold="80">
+              <span class="field-hint" data-hint-for="note_math">Seuil minimum : 80</span>
+            </div>
+            <div class="field">
+              <label>Sciences (%) <span class="req">*</span></label>
+              <input type="number" min="0" max="100" step="1" name="note_sciences" required data-threshold="80">
+              <span class="field-hint" data-hint-for="note_sciences">Seuil minimum : 80</span>
+            </div>
+            <div class="field">
+              <label>Français (%) <span class="req">*</span></label>
+              <input type="number" min="0" max="100" step="1" name="note_francais" required data-threshold="70">
+              <span class="field-hint" data-hint-for="note_francais">Seuil minimum : 70</span>
+            </div>
+            <div class="field">
+              <label>Anglais (%) <span class="req">*</span></label>
+              <input type="number" min="0" max="100" step="1" name="note_anglais" required data-threshold="70">
+              <span class="field-hint" data-hint-for="note_anglais">Seuil minimum : 70</span>
+            </div>
+          </div>
+
+          <div class="threshold-feedback" id="thresholdFeedback" style="display:none;"></div>
+
+          <label class="check-line">
+            <input type="checkbox" name="bulletins_joints" value="oui">
+            <span>Je m'engage à envoyer les copies des bulletins scolaires officiels par courriel à <strong style="color: var(--gold);">inscriptions@blackgeniuscanada.org</strong> sous 7 jours (obligatoire pour le traitement du dossier).</span>
+          </label>
+
+          <div class="wizard-nav">
+            <button type="button" class="btn btn-outline" data-prev>← Précédent</button>
+            <button type="button" class="btn btn-primary" data-next>Continuer →</button>
+          </div>
+        </fieldset>
+
+        <!-- ====== STEP 03 — Parent ====== -->
+        <fieldset class="wizard-step" data-step="3">
+          <header class="wizard-step-head">
+            <span class="wizard-step-eyebrow">03 — Parent ou tuteur légal</span>
+            <h3>Vos <em>coordonnées</em>.</h3>
+            <p class="wizard-step-lead">Le parent ou tuteur principal qui suivra le dossier au quotidien. Vous pourrez ajouter un parent secondaire plus bas (optionnel).</p>
+          </header>
+
+          <div class="form-grid">
+            <div class="field full"><label>Nom complet <span class="req">*</span></label><input name="parent_nom" required></div>
+            <div class="field full">
+              <label>Lien avec l'enfant <span class="req">*</span></label>
+              <div class="radio-group" role="radiogroup">
+                <label class="radio-card"><input type="radio" name="parent_lien" value="Mère" required><span>Mère</span></label>
+                <label class="radio-card"><input type="radio" name="parent_lien" value="Père"><span>Père</span></label>
+                <label class="radio-card"><input type="radio" name="parent_lien" value="Tuteur"><span>Tuteur légal</span></label>
+              </div>
+            </div>
+            <div class="field"><label>Téléphone principal <span class="req">*</span></label><input type="tel" name="parent_telephone" placeholder="514 555 1234" required></div>
+            <div class="field"><label>Courriel <span class="req">*</span></label><input type="email" name="parent_email" required></div>
+            <div class="field"><label>Ville <span class="req">*</span></label><input name="parent_ville" required></div>
+            <div class="field"><label>Code postal <span class="req">*</span></label><input name="parent_code_postal" required></div>
+            <div class="field full">
+              <label>WhatsApp <span class="req">*</span></label>
+              <div class="radio-group" role="radiogroup">
+                <label class="radio-card"><input type="radio" name="whatsapp_meme" value="oui" required checked><span>Même numéro</span></label>
+                <label class="radio-card"><input type="radio" name="whatsapp_meme" value="non"><span>Autre numéro</span></label>
+              </div>
+            </div>
+            <div class="field full" id="whatsapp-other" style="display:none;"><label>Autre numéro WhatsApp</label><input type="tel" name="whatsapp_autre" placeholder="+1 514 555 1234"></div>
+          </div>
+
+          <!-- Parent secondaire — collapsable -->
+          <details class="parent-2">
+            <summary>
+              <span>Ajouter un parent secondaire (optionnel)</span>
+              <span class="parent-2-toggle">+</span>
+            </summary>
+            <div class="form-grid" style="margin-top: 24px;">
+              <div class="field full"><label>Nom complet</label><input name="parent2_nom"></div>
+              <div class="field"><label>Téléphone</label><input type="tel" name="parent2_telephone"></div>
+              <div class="field"><label>Courriel</label><input type="email" name="parent2_email"></div>
+            </div>
+          </details>
+
+          <div class="wizard-nav">
+            <button type="button" class="btn btn-outline" data-prev>← Précédent</button>
+            <button type="button" class="btn btn-primary" data-next>Continuer →</button>
+          </div>
+        </fieldset>
+
+        <!-- ====== STEP 04 — Disponibilités ====== -->
+        <fieldset class="wizard-step" data-step="4">
+          <header class="wizard-step-head">
+            <span class="wizard-step-eyebrow">04 — Disponibilités et participation</span>
+            <h3>Votre <em>engagement</em>.</h3>
+            <p class="wizard-step-lead">Les sessions hebdomadaires se tiennent en semaine ou le samedi. La participation collective des parents est essentielle au fonctionnement du groupe.</p>
+          </header>
+
+          <label class="field-label-block">Jours disponibles <span class="req">*</span><br><small>Cochez tous les jours envisageables pour les sessions.</small></label>
+          <div class="check-grid days">
+            <label class="chip"><input type="checkbox" name="jours" value="Lun"><span>Lun</span></label>
+            <label class="chip"><input type="checkbox" name="jours" value="Mar"><span>Mar</span></label>
+            <label class="chip"><input type="checkbox" name="jours" value="Mer"><span>Mer</span></label>
+            <label class="chip"><input type="checkbox" name="jours" value="Jeu"><span>Jeu</span></label>
+            <label class="chip"><input type="checkbox" name="jours" value="Ven"><span>Ven</span></label>
+            <label class="chip"><input type="checkbox" name="jours" value="Sam"><span>Sam</span></label>
+            <label class="chip"><input type="checkbox" name="jours" value="Dim"><span>Dim</span></label>
+          </div>
+
+          <label class="field-label-block" style="margin-top: 36px;">Format préféré <span class="req">*</span></label>
+          <div class="radio-group" role="radiogroup">
+            <label class="radio-card"><input type="radio" name="format" value="Présentiel" required><span>Présentiel</span></label>
+            <label class="radio-card"><input type="radio" name="format" value="En ligne"><span>En ligne</span></label>
+            <label class="radio-card"><input type="radio" name="format" value="Hybride"><span>Hybride</span></label>
+          </div>
+
+          <label class="field-label-block" style="margin-top: 36px;">Tâche collective<br><small>Chaque famille assume une tâche par trimestre. Indiquez celles que vous accepteriez (plusieurs choix possibles).</small></label>
+          <div class="check-grid">
+            <label class="chip"><input type="checkbox" name="tache" value="Animation"><span>Animation d'une session</span></label>
+            <label class="chip"><input type="checkbox" name="tache" value="Logistique"><span>Logistique</span></label>
+            <label class="chip"><input type="checkbox" name="tache" value="Transport"><span>Transport</span></label>
+            <label class="chip"><input type="checkbox" name="tache" value="Communication"><span>Communication</span></label>
+            <label class="chip"><input type="checkbox" name="tache" value="Autre"><span>Autre</span></label>
+          </div>
+
+          <div class="wizard-nav">
+            <button type="button" class="btn btn-outline" data-prev>← Précédent</button>
+            <button type="button" class="btn btn-primary" data-next>Continuer →</button>
+          </div>
+        </fieldset>
+
+        <!-- ====== STEP 05 — Profil ====== -->
+        <fieldset class="wizard-step" data-step="5">
+          <header class="wizard-step-head">
+            <span class="wizard-step-eyebrow">05 — Profil de l'enfant et motivation</span>
+            <h3>Ce que vous voulez <em>nous dire</em>.</h3>
+            <p class="wizard-step-lead">Aidez-nous à mieux connaître votre enfant et votre famille. Soyez bref et précis — quelques lignes suffisent pour chaque champ.</p>
+          </header>
+
+          <div class="field full">
+            <label>Points forts de l'enfant <span class="req">*</span></label>
+            <textarea name="points_forts" rows="3" placeholder="Curiosité scientifique, lecture, sport, musique, sens du leadership…" required></textarea>
+          </div>
+
+          <div class="field full" style="margin-top: 24px;">
+            <label>Points à améliorer <span class="req">*</span></label>
+            <textarea name="points_ameliorer" rows="3" placeholder="Confiance en soi, concentration, organisation, expression orale…" required></textarea>
+          </div>
+
+          <div class="field full" style="margin-top: 24px;">
+            <label>Vos motivations à rejoindre BlackGenius Canada <span class="req">*</span></label>
+            <textarea name="motivations" rows="5" placeholder="Pourquoi BlackGenius ? Qu'attendez-vous du collectif pour votre enfant ? Quelles compétences ou valeurs voulez-vous renforcer ?" required></textarea>
+          </div>
+
+          <div class="form-grid" style="margin-top: 24px;">
+            <div class="field"><label>Concours déjà faits <span class="req">*</span></label><input name="concours" placeholder='Math Olympiad, Cambridge… ou écrire "Aucun"' required></div>
+            <div class="field"><label>Activités parascolaires <span class="req">*</span></label><input name="parascolaires" placeholder='Sport, musique, débat… ou écrire "Aucune"' required></div>
+            <div class="field full">
+              <label>Comment avez-vous connu BlackGenius Canada ? <span class="req">*</span></label>
+              <select name="source" required>
+                <option value="">— Choisir —</option>
+                <option>Site web</option>
+                <option>Bouche-à-oreille</option>
+                <option>Réseaux sociaux</option>
+                <option>Événement</option>
+                <option>Autre</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="wizard-nav">
+            <button type="button" class="btn btn-outline" data-prev>← Précédent</button>
+            <button type="button" class="btn btn-primary" data-next>Continuer →</button>
+          </div>
+        </fieldset>
+
+        <!-- ====== STEP 06 — Engagements ====== -->
+        <fieldset class="wizard-step" data-step="6">
+          <header class="wizard-step-head">
+            <span class="wizard-step-eyebrow">06 — Engagements et signature</span>
+            <h3>Vos <em>engagements</em>.</h3>
+            <p class="wizard-step-lead">Pour soumettre cette fiche, vous reconnaissez avoir lu et accepter les engagements suivants. La signature électronique vaut signature manuscrite.</p>
+          </header>
+
+          <div class="engagements-box">
+            <label class="check-line"><input type="checkbox" name="eng_kit" required><span>Avoir lu et accepté le <a href="mission.html" style="color:var(--gold); border-bottom:1px solid var(--gold);">Kit d'adhésion BlackGenius Canada</a> dans son intégralité.</span></label>
+            <label class="check-line"><input type="checkbox" name="eng_exclusion" required><span>Comprendre que toute exclusion est sans remboursement de cotisation.</span></label>
+            <label class="check-line"><input type="checkbox" name="eng_seuils" required><span>Comprendre que tout enfant ne respectant pas les seuils académiques exigés ne peut pas intégrer le groupe.</span></label>
+            <label class="check-line"><input type="checkbox" name="eng_confidentialite" required><span>M'engager à respecter les critères d'adhésion, la clause de confidentialité et les décisions du groupe.</span></label>
+            <label class="check-line"><input type="checkbox" name="eng_taches" required><span>M'engager à assumer ma part des tâches collectives chaque trimestre.</span></label>
+            <label class="check-line"><input type="checkbox" name="eng_cotisation" required><span>M'engager à régler le droit d'adhésion annuel avant la première session.</span></label>
+          </div>
+
+          <label class="check-line" style="border-top: 1px solid var(--line); padding-top: 24px; margin-top: 24px;">
+            <input type="checkbox" name="loi_25" required>
+            <span>J'accepte que BlackGenius Canada conserve et utilise les informations transmises pour traiter ma demande, conformément à la <a href="confidentialite.html" style="color:var(--gold); border-bottom:1px solid var(--gold);">politique de confidentialité (Loi 25)</a>.</span>
+          </label>
+
+          <div class="form-grid" style="margin-top: 32px;">
+            <div class="field"><label>Nom et prénom du parent / tuteur <span class="req">*</span></label><input name="signataire_nom" placeholder="Signature électronique" required></div>
+            <div class="field"><label>Date <span class="req">*</span></label><input type="date" name="date_signature" required></div>
+            <div class="field full">
+              <label>Mention obligatoire <span class="req">*</span></label>
+              <input name="mention" placeholder='Saisir exactement : Lu et approuvé' required pattern="(?i)^lu et approuvé$">
+              <span class="field-hint">Saisir exactement : <em>Lu et approuvé</em></span>
+            </div>
+          </div>
+
+          <div class="wizard-nav">
+            <button type="button" class="btn btn-outline" data-prev>← Précédent</button>
+            <button type="submit" class="btn btn-primary" id="submitBtn">Soumettre l'inscription →</button>
+          </div>
+
+          <p class="form-feedback" id="formFeedback" style="display:none; margin-top:30px; padding:18px 22px; background:var(--charcoal-2); border-left:2px solid var(--gold); font-family: var(--serif); font-style: italic; color: var(--white);"></p>
+        </fieldset>
+
+        <!-- ====== STEP 07 — Confirmation ====== -->
+        <fieldset class="wizard-step wizard-confirm" data-step="7">
+          <div class="confirm-card">
+            <div class="confirm-icon">✓</div>
+            <span class="wizard-step-eyebrow">Inscription reçue</span>
+            <h3>Merci. Votre dossier est <em>entre nos mains</em>.</h3>
+            <p class="confirm-lead">Un courriel de confirmation vient d'être envoyé à l'adresse fournie. Un coordinateur revient vers vous sous <strong style="color:var(--gold);">5 jours ouvrables</strong> pour un entretien famille.</p>
+
+            <div class="confirm-next">
+              <h4>Prochaines étapes</h4>
+              <ol>
+                <li>Préparez les copies des bulletins scolaires du dernier trimestre (PDF ou photos).</li>
+                <li>Envoyez-les à <a href="mailto:inscriptions@blackgeniuscanada.org" style="color:var(--gold); border-bottom:1px solid var(--gold);">inscriptions@blackgeniuscanada.org</a> avec le nom de votre enfant en objet.</li>
+                <li>Attendez notre appel ou notre courriel pour l'entretien.</li>
+              </ol>
+            </div>
+
+            <p class="confirm-id">Référence interne — <span id="refId">en cours d'attribution</span></p>
+
+            <div style="margin-top: 36px;">
+              <a class="btn btn-outline" href="index.html">Retour à l'accueil</a>
+              <a class="btn btn-primary" href="programmes.html" style="margin-left:12px;">Découvrir nos programmes →</a>
+            </div>
+          </div>
+        </fieldset>
+
+      </form>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== SEUILS ===== -->
+<section id="seuils">
+  <div class="container-narrow">
+    <div class="section-head centered">
+      <span class="section-eyebrow">À savoir avant de candidater</span>
+      <h2>Seuils <em>académiques</em> d'admission.</h2>
+    </div>
+    <div class="callout" style="text-align: center; font-size: 1.25rem; max-width: 760px; margin: 0 auto;">
+      <strong>Mathématiques ≥ 80  ·  Sciences ≥ 80  ·  Anglais ≥ 70  ·  Français ≥ 70</strong><br>
+      <span style="font-size: 0.95rem; color: var(--ivory-muted); font-style: normal;">Notes entières du dernier bulletin scolaire.</span>
+    </div>
+    <p style="text-align: center; max-width: 720px; margin: 36px auto 0; color: var(--ivory-muted);">
+      Ces seuils ne sont pas un test d'élitisme. Ils garantissent que chaque enfant intégrant le collectif peut soutenir le rythme et bénéficier pleinement de l'accompagnement. Quand un enfant rencontre des difficultés au cours de l'année, BlackGenius met en place un plan de remise à niveau dédié.
+    </p>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="darker-bg">
+  <div class="container-prose">
+    <div class="section-head">
+      <span class="section-eyebrow">Questions fréquentes</span>
+      <h2>FAQ inscription.</h2>
+    </div>
+
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary>Mon enfant n'atteint pas tous les seuils — peut-il candidater ?</summary>
+        <p>Pas pour le moment. Les seuils existent pour garantir que chaque enfant peut suivre le rythme de nos programmes. Nous travaillons sur une offre « passerelle » pour les enfants à fort potentiel proches du seuil — restez à l'écoute via notre newsletter.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Quel est le coût d'adhésion ?</summary>
+        <p>La cotisation annuelle 2026-2027 est fixée à <strong>750 $ CAD par famille</strong> (incluant tous les programmes et événements). Des arrangements de paiement et des bourses partielles sont possibles sur dossier — discutez-en avec un coordinateur lors de l'entretien.</p>
+      </details>
+      <details class="faq-item">
+        <summary>BlackGenius Canada remplace-t-il l'école ?</summary>
+        <p>Non. Nous ne sommes pas une école. Nous accompagnons votre enfant en complément de son école, avec des sessions hebdomadaires, des camps d'été et cinq événements signatures par an.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Que se passe-t-il après l'envoi du dossier ?</summary>
+        <p>Sous <strong>5 jours ouvrables</strong>, un coordinateur vous contacte pour fixer un entretien famille (30 minutes, en visio ou en personne). À l'issue de cet entretien, vous recevez la décision sous <strong>10 jours</strong>. En cas d'admission, vous recevez le kit d'adhésion et l'engagement de confidentialité à signer.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Mes données sont-elles en sécurité ?</summary>
+        <p>Oui. Les données du formulaire sont chiffrées en transit et stockées dans un environnement sécurisé conformément à la Loi 25 du Québec. Seuls les coordinateurs autorisés y ont accès. Vous pouvez demander la suppression de vos données à tout moment à <a href="mailto:contact@blackgeniuscanada.org" style="color:var(--gold);">contact@blackgeniuscanada.org</a>.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Faut-il habiter à Montréal ?</summary>
+        <p>Pas obligatoirement. Nos sessions se tiennent à Montréal en présentiel, mais nombre d'activités sont accessibles en ligne ou en hybride. À terme, des antennes régionales sont envisagées.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Et la confidentialité des informations des enfants ?</summary>
+        <p>Toutes les informations échangées au sein de BlackGenius Canada (bulletins, profils, échanges) sont protégées par un engagement de confidentialité signé par chaque parent. Voir notre <a href="confidentialite.html" style="color: var(--gold); border-bottom: 1px solid var(--gold);">politique de confidentialité (Loi 25)</a>.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="container">
+    <h2>Une dernière hésitation ?</h2>
+    <p>Posez-nous votre question avant de candidater. Nous répondons sous 5 jours ouvrables, sans engagement.</p>
+    <div class="hero-cta-row">
+      <a class="btn btn-primary" href="#formulaire">Commencer mon inscription</a>
+      <a class="btn btn-outline" href="contact.html">Nous écrire</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-cols">
+      <div class="footer-brand">
+        <a class="brand" href="index.html">
+          <img src="assets/img/favicon-192.png" alt="BlackGenius Canada" style="width:36px;height:36px;border-radius:6px;">
+          <span class="brand-text">
+            <span class="name">Black<em>Genius</em> Canada</span>
+            <span class="tagline">Ensemble pour l'Excellence</span>
+          </span>
+        </a>
+        <p class="footer-follow-label">Suivez-nous sur :</p>
+        <div class="footer-social">
+          <a href="https://www.facebook.com/profile.php?id=61590323911528" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.51 1.49-3.89 3.78-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.77l-.44 2.89h-2.33v6.99A10 10 0 0 0 22 12z"/></svg></a>
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+          <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.95v5.66H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zm-1.78 13.02h3.55V9H3.56v11.45z"/></svg></a>
+          <a href="https://www.youtube.com/@BlackGenius225" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M21.58 7.19a2.5 2.5 0 0 0-1.76-1.77C18.25 5 12 5 12 5s-6.25 0-7.82.42A2.5 2.5 0 0 0 2.42 7.19 26 26 0 0 0 2 12a26 26 0 0 0 .42 4.81 2.5 2.5 0 0 0 1.76 1.77C5.75 19 12 19 12 19s6.25 0 7.82-.42a2.5 2.5 0 0 0 1.76-1.77A26 26 0 0 0 22 12a26 26 0 0 0-.42-4.81zM10 15V9l5.2 3-5.2 3z"/></svg></a>
+        </div>
+        <p class="footer-address"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" xmlns="http://www.w3.org/2000/svg" width="14" height="14"><path d="M12 22s-7-7.5-7-13a7 7 0 0 1 14 0c0 5.5-7 13-7 13z"/><circle cx="12" cy="9" r="2.5"/></svg><span>Montréal · Québec<br><a href="mailto:contact@blackgeniuscanada.org" style="color: var(--gold);">contact@blackgeniuscanada.org</a></span></p>
+        <a class="btn btn-primary footer-cta" href="don.html">Faire un don</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Mission</h4>
+        <ul>
+          <li><a href="mission.html">Notre mission</a></li>
+          <li><a href="mission.html#vision">Vision 2035</a></li>
+          <li><a href="mission.html#valeurs">Nos valeurs</a></li>
+          <li><a href="equipe.html">Équipe et gouvernance</a></li>
+          <li><a href="impact.html">Notre impact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Programmes</h4>
+        <ul>
+          <li><a href="programmes.html">Tous les programmes</a></li>
+          <li><a href="https://maths.blackgeniuscanada.org/" target="_blank" rel="noopener" style="color:var(--gold);">Jeux Maths</a></li>
+          <li><a href="evenements.html">Événements</a></li>
+          <li><a href="actualites.html">Journal</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>S'engager</h4>
+        <ul>
+          <li><a href="inscription.html">Inscrire un enfant</a></li>
+          <li><a href="benevoles.html">Devenir bénévole</a></li>
+          <li><a href="don.html">Faire un don</a></li>
+          <li><a href="contact.html">Partenariats</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Espace membres</h4>
+        <ul>
+          <li><a href="https://parents.blackgeniuscanada.org/" target="_blank" rel="noopener" style="color: var(--gold);">Espace famille →</a></li>
+          <li>Réservé aux familles inscrites</li>
+          <li><a href="contact.html">Formulaire de contact</a></li>
+          <li><a href="mailto:contact@blackgeniuscanada.org">Nous écrire</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div>© <span id="year">2026</span> BlackGenius Canada · blackgeniuscanada.org</div>
+      <div>
+        <a href="confidentialite.html">Confidentialité (Loi 25)</a>
+        <a href="mentions-legales.html">Mentions légales</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/inscription.js"></script>
+</body></html>

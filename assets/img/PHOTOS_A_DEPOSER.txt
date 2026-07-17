@@ -1,0 +1,80 @@
+==========================================================
+  BlackGenius Canada — Photos à déposer dans ce dossier
+==========================================================
+
+Bonjour Frederic,
+
+Voici les noms de fichiers attendus par le site. Renommez
+vos photos avec ces noms exacts et déposez-les dans ce
+dossier (assets/img/), puis le site les affichera
+automatiquement.
+
+----------------------------------------------------------
+PHOTO PRINCIPALE (Hero d'accueil)
+----------------------------------------------------------
+
+  hero-bg.jpg
+    → Une photo immersive forte (les enfants en activité,
+      cadre large). Si vous n'en déposez pas, un dégradé
+      sombre élégant s'affichera à la place.
+    → Format conseillé : 2400 × 1600 px minimum
+    → Format paysage de préférence
+
+
+----------------------------------------------------------
+PHOTOS DE LA NUIT DES DÉFIS (galerie page Événements)
+----------------------------------------------------------
+
+  defis-01.jpg  →  Vue d'ensemble salle / enfants à table
+  defis-02.jpg  →  Coordinatrice + intervenant au tableau
+  defis-03.jpg  →  Garçons en réflexion (Sage + ami)
+  defis-04.jpg  →  Portrait enfant pensif (t-shirt BRUH)
+  defis-05.jpg  →  Portrait fille avec stylo (Nefertari)
+  defis-06.jpg  →  Panel adultes (3 femmes)
+  defis-07.jpg  →  Coordinateur debout + jeune en discussion
+  defis-08.jpg  →  Enfant au tableau avec coordinatrice
+  defis-09.jpg  →  Discussion en équipe (Sage table)
+  defis-10.jpg  →  Plan large salle pleine
+
+  → Format conseillé : carré (1500 × 1500 px) ou portrait
+  → Si une image manque, un placeholder élégant
+    « [ Photo ] » s'affichera à sa place.
+
+
+----------------------------------------------------------
+PHOTOS POUR LES PILIERS (page d'accueil — feature rows)
+----------------------------------------------------------
+
+  pilier-pedagogique.jpg   → enfant qui écrit / tableau
+  pilier-evenements.jpg    → groupe en activité collective
+  pilier-communaute.jpg    → parents + enfants ensemble
+
+  → Format conseillé : portrait 4:5 (par exemple 1600 × 2000 px)
+
+
+----------------------------------------------------------
+PHOTO POUR LA CITATION IMMERSIVE
+----------------------------------------------------------
+
+  citation-bg.jpg
+    → Une photo très évocatrice qui passera en
+      arrière-plan d'une citation. Le fond sera
+      assombri à 60% — choisissez une photo avec
+      des visages d'enfants ou une scène forte.
+    → Format conseillé : paysage 2400 × 1600 px
+
+
+----------------------------------------------------------
+COMMENT FAIRE
+----------------------------------------------------------
+
+1. Sélectionnez vos photos sur votre ordinateur
+2. Renommez chaque fichier avec les noms ci-dessus
+3. Glissez-déposez dans le dossier assets/img/
+4. Rechargez le site dans votre navigateur — c'est fait.
+
+Pour la vidéo YouTube de la Nuit des Défis (déjà intégrée
+dans la page Actualités et l'accueil), aucune action :
+elle est lue directement depuis YouTube.
+
+==========================================================

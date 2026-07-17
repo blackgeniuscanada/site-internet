@@ -1,0 +1,10 @@
+# Divulgation responsable des vulnérabilités — RFC 9116
+Contact: mailto:contact@blackgeniuscanada.org
+Preferred-Languages: fr, en
+Canonical: https://blackgeniuscanada.org/.well-known/security.txt
+Expires: 2027-12-31T23:59:59.000Z
+Policy: https://blackgeniuscanada.org/confidentialite.html
+
+# Si vous avez identifié une vulnérabilité de sécurité, merci de nous écrire
+# en privé à contact@blackgeniuscanada.org avant toute divulgation publique.
+# Nous nous engageons à répondre sous 5 jours ouvrables.
