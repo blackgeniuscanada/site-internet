@@ -36,6 +36,8 @@ async function handleSubmit(request, env, ctx) {
       await handleDon(formData, env, ctx);
     } else if (formType === "benevole") {
       await handleBenevole(formData, env, ctx);
+    } else if (formType === "contact") {
+      await handleContact(formData, env, ctx);
     } else {
       return jsonResponse({ error: "Type de formulaire inconnu." }, 400);
     }
@@ -113,6 +115,40 @@ async function handleBenevole(formData, env, ctx) {
       env,
       `Nouvelle candidature bénévole — ${prenom} ${nom}`.trim(),
       `Nouvelle candidature bénévole reçue sur le site.\n\nNom : ${prenom} ${nom}\nCourriel : ${email}\nTéléphone : ${telephone || "non précisé"}\n\n${noteInterne}\n\nMotivation :\n${motivation || "(non précisée)"}`
+    ).catch(() => {})
+  );
+}
+
+async function handleContact(formData, env, ctx) {
+  const prenom = str(formData, "prenom");
+  const nom = str(formData, "nom");
+  const email = str(formData, "email");
+  const telephone = str(formData, "telephone");
+  const sujet = str(formData, "sujet");
+  const message = str(formData, "message");
+
+  const noteInterne = [
+    `Sujet : ${sujet || "non précisé"}`,
+    `Message : ${message || "non précisé"}`,
+  ].join("\n");
+
+  await createNotionPage(env, {
+    "Nom de l'enfant": title(`${prenom} ${nom}`.trim() || "Contact sans nom"),
+    "Nom parent": richText(nom),
+    "Courriel parent": email ? { email } : undefined,
+    "Téléphone parent": telephone ? { phone_number: telephone } : undefined,
+    "Type": select("Contact"),
+    "Source": select("Site web"),
+    "Statut": select("Nouveau"),
+    "Motivations": richText(message),
+    "Note interne": richText(noteInterne),
+  });
+
+  ctx.waitUntil(
+    sendNotificationEmail(
+      env,
+      `Nouveau message de contact — ${prenom} ${nom}`.trim(),
+      `Nouveau message reçu via le formulaire de contact du site.\n\nNom : ${prenom} ${nom}\nCourriel : ${email}\nTéléphone : ${telephone || "non précisé"}\n\n${noteInterne}`
     ).catch(() => {})
   );
 }
