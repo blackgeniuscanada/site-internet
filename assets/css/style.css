@@ -1398,6 +1398,9 @@ body { padding-bottom: 0; }
 }
 .consent-banner.show { transform: translateY(0); }
 .consent-banner a { color: #a8d5b5; }
+.consent-banner p { color: rgba(255,255,255,.85); opacity: 1; margin-top: .25rem; }
+.consent-banner strong { color: #fff; }
+.consent-text { min-width: 240px; flex: 1 1 420px; }
 .consent-btns { display: flex; gap: .5rem; flex-shrink: 0; }
 .consent-btns button {
   border: none; border-radius: 6px; padding: .5rem 1rem;
@@ -1409,16 +1412,31 @@ body { padding-bottom: 0; }
 
 /* ── Menu burger mobile ─────────────────────────────────────────── */
 @media(max-width:900px) {
+  /* Le header a un backdrop-filter (flou). Sur les navigateurs conformes,
+     backdrop-filter crée un containing block pour les descendants en
+     position:fixed — le menu plein écran ci-dessous se retrouvait donc
+     coincé dans la boîte du header (≈70px) au lieu de couvrir l'écran.
+     On neutralise le flou sur mobile pour libérer le menu. */
+  .site-header {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: var(--white);
+  }
+  /* Fait passer tout le header (donc le menu plein écran qu'il contient)
+     au-dessus de la barre CTA mobile, du bouton WhatsApp et du bandeau
+     de consentement — sinon leur z-index les place au-dessus du menu. */
+  .site-header.menu-open { z-index: 2500; }
   .menu-toggle { display: flex; flex-direction: column; justify-content: center; }
   .main-nav {
     display: none;
-    position: fixed; inset: 0; z-index: 200;
+    position: fixed; inset: 0; z-index: 2000;
     background: var(--white);
     padding: 5rem 2rem 2rem;
     overflow-y: auto;
   }
   .main-nav.open { display: block; }
   .main-nav ul { flex-direction: column; gap: 0; }
+  .main-nav ul.has-grouped { display: none; }
   .main-nav a {
     display: block;
     font-size: 1.1rem;
@@ -1432,6 +1450,32 @@ body { padding-bottom: 0; }
     margin-top: 1.5rem;
     border-radius: 8px !important;
     padding: .75rem 1.5rem !important;
+  }
+
+  /* Menu mobile groupé par catégories (injecté par main.js) */
+  .menu-grouped { display: flex; flex-direction: column; gap: 2rem; margin-top: .5rem; }
+  .menu-section h5 {
+    font-family: var(--mono);
+    font-size: .68rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: .5rem;
+  }
+  .menu-section a {
+    display: block;
+    font-size: 1.05rem;
+    padding: .85rem 0;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+  }
+  .menu-section a:last-child { border-bottom: none; }
+  .menu-section a:hover { color: var(--green); }
+  .menu-grouped .cta-nav {
+    display: inline-flex;
+    width: 100%;
+    justify-content: center;
+    margin-top: 0;
   }
 }
 

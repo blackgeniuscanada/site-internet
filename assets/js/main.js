@@ -34,7 +34,8 @@
         +   '<a href="https://parents.blackgeniuscanada.org/" target="_blank" rel="noopener" style="color: var(--gold);">Espace famille →</a>'
         +   '<a href="contact.html">Formulaire de contact</a>'
         +   '<a href="mailto:contact@blackgeniuscanada.org">Nous écrire</a>'
-        + '</div>';
+        + '</div>'
+        + '<a class="cta-nav" href="inscription.html">S\'inscrire</a>';
       nav.appendChild(grouped);
     }
     if (window.matchMedia && window.matchMedia('(max-width: 899px)').matches) {
@@ -43,10 +44,17 @@
     window.addEventListener('resize', () => {
       if (window.matchMedia('(max-width: 899px)').matches) injectGroupedMenu();
     });
+    const header = document.querySelector('.site-header');
     toggle.addEventListener('click', () => {
       nav.classList.toggle('open');
-      toggle.setAttribute('aria-expanded', nav.classList.contains('open'));
-      document.body.style.overflow = nav.classList.contains('open') ? 'hidden' : '';
+      const isOpen = nav.classList.contains('open');
+      toggle.setAttribute('aria-expanded', isOpen);
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+      // .site-header a son propre stacking context (position:sticky + z-index) :
+      // le z-index du menu plein écran ne peut pas, à lui seul, passer au-dessus
+      // des éléments flottants (barre CTA, WhatsApp, bandeau consentement) qui
+      // sont des enfants directs de <body>. On relève donc le header entier.
+      if (header) header.classList.toggle('menu-open', isOpen);
     });
   }
 
@@ -139,9 +147,9 @@
   // ===== WhatsApp flottant =====
   const WA_NUM = '14386221262';
   const WA_MSG = "Bonjour BlackGenius Canada, j\'aimerais en savoir plus sur le collectif.";
-  if (!document.querySelector('.wa-float')) {
+  if (!document.querySelector('.whatsapp-float')) {
     const wa = document.createElement('a');
-    wa.className = 'wa-float';
+    wa.className = 'whatsapp-float';
     wa.href = 'https://wa.me/' + WA_NUM + '?text=' + encodeURIComponent(WA_MSG);
     wa.target = '_blank';
     wa.rel = 'noopener';
@@ -151,10 +159,10 @@
   }
 
   // ===== Barre collante mobile =====
-  if (!document.querySelector('.mobile-stickbar')) {
+  if (!document.querySelector('.mobile-cta-bar')) {
     const bar = document.createElement('div');
-    bar.className = 'mobile-stickbar';
-    bar.innerHTML = '<a href="inscription.html" class="msb-btn msb-primary">S\'inscrire</a><a href="don.html" class="msb-btn msb-secondary">Faire un don</a>';
+    bar.className = 'mobile-cta-bar';
+    bar.innerHTML = '<a href="inscription.html" class="btn btn-primary">S\'inscrire</a><a href="don.html" class="btn btn-outline-green">Faire un don</a>';
     document.body.appendChild(bar);
   }
 
@@ -166,7 +174,7 @@
     const b = document.createElement('div');
     b.className = 'consent-banner';
     b.setAttribute('role', 'dialog');
-    b.innerHTML = '<div class="consent-inner"><div class="consent-text"><strong>Confidentialité (Loi 25)</strong><p>Nous utilisons des cookies techniques essentiels au fonctionnement du site et, avec votre accord, des cookies d\'analyse pour comprendre l\'usage des pages. Aucune donnée n\'est partagée avec des tiers à des fins publicitaires. <a href="confidentialite.html">En savoir plus</a>.</p></div><div class="consent-actions"><button type="button" class="consent-btn consent-refuse">Refuser</button><button type="button" class="consent-btn consent-accept">Accepter</button></div></div>';
+    b.innerHTML = '<div class="consent-text"><strong>Confidentialité (Loi 25)</strong><p>Nous utilisons des cookies techniques essentiels au fonctionnement du site et, avec votre accord, des cookies d\'analyse pour comprendre l\'usage des pages. Aucune donnée n\'est partagée avec des tiers à des fins publicitaires. <a href="confidentialite.html">En savoir plus</a>.</p></div><div class="consent-btns"><button type="button" class="consent-refuse">Refuser</button><button type="button" class="consent-accept">Accepter</button></div>';
     document.body.appendChild(b);
     setTimeout(() => b.classList.add('show'), 200);
     b.querySelector('.consent-accept').addEventListener('click', () => {
