@@ -9,14 +9,14 @@ export default {
     const url = new URL(request.url);
 
     if (request.method === "POST" && url.pathname === "/api/submit") {
-      return handleSubmit(request, env);
+      return handleSubmit(request, env, ctx);
     }
 
     return env.ASSETS.fetch(request);
   },
 };
 
-async function handleSubmit(request, env) {
+async function handleSubmit(request, env, ctx) {
   let formData;
   try {
     formData = await request.formData();
@@ -42,7 +42,6 @@ async function handleSubmit(request, env) {
   } catch (err) {
     return jsonResponse({
       error: "Erreur d'envoi. Réessayez ou écrivez à contact@blackgeniuscanada.org.",
-      debug: String(err && err.message ? err.message : err),
     }, 500);
   }
 
