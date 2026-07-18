@@ -1,4 +1,5 @@
 @echo off
+cd /d "%~dp0"
 echo.
 echo ============ DEPLOYMENT FINAL v5 ============
 echo.
