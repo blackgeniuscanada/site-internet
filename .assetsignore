@@ -1,0 +1,36 @@
+# Fichiers a NE PAS publier avec le site (Cloudflare Workers Static Assets)
+# Le dossier assets pointe sur la racine du depot ("."), donc sans ce
+# fichier, wrangler deploy publie aussi .git/ (historique complet du code,
+# accessible publiquement), les scripts de deploiement et les notes internes.
+
+# Depot Git complet (historique, config avec l'URL du remote, etc.)
+.git
+.git/**
+.gitignore
+
+# Cache local Wrangler
+.wrangler
+.wrangler/**
+
+# Scripts de deploiement / configuration (pas destines au public)
+*.bat
+*.ps1
+wrangler.json
+worker.js
+package.json
+package-lock.json
+node_modules
+node_modules/**
+
+# Documentation et rapports internes (notes de developpement)
+*.md
+CORRECTIONS-APPLIQUEES.html
+TEST_RESULTS_SUMMARY.txt
+Nouveau Dodeploy.batcument texte.txt
+test-html.js
+test-suite.js
+test-validation.js
+
+# Autres
+.DS_Store
+Thumbs.db
