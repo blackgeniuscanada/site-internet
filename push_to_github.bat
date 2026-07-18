@@ -18,9 +18,9 @@ if not exist ".git" (
 echo 1. Configuration du remote GitHub...
 git remote get-url origin >nul 2>&1
 if errorlevel 1 (
-  git remote add origin https://github.com/blackgenius225-afk/site-internet.git
+  git remote add origin https://github.com/blackgeniuscanada/site-internet.git
 ) else (
-  git remote set-url origin https://github.com/blackgenius225-afk/site-internet.git
+  git remote set-url origin https://github.com/blackgeniuscanada/site-internet.git
 )
 echo OK!
 echo.
