@@ -1680,12 +1680,19 @@ body { padding-bottom: 0; }
   border: 2px solid rgba(255,255,255,.6) !important;
 }
 .cta-band .btn-outline:hover { border-color: #fff !important; }
-/* CTA dans hero-cta-row sur fond vert */
-.hero .btn-primary {
-  background: linear-gradient(135deg, #1B6B3A 0%, #15573F 100%) !important;
-  color: #fff !important;
-  border-color: #1B6B3A !important;
-  box-shadow: 0 4px 12px rgba(27, 107, 58, 0.25) !important;
+/* CTA dans hero-cta-row sur fond vert — blanc pour rester lisible (vert sur vert = invisible) */
+.hero .btn-primary,
+.page-hero .btn-primary {
+  background: #fff !important;
+  color: var(--green) !important;
+  border-color: #fff !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,.15) !important;
+}
+.hero .btn-primary:hover,
+.page-hero .btn-primary:hover {
+  background: var(--gold-light) !important;
+  color: var(--green) !important;
+  border-color: var(--gold-light) !important;
 }
 .hero .btn-gold {
   background: linear-gradient(135deg, #B8923D 0%, #9C7A2A 100%) !important;
