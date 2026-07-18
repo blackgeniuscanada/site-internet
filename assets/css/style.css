@@ -71,6 +71,7 @@ strong { font-weight: 600; }
 /* ── Layout ────────────────────────────────────────────────────── */
 .container       { max-width: 1160px; margin: 0 auto; padding: 0 1.5rem; }
 .container-narrow{ max-width: 760px;  margin: 0 auto; padding: 0 1.5rem; }
+.container-prose { max-width: 760px;  margin: 0 auto; padding: 0 1.5rem; }
 section          { padding: 80px 0; }
 section.compact  { padding: 48px 0; }
 .alt-bg          { background: var(--ivory); }
@@ -1770,7 +1771,7 @@ body { padding-bottom: 0; }
 
 /* Aussi le texte des sections en général sur mobile */
 @media(max-width:480px) {
-  .container, .container-narrow {
+  .container, .container-narrow, .container-prose {
     padding-left: 1.25rem !important;
     padding-right: 1.25rem !important;
   }
