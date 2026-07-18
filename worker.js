@@ -42,7 +42,6 @@ async function handleSubmit(request, env, ctx) {
   } catch (err) {
     return jsonResponse({
       error: "Erreur d'envoi. Réessayez ou écrivez à contact@blackgeniuscanada.org.",
-      debug: String(err && err.stack ? err.stack : err),
     }, 500);
   }
 
