@@ -799,8 +799,9 @@ section.compact  { padding: 48px 0; }
 .radio-card {
   display: flex; align-items: center; gap: .75rem;
   padding: .9rem 1.1rem;
-  border: 1px solid var(--border);
+  border: 1px solid #C9C2B5;
   border-radius: 8px;
+  background: var(--white);
   cursor: pointer;
   transition: border-color .2s, background .2s;
   margin-bottom: .5rem;
@@ -818,7 +819,7 @@ section.compact  { padding: 48px 0; }
   letter-spacing: .06em;
   padding: .4rem .85rem;
   border-radius: 100px;
-  border: 1px solid var(--border);
+  border: 1px solid #C9C2B5;
   background: var(--white);
   color: var(--muted);
   cursor: pointer;
@@ -845,6 +846,22 @@ section.compact  { padding: 48px 0; }
 }
 .callout strong { color: var(--gold); }
 .callout em { color: var(--green); }
+
+/* ── Carte du wizard (reset du fieldset, conteneur unifié) ───────── */
+.wizard {
+  background: var(--white);
+  border: 1px solid #C9C2B5;
+  border-radius: var(--radius);
+  padding: 2.5rem 2.5rem 2rem;
+  box-shadow: 0 2px 20px rgba(26,26,26,.06);
+}
+fieldset.wizard-step {
+  border: none;
+  padding: 0;
+  margin: 0;
+  min-width: 0;
+}
+@media(max-width:640px) { .wizard { padding: 1.75rem 1.25rem 1.5rem; } }
 
 /* ── Champs de formulaire (.field / .form-grid) ───────────────────
    Utilisés par contact.html, don.html, benevoles.html, inscription.html */
@@ -877,17 +894,19 @@ section.compact  { padding: 48px 0; }
 .field textarea {
   width: 100%;
   padding: .75rem 1rem;
-  border: 1px solid var(--border);
+  border: 1px solid #C9C2B5;
   border-radius: 8px;
   font-family: var(--sans);
   font-size: .95rem;
   color: var(--text);
   background: var(--white);
+  box-shadow: 0 1px 2px rgba(26,26,26,.05);
   transition: border-color .2s, box-shadow .2s;
   outline: none;
   -webkit-appearance: none;
   appearance: none;
 }
+.field input::placeholder, .field textarea::placeholder { color: #ABA396; }
 .field input:not([type="radio"]):not([type="checkbox"]):focus,
 .field select:focus,
 .field textarea:focus {
@@ -1071,9 +1090,10 @@ section.compact  { padding: 48px 0; }
 .step-card, .step {
   text-align: center;
   background: var(--white);
-  border: 1px solid var(--border);
+  border: 1px solid #C9C2B5;
   border-radius: var(--radius);
   padding: 1.5rem 1rem;
+  box-shadow: 0 1px 3px rgba(26,26,26,.04);
 }
 .step-num {
   display: inline-flex; align-items: center; justify-content: center;
