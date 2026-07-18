@@ -1,7 +1,15 @@
 {
   "name": "site-internet",
   "compatibility_date": "2026-06-24",
+  "main": "worker.js",
   "assets": {
-    "directory": "."
-  }
+    "directory": ".",
+    "binding": "ASSETS"
+  },
+  "send_email": [
+    {
+      "name": "SEB",
+      "destination_address": "blackgenius225@gmail.com"
+    }
+  ]
 }

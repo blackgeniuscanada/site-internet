@@ -74,13 +74,13 @@
         </div>
 
           <div class="form-grid">
-            <div class="field"><label>Prénom <span class="req">*</span></label><input required></div>
-            <div class="field"><label>Nom <span class="req">*</span></label><input required></div>
-            <div class="field"><label>Courriel <span class="req">*</span></label><input type="email" required></div>
-            <div class="field"><label>Téléphone</label><input type="tel"></div>
+            <div class="field"><label>Prénom <span class="req">*</span></label><input name="prenom" required></div>
+            <div class="field"><label>Nom <span class="req">*</span></label><input name="nom" required></div>
+            <div class="field"><label>Courriel <span class="req">*</span></label><input type="email" name="email" required></div>
+            <div class="field"><label>Téléphone</label><input type="tel" name="telephone"></div>
             <div class="field full">
               <label>Sujet <span class="req">*</span></label>
-              <select required>
+              <select name="sujet" required>
                 <option value="">— Choisir —</option>
                 <option>Inscription d'un enfant</option>
                 <option>Question sur les programmes</option>
@@ -91,7 +91,7 @@
                 <option>Autre</option>
               </select>
             </div>
-            <div class="field full"><label>Votre message <span class="req">*</span></label><textarea required placeholder="Quelques lignes nous suffisent pour comprendre votre demande."></textarea></div>
+            <div class="field full"><label>Votre message <span class="req">*</span></label><textarea name="message" required placeholder="Quelques lignes nous suffisent pour comprendre votre demande."></textarea></div>
           </div>
 
           <label style="display:flex; gap:12px; align-items:flex-start; margin-top:18px;"><input type="checkbox" required style="margin-top:6px;"><span style="font-size:0.9rem; color: var(--ivory-muted);">J'accepte que BlackGenius Canada conserve et utilise mes coordonnées pour me répondre, conformément à la <a href="#" style="color: var(--gold-deep); border-bottom: 1px solid var(--gold);">politique de confidentialité (Loi 25)</a>.</span></label>

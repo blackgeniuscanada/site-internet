@@ -48,7 +48,8 @@
         </ul>
       </div>
       <div>
-        <form data-formspree action="https://formspree.io/f/YOUR_FORM_ID_DON" method="POST" style="background: var(--charcoal-2); border: 1px solid var(--char-line); padding: 44px;">
+        <form data-formspree action="/api/submit" method="POST" style="background: var(--charcoal-2); border: 1px solid var(--char-line); padding: 44px;">
+        <input type="hidden" name="form_type" value="don">
         <!-- Honeypot anti-bot — invisible aux humains, rempli par les bots -->
         <div aria-hidden="true" style="position:absolute; left:-10000px; top:auto; width:1px; height:1px; overflow:hidden;">
           <label>Ne pas remplir ce champ</label>
@@ -59,23 +60,23 @@
           <h3 style="font-family: var(--font-display); margin-top: 0; margin-bottom: 28px;">Montant (CAD)</h3>
 
           <div class="don-options">
-            <input type="radio" name="amount" id="a25"><label for="a25">25 $</label>
-            <input type="radio" name="amount" id="a50"><label for="a50">50 $</label>
-            <input type="radio" name="amount" id="a100" checked><label for="a100">100 $</label>
-            <input type="radio" name="amount" id="a250"><label for="a250">250 $</label>
+            <input type="radio" name="amount" id="a25" value="25 $"><label for="a25">25 $</label>
+            <input type="radio" name="amount" id="a50" value="50 $"><label for="a50">50 $</label>
+            <input type="radio" name="amount" id="a100" value="100 $" checked><label for="a100">100 $</label>
+            <input type="radio" name="amount" id="a250" value="250 $"><label for="a250">250 $</label>
           </div>
-          <div class="field"><label>Autre montant</label><input type="number" min="5" placeholder="Ex. 75"></div>
+          <div class="field"><label>Autre montant</label><input type="number" name="autre_montant" min="5" placeholder="Ex. 75"></div>
 
           <p style="font-family: var(--sans); font-weight: 600; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--char-muted); margin: 28px 0 12px;">Fréquence</p>
           <div class="check-group">
-            <label><input type="radio" name="freq" checked> Unique</label>
-            <label><input type="radio" name="freq"> Mensuel</label>
-            <label><input type="radio" name="freq"> Annuel</label>
+            <label><input type="radio" name="freq" value="Unique" checked> Unique</label>
+            <label><input type="radio" name="freq" value="Mensuel"> Mensuel</label>
+            <label><input type="radio" name="freq" value="Annuel"> Annuel</label>
           </div>
 
           <div class="field" style="margin-top: 28px;">
             <label>Affectation (optionnel)</label>
-            <select>
+            <select name="affectation">
               <option>Là où c'est le plus utile</option>
               <option>Bourses pour familles à revenus modestes</option>
               <option>Jeux Maths BlackGenius</option>
@@ -85,9 +86,9 @@
           </div>
 
           <div class="form-grid" style="margin-top:28px;">
-            <div class="field"><label>Prénom <span class="req">*</span></label><input required></div>
-            <div class="field"><label>Nom <span class="req">*</span></label><input required></div>
-            <div class="field full"><label>Courriel <span class="req">*</span></label><input type="email" required></div>
+            <div class="field"><label>Prénom <span class="req">*</span></label><input name="prenom" required></div>
+            <div class="field"><label>Nom <span class="req">*</span></label><input name="nom" required></div>
+            <div class="field full"><label>Courriel <span class="req">*</span></label><input type="email" name="email" required></div>
           </div>
 
           <button type="submit" class="btn btn-primary" style="width:100%; margin-top:36px;">Procéder au paiement sécurisé</button>

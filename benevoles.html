@@ -95,7 +95,8 @@
       <p class="lead">Un coordinateur vous contactera sous 5 jours ouvrables pour échanger sur vos disponibilités et la mission qui vous correspond le mieux.</p>
     </div>
 
-    <form data-formspree action="https://formspree.io/f/YOUR_FORM_ID_BENEVOLES" method="POST">
+    <form data-formspree action="/api/submit" method="POST">
+        <input type="hidden" name="form_type" value="benevole">
         <!-- Honeypot anti-bot — invisible aux humains, rempli par les bots -->
         <div aria-hidden="true" style="position:absolute; left:-10000px; top:auto; width:1px; height:1px; overflow:hidden;">
           <label>Ne pas remplir ce champ</label>
@@ -103,23 +104,23 @@
         </div>
 
       <div class="form-grid">
-        <div class="field"><label>Prénom <span class="req">*</span></label><input required></div>
-        <div class="field"><label>Nom <span class="req">*</span></label><input required></div>
-        <div class="field"><label>Courriel <span class="req">*</span></label><input type="email" required></div>
-        <div class="field"><label>Téléphone</label><input type="tel"></div>
-        <div class="field full"><label>Profession / domaine d'expertise <span class="req">*</span></label><input required></div>
+        <div class="field"><label>Prénom <span class="req">*</span></label><input name="prenom" required></div>
+        <div class="field"><label>Nom <span class="req">*</span></label><input name="nom" required></div>
+        <div class="field"><label>Courriel <span class="req">*</span></label><input type="email" name="email" required></div>
+        <div class="field"><label>Téléphone</label><input type="tel" name="telephone"></div>
+        <div class="field full"><label>Profession / domaine d'expertise <span class="req">*</span></label><input name="profession" required></div>
         <div class="field full">
           <label>Mission(s) qui vous intéresse(nt) <span class="req">*</span></label>
           <div class="check-group">
-            <label><input type="checkbox"> Mentor d'un jour</label>
-            <label><input type="checkbox"> Comité scientifique</label>
-            <label><input type="checkbox"> Animation sessions</label>
-            <label><input type="checkbox"> Photo/Vidéo/Design</label>
-            <label><input type="checkbox"> Logistique événements</label>
-            <label><input type="checkbox"> Conseil pro bono</label>
+            <label><input type="checkbox" name="missions" value="Mentor d'un jour"> Mentor d'un jour</label>
+            <label><input type="checkbox" name="missions" value="Comité scientifique"> Comité scientifique</label>
+            <label><input type="checkbox" name="missions" value="Animation sessions"> Animation sessions</label>
+            <label><input type="checkbox" name="missions" value="Photo/Vidéo/Design"> Photo/Vidéo/Design</label>
+            <label><input type="checkbox" name="missions" value="Logistique événements"> Logistique événements</label>
+            <label><input type="checkbox" name="missions" value="Conseil pro bono"> Conseil pro bono</label>
           </div>
         </div>
-        <div class="field full"><label>Quelques mots sur vous et votre motivation</label><textarea placeholder="Parcours, expérience auprès d'enfants ou de jeunes, raison de votre intérêt…"></textarea></div>
+        <div class="field full"><label>Quelques mots sur vous et votre motivation</label><textarea name="motivation" placeholder="Parcours, expérience auprès d'enfants ou de jeunes, raison de votre intérêt…"></textarea></div>
       </div>
       <button type="submit" class="btn btn-primary" style="margin-top:36px;">Envoyer ma candidature</button>
       <p class="form-feedback" style="display:none; margin-top:30px; padding:20px 24px; background:var(--charcoal-2); border-left:2px solid var(--gold); font-family: var(--serif); font-style: italic; font-size: 1.1rem; color: var(--white);"></p>
