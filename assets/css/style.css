@@ -391,12 +391,12 @@ section.compact  { padding: 40px 0; }
   font-family: var(--display);
   font-size: 2rem;
   font-weight: 700;
-  color: #fff;
+  color: var(--gold);
   line-height: 1;
 }
 .hero-stat .label {
   font-family: var(--mono);
-  font-size: .65rem;
+  font-size: .7rem;
   letter-spacing: .1em;
   text-transform: uppercase;
   color: rgba(255,255,255,.65);
@@ -605,6 +605,10 @@ section.compact  { padding: 40px 0; }
 .feature-image img {
   width: 100%; height: 100%;
   object-fit: cover;
+  /* BUG FIX : object-position par défaut (centre) coupait le haut des têtes
+     sur les photos "pilier événementiel" et "pilier communautaire", où les
+     visages sont proches du haut du cadrage original. */
+  object-position: center 15%;
   transition: transform .4s ease;
 }
 .feature-image:hover img { transform: scale(1.03); }
@@ -644,7 +648,7 @@ section.compact  { padding: 40px 0; }
 }
 .event-date .month {
   font-family: var(--mono);
-  font-size: .65rem;
+  font-size: .7rem;
   letter-spacing: .1em;
   text-transform: uppercase;
   color: var(--muted);
@@ -659,7 +663,7 @@ section.compact  { padding: 40px 0; }
 .event-tag {
   display: inline-flex;
   font-family: var(--mono);
-  font-size: .65rem;
+  font-size: .7rem;
   letter-spacing: .1em;
   text-transform: uppercase;
   font-weight: 500;
@@ -912,23 +916,41 @@ section.compact  { padding: 40px 0; }
 .newsletter-form input:focus { border-color: var(--green); }
 
 /* ── Partenaires ───────────────────────────────────────────────── */
+/* Blocs partenaires — redesign : de simples pastilles grises à des cartes
+   avec un vrai repère visuel (liseré or) et un effet de survol cohérent avec
+   le reste du site (.pillar, .testimonial, etc. utilisent déjà --shadow). */
 .partners-row {
-  display: flex; flex-wrap: wrap;
-  gap: 1rem; align-items: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
 }
 .partner-logo {
   background: var(--white);
   border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: .75rem 1.25rem;
+  border-top: 3px solid var(--gold);
+  border-radius: 10px;
+  padding: 1.4rem 1rem;
   font-family: var(--mono);
-  font-size: .75rem;
-  letter-spacing: .06em;
-  color: var(--muted);
-  transition: border-color .2s, color .2s;
-  white-space: nowrap;
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  color: var(--text);
+  text-align: center;
+  white-space: normal;
+  box-shadow: var(--shadow);
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease, color .2s ease;
 }
-.partner-logo:hover { border-color: var(--green); color: var(--green); }
+.partner-logo:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--border);
+  border-top-color: var(--green);
+  color: var(--green);
+}
+@media(max-width:480px) {
+  .partners-row { grid-template-columns: repeat(2, 1fr); }
+}
 .partner-cta {
   margin-top: 2rem;
   display: flex;
@@ -1023,7 +1045,7 @@ section.compact  { padding: 40px 0; }
 .wizard-dot {
   flex: 1; text-align: center;
   font-family: var(--mono);
-  font-size: .65rem;
+  font-size: .7rem;
   letter-spacing: .08em;
   text-transform: uppercase;
   padding: .5rem .25rem;
@@ -1994,9 +2016,19 @@ body { padding-bottom: 0; }
 /* ── Responsive général ─────────────────────────────────────────── */
 @media(max-width:640px) {
   section { padding: 40px 0; }
-  .hero { min-height: 75vh; }
+  /* BUG FIX : align-items:center (hérité du desktop) centrait un bloc de texte
+     court dans une boîte de 75vh — sur les écrans hauts, ça créait un grand
+     vide vert vide entre le header et le badge "Édition 2026". Le contenu
+     colle maintenant en haut, juste sous le header. */
+  .hero { min-height: 75vh; align-items: flex-start; }
+  .hero-content { padding-top: 2.75rem; }
   .hero-title { font-size: clamp(1.4rem, 6vw, 2rem); }
-  .hero-stats { grid-template-columns: repeat(2,1fr); gap: 1rem; }
+  .hero-stats { grid-template-columns: repeat(2,1fr); gap: 1.25rem 1rem; }
+  /* BUG FIX : avec 3 chiffres sur une grille à 2 colonnes, le 3e se retrouvait
+     seul dans la 1re colonne (décalé à gauche au lieu d'être centré). On lui
+     fait occuper toute la ligne pour qu'il reste centré comme les deux autres. */
+  .hero-stat:last-child { grid-column: 1 / -1; }
+  .hero-stat:not(:last-child) { padding-bottom: 1.25rem; border-bottom: 1px solid rgba(255,255,255,.12); }
   .impact-grid { grid-template-columns: 1fr; }
   .testimonial-grid { grid-template-columns: 1fr; }
   .whatsapp-float .wa-label { display: none; }
@@ -2049,10 +2081,12 @@ body { padding-bottom: 0; }
 /* Hero title — plus petit sur mobile */
 @media(max-width:480px) {
   .hero-title { font-size: 1.45rem !important; line-height: 1.4; }
-  .hero-eyebrow { font-size: .62rem; padding: .3rem .7rem; }
-  .hero-sub { font-size: .9rem; }
+  .hero-eyebrow { font-size: .68rem; padding: .3rem .7rem; }
   .hero-cta-row { flex-direction: column; }
   .hero-cta-row .btn { width: 100%; justify-content: center; }
+  /* Le décalage blanc "pop-art" (box-shadow 3px 3px) déborde en un gros bloc
+     blanc disgracieux quand le bouton passe en pleine largeur sur mobile. */
+  .hero .btn-gold { box-shadow: 2px 2px 0 var(--white); }
 }
 
 /* Event-item sur mobile — empêcher chevauchemnt PROCHAINEMENT */
@@ -2065,7 +2099,7 @@ body { padding-bottom: 0; }
   .event-date { text-align: left !important; }
   .event-date--soon, .event-date--permanent { display: inline-block; }
   .event-date--soon .month, .event-date--permanent .month {
-    font-size: .65rem;
+    font-size: .7rem;
     background: var(--green-light);
     color: var(--green);
     border-radius: 100px;
@@ -2172,7 +2206,7 @@ body { padding-bottom: 0; }
   .event-date--soon::before {
     content: 'Prochainement';
     font-family: var(--mono);
-    font-size: .65rem;
+    font-size: .7rem;
     letter-spacing: .1em;
     text-transform: uppercase;
     background: var(--green-light);
@@ -2186,7 +2220,7 @@ body { padding-bottom: 0; }
   .event-date--permanent::before {
     content: 'Permanent';
     font-family: var(--mono);
-    font-size: .65rem;
+    font-size: .7rem;
     letter-spacing: .1em;
     text-transform: uppercase;
     background: var(--gold-light);
@@ -2289,8 +2323,12 @@ body { padding-bottom: 0; }
 @media(max-width:480px) {
   .hero-eyebrow strong { display: block; }
   .hero-eyebrow span { display: none; }
+  /* BUG FIX : cette règle dupliquait/écrasait celle du bloc "Fixes mobiles v3"
+     (.62rem) avec une valeur encore plus petite (.6rem) et gagnait la cascade
+     car placée plus bas dans le fichier — deux tailles différentes définies
+     pour le même élément selon le patch. Unifié à .68rem. */
   .hero-eyebrow {
-    font-size: .6rem;
+    font-size: .68rem;
     padding: .28rem .65rem;
     letter-spacing: .1em;
   }

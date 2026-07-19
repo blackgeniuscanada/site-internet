@@ -48,6 +48,9 @@ async function handleSubmit(request, env, ctx) {
       return jsonResponse({ error: "Type de formulaire inconnu." }, 400);
     }
   } catch (err) {
+    if (err instanceof ValidationError) {
+      return jsonResponse({ error: err.message }, 400);
+    }
     return jsonResponse({
       error: "Erreur d'envoi. Réessayez ou écrivez à contact@blackgeniuscanada.org.",
     }, 500);
@@ -56,12 +59,32 @@ async function handleSubmit(request, env, ctx) {
   return jsonResponse({ ok: true });
 }
 
+// Erreur de validation métier (montant, champs requis...) : distincte des erreurs
+// techniques (Notion/Brevo indisponibles) pour renvoyer un message précis (400)
+// au lieu du message générique "Erreur d'envoi" (500).
+class ValidationError extends Error {}
+
 async function handleDon(formData, env, ctx) {
   const prenom = str(formData, "prenom");
   const nom = str(formData, "nom");
   const email = str(formData, "email");
   const autreMontant = str(formData, "autre_montant");
-  const montant = autreMontant ? `${autreMontant} $` : str(formData, "amount");
+
+  // BUG FIX (sécurité/intégrité des données) : le formulaire valide le montant
+  // côté navigateur (min/max/step), mais rien n'empêchait un appel direct à
+  // /api/submit de soumettre un montant négatif, nul ou aberrant — le
+  // navigateur peut être contourné, le serveur doit revalider.
+  let montant;
+  if (autreMontant) {
+    const n = parseFloat(autreMontant.replace(",", "."));
+    if (isNaN(n) || n < 5 || n > 999999.99) {
+      throw new ValidationError("Montant de don invalide (minimum 5 $, maximum 999 999,99 $).");
+    }
+    montant = `${n.toFixed(2)} $`;
+  } else {
+    montant = str(formData, "amount");
+  }
+
   const freq = str(formData, "freq");
   const affectation = str(formData, "affectation");
 

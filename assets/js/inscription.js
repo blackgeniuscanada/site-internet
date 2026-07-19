@@ -23,7 +23,8 @@ const INSCRIPTION_API_URL = 'https://inscription-api.blackgenius225.workers.dev/
       genericError: 'Une erreur est survenue. Réessayez ou écrivez à inscriptions@blackgeniuscanada.org.',
       subjectPrefix: 'Inscription — ',
       firstName: 'Prénom : ', lastName: 'Nom : ', parentEmail: 'Courriel parent : ', phone: 'Téléphone : ', city: 'Ville : ',
-      source: 'site web inscription'
+      source: 'site web inscription',
+      charCount: ' caractères'
     },
     en: {
       missingOne: (n) => n + ' piece' + (n > 1 ? 's' : '') + ' of information ' + (n > 1 ? 'are' : 'is') + ' missing to continue: ',
@@ -39,7 +40,8 @@ const INSCRIPTION_API_URL = 'https://inscription-api.blackgenius225.workers.dev/
       genericError: 'An error occurred. Please try again or write to inscriptions@blackgeniuscanada.org.',
       subjectPrefix: 'Enrollment — ',
       firstName: 'First name: ', lastName: 'Last name: ', parentEmail: 'Parent email: ', phone: 'Phone: ', city: 'City: ',
-      source: 'website enrollment'
+      source: 'website enrollment',
+      charCount: ' characters'
     }
   }[LANG];
 
@@ -135,10 +137,22 @@ const INSCRIPTION_API_URL = 'https://inscription-api.blackgenius225.workers.dev/
       const inputs = step.querySelectorAll('input[data-threshold]');
       const failed = [];
       inputs.forEach(input => {
-        const v = parseFloat(input.value);
-        const t = parseFloat(input.dataset.threshold);
+        // BUG FIX : parseFloat("87,5") tronque à 87 (s'arrête à la virgule).
+        // normalizeNumber() (format-utils.js) accepte la virgule décimale française.
+        const v = typeof normalizeNumber === 'function' ? normalizeNumber(input.value) : parseFloat(input.value);
+        const t = typeof normalizeNumber === 'function' ? normalizeNumber(input.dataset.threshold) : parseFloat(input.dataset.threshold);
         input.classList.remove('threshold-ok', 'threshold-fail');
-        if (!isNaN(v)) {
+        // Les champs sont maintenant du texte (pour accepter la virgule), donc le
+        // navigateur ne borne plus automatiquement à 0–100 (perdu avec type="number").
+        // On revalide la plage manuellement.
+        const outOfRange = input.value.trim() !== '' && (isNaN(v) || v < 0 || v > 100);
+        input.classList.toggle('invalid', outOfRange);
+        if (outOfRange) {
+          valid = false;
+          if (!firstInvalid) firstInvalid = input;
+          const lbl = labelOf(input);
+          if (lbl && missing.indexOf(lbl) === -1) missing.push(lbl);
+        } else if (!isNaN(v)) {
           if (v < t) { input.classList.add('threshold-fail'); failed.push(t); }
           else input.classList.add('threshold-ok');
         }
@@ -218,7 +232,30 @@ const INSCRIPTION_API_URL = 'https://inscription-api.blackgenius225.workers.dev/
   });
 
   document.querySelectorAll('input[name="date_signature"]').forEach(input => {
-    if (!input.value) input.value = new Date().toISOString().split('T')[0];
+    // BUG FIX : new Date().toISOString() renvoie la date UTC, pas la date locale.
+    // Un signataire au Québec (UTC-4/-5) peut alors se retrouver avec la date de
+    // demain (ou d'hier) selon l'heure. On construit la date locale à la main.
+    if (!input.value) {
+      const today = new Date();
+      const y = today.getFullYear();
+      const m = String(today.getMonth() + 1).padStart(2, '0');
+      const d = String(today.getDate()).padStart(2, '0');
+      input.value = `${y}-${m}-${d}`;
+    }
+  });
+
+  // Compteur de caractères pour les champs avec maxlength (points forts, points à
+  // améliorer, motivations…) — purement visuel, le navigateur bloque déjà la saisie
+  // au-delà de la limite grâce à l'attribut maxlength.
+  form.querySelectorAll('textarea[maxlength]').forEach(ta => {
+    const max = ta.getAttribute('maxlength');
+    const counter = document.createElement('small');
+    counter.className = 'char-counter';
+    counter.style.cssText = 'display:block; margin-top:4px; color:var(--muted); font-size:.8rem;';
+    const update = () => { counter.textContent = ta.value.length + ' / ' + max + T.charCount; };
+    update();
+    ta.addEventListener('input', update);
+    ta.after(counter);
   });
 
   form.addEventListener('submit', async (e) => {

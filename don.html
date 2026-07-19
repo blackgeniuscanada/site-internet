@@ -74,7 +74,12 @@
             <input type="radio" name="amount" id="a100" value="100 $" checked><label for="a100" class="donation-btn">100 $</label>
             <input type="radio" name="amount" id="a250" value="250 $"><label for="a250" class="donation-btn">250 $</label>
           </div>
-          <div class="field"><label>Autre montant</label><input type="number" name="autre_montant" min="5" placeholder="Ex. 75"></div>
+          <div class="field"><label>Autre montant</label><input type="text" id="amount-custom" name="autre_montant" inputmode="decimal" pattern="^\d{1,6}([.,]\d{1,2})?$" placeholder="Ex. 75 ou 75,50" title="Montant entre 5 $ et 999 999,99 $, ex. 75 ou 75,50" aria-label="Autre montant en dollars canadiens"></div>
+
+          <div style="background: var(--ivory); border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px; margin-top: 20px;">
+            <div style="font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 2px;">Montant à donner</div>
+            <div style="font-size: 1.5rem; font-weight: 700; color: var(--gold); font-family: var(--serif);" id="donationTotal">100,00 $</div>
+          </div>
 
           <p style="font-family: var(--sans); font-weight: 600; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin: 28px 0 12px;">Fréquence</p>
           <div class="check-group">
@@ -100,8 +105,8 @@
             <div class="field full"><label>Courriel <span class="req">*</span></label><input type="email" name="email" required></div>
           </div>
 
-          <button type="submit" class="btn btn-primary" style="width:100%; margin-top:36px;">Procéder au paiement sécurisé</button>
-          <p style="font-size:0.85rem; color:var(--muted); margin-top:18px; text-align:center; font-style: italic;">Paiement par Stripe · 100% sécurisé · Reçu officiel ARC dès obtention du statut.</p>
+          <button type="submit" class="btn btn-primary" style="width:100%; margin-top:36px;">Envoyer mon intention de don →</button>
+          <p style="font-size:0.85rem; color:var(--muted); margin-top:18px; text-align:center; font-style: italic;">Transmission sécurisée · Un coordinateur vous contacte pour finaliser le paiement · Reçu officiel ARC dès obtention du statut.</p>
           <p class="form-feedback" style="display:none; margin-top:24px; padding:18px; background:var(--text); border-left:2px solid var(--gold); font-family: var(--serif); font-style: italic; color: var(--white);"></p>
         </form>
       </div>
@@ -226,6 +231,7 @@
     </div>
   </div>
 </footer>
+<script src="assets/js/format-utils.js"></script>
 <script src="assets/js/main.js?v=2"></script>
 </body>
 </html>

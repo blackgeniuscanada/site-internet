@@ -27,7 +27,8 @@
       formSuccessAutorisationImage: 'Merci. Votre réponse au sujet du droit à l\'image a bien été enregistrée.',
       formErrorGeneric: "Erreur d'envoi. Réessayez ou écrivez à contact@blackgeniuscanada.org.",
       formErrorConnection: 'Connexion impossible. Réessayez ou écrivez à contact@blackgeniuscanada.org.',
-      formSendDefault: 'Envoyer'
+      formSendDefault: 'Envoyer',
+      donAmountError: 'Le montant doit être un nombre entre 5 $ et 999 999,99 $ (ex. 75 ou 75,50).'
     },
     en: {
       menuMission: 'Mission', menuNotreMission: 'Our mission', menuVision: 'Vision 2035', menuValeurs: 'Our values',
@@ -53,7 +54,8 @@
       formSuccessAutorisationImage: 'Thank you. Your response about image rights has been recorded.',
       formErrorGeneric: 'Submission error. Please try again or write to contact@blackgeniuscanada.org.',
       formErrorConnection: 'Connection failed. Please try again or write to contact@blackgeniuscanada.org.',
-      formSendDefault: 'Send'
+      formSendDefault: 'Send',
+      donAmountError: 'The amount must be a number between $5 and $999,999.99 (e.g. 75 or 75.50).'
     }
   }[LANG];
 
@@ -131,6 +133,45 @@
     });
   });
 
+  // ===== Montant total du don, mis à jour en temps réel (don.html) =====
+  // BUG FIX : le formulaire n'affichait jamais le montant réellement soumis
+  // (choix rapide + "autre montant" pouvaient entrer en conflit sans que le
+  // donateur sache lequel serait retenu). normalizeNumber() (format-utils.js)
+  // accepte aussi bien "75" que "75,00" (virgule française).
+  (function () {
+    const donTotal = document.getElementById('donationTotal');
+    const donCustom = document.getElementById('amount-custom');
+    const donRadios = document.querySelectorAll('input[name="amount"][type="radio"]');
+    if (!donTotal || typeof normalizeNumber !== 'function') return;
+
+    const currencyLocale = LANG === 'en' ? 'en-CA' : 'fr-CA';
+    function fmt(n) {
+      try {
+        return n.toLocaleString(currencyLocale, { style: 'currency', currency: 'CAD', minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      } catch (e) {
+        return (LANG === 'en' ? '$' : '') + n.toFixed(2) + (LANG === 'en' ? '' : ' $');
+      }
+    }
+
+    function updateDonTotal() {
+      let amount = null;
+      if (donCustom && donCustom.value.trim() !== '') {
+        amount = normalizeNumber(donCustom.value);
+      } else {
+        const checked = document.querySelector('input[name="amount"]:checked');
+        if (checked) amount = normalizeNumber(checked.value);
+      }
+      donTotal.textContent = (amount && !isNaN(amount) && amount > 0) ? fmt(amount) : fmt(0);
+    }
+
+    donRadios.forEach(r => r.addEventListener('change', () => {
+      if (donCustom) donCustom.value = '';
+      updateDonTotal();
+    }));
+    if (donCustom) donCustom.addEventListener('input', updateDonTotal);
+    updateDonTotal();
+  })();
+
   const currentPath = window.location.pathname.split('/').pop() || 'index.html';
   document.querySelectorAll('.main-nav a').forEach(a => {
     const href = a.getAttribute('href');
@@ -155,6 +196,22 @@
       if (action.includes('YOUR_FORM_ID')) {
         showMessage(T.formDemo);
         return;
+      }
+
+      // BUG FIX : le champ "Autre montant" est un input texte (pour accepter la
+      // virgule décimale française), donc le navigateur ne borne plus la valeur
+      // automatiquement comme avec type="number" min/max. On revalide ici avant
+      // l'envoi — le Worker revalide aussi côté serveur en dernier recours.
+      const customAmount = form.querySelector('#amount-custom');
+      if (customAmount && customAmount.value.trim() !== '') {
+        const amt = typeof normalizeNumber === 'function'
+          ? normalizeNumber(customAmount.value)
+          : parseFloat(customAmount.value.replace(',', '.'));
+        if (isNaN(amt) || amt < 5 || amt > 999999.99) {
+          showMessage(T.donAmountError, true);
+          customAmount.focus();
+          return;
+        }
       }
       if (button) { button.disabled = true; button.textContent = T.formSending; }
       try {

@@ -31,6 +31,13 @@ test-html.js
 test-suite.js
 test-validation.js
 
+# Brouillons de dev non lies dans le site (jamais dans le nav/sitemap) :
+# don-fixed.html contient une URL Formspree factice ("YOUR_FORM_ID_DON") qui ne
+# fonctionne pas — a ne surtout pas publier tel quel. button-showcase.html est
+# une planche de style interne pour l'equipe design.
+don-fixed.html
+button-showcase.html
+
 # Autres
 .DS_Store
 Thumbs.db
