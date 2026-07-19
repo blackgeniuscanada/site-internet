@@ -103,11 +103,11 @@
         + '<div class="lang-switch">' + T.langLabel.replace('__ALT__', altLangHref()) + '</div>';
       nav.appendChild(grouped);
     }
-    if (window.matchMedia && window.matchMedia('(max-width: 899px)').matches) {
+    if (window.matchMedia && window.matchMedia('(max-width: 1239px)').matches) {
       injectGroupedMenu();
     }
     window.addEventListener('resize', () => {
-      if (window.matchMedia('(max-width: 899px)').matches) injectGroupedMenu();
+      if (window.matchMedia('(max-width: 1239px)').matches) injectGroupedMenu();
     });
     const header = document.querySelector('.site-header');
     toggle.addEventListener('click', () => {

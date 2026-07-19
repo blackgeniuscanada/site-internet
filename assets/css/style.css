@@ -246,15 +246,16 @@ section.compact  { padding: 40px 0; }
 
 /* ── Nav ───────────────────────────────────────────────────────── */
 .main-nav ul {
-  display: flex; align-items: center; gap: .25rem;
+  display: flex; align-items: center; flex-wrap: nowrap; gap: .1rem;
   list-style: none;
 }
 .main-nav a {
-  font-size: .875rem;
+  font-size: .83rem;
   font-weight: 500;
   color: var(--text);
-  padding: .5rem .75rem;
+  padding: .5rem .6rem;
   border-radius: 6px;
+  white-space: nowrap;
   transition: background .18s, color .18s;
 }
 .main-nav a:hover { background: var(--green-light); color: var(--green); }
@@ -1918,7 +1919,11 @@ body { padding-bottom: 0; }
 @media(max-width:720px) { .consent-banner { bottom: 72px; } }
 
 /* ── Menu burger mobile ─────────────────────────────────────────── */
-@media(max-width:900px) {
+/* Seuil relevé à 1239px : avec 7 liens + EN + CTA, la nav à plat n'a
+   assez de place qu'à partir de la largeur max du container (1160px).
+   En dessous, le menu plein écran (déjà groupé par catégories) évite
+   tout retour à la ligne disgracieux des liens à deux mots. */
+@media(max-width:1239px) {
   /* Le header a un backdrop-filter (flou). Sur les navigateurs conformes,
      backdrop-filter crée un containing block pour les descendants en
      position:fixed — le menu plein écran ci-dessous se retrouvait donc
