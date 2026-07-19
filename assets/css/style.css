@@ -823,14 +823,16 @@ section.compact  { padding: 40px 0; }
   padding: 4rem 0 3.5rem;
   color: #fff;
 }
-.page-hero h1 { color: #fff; line-height: 1.35; }
+.page-hero { overflow-x: hidden; }
+.page-hero h1 { color: #fff; line-height: 1.6; margin-bottom: .3em; }
 .page-hero h1 em {
   font-style: normal;
   background: var(--gold);
   color: var(--green);
-  padding: .08em .3em .16em;
+  padding: .08em .25em;
   box-decoration-break: clone;
   -webkit-box-decoration-break: clone;
+  display: inline;
 }
 .page-hero .lead { color: rgba(255,255,255,.85); max-width: 620px; }
 .breadcrumb {
