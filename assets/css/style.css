@@ -1638,8 +1638,10 @@ fieldset.wizard-step {
 .modal-box {
   background: var(--white);
   border-radius: 16px;
-  padding: 2.5rem 2rem 2rem;
-  max-width: 560px; width: 100%;
+  padding: 2.5rem 2.25rem 2.25rem;
+  max-width: 640px; width: 100%;
+  max-height: calc(100vh - 2rem);
+  overflow-y: auto;
   position: relative;
   box-shadow: 0 20px 60px rgba(0,0,0,.2);
   animation: modal-in .25s ease;
@@ -1657,10 +1659,39 @@ fieldset.wizard-step {
   cursor: pointer; transition: background .2s;
 }
 .modal-close:hover { background: var(--border); }
-.modal-box h3 { font-size: 1.5rem; margin: .5rem 0 1rem; }
-.modal-box p  { font-size: .95rem; line-height: 1.65; margin-bottom: .75rem; color: var(--text); opacity: .85; }
+.modal-box h3 { font-size: 1.6rem; line-height: 1.3; margin: .75rem 0 1.1rem; }
+.modal-box p  { font-size: .95rem; line-height: 1.7; margin-bottom: .9rem; color: var(--text); opacity: .85; }
 .modal-box strong { color: var(--green); font-weight: 600; }
-.modal-cta-row { display: flex; gap: .75rem; flex-wrap: wrap; margin-top: 1.5rem; }
+.modal-box .callout { line-height: 1.65; }
+.modal-info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  margin: 1.5rem 0 0;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border);
+}
+.modal-info-grid > div { margin: 0; }
+.modal-info-grid dt {
+  font-family: var(--mono);
+  font-size: .68rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 600;
+  margin: 0 0 .35rem;
+}
+.modal-info-grid dd {
+  font-size: .88rem;
+  line-height: 1.55;
+  color: var(--text);
+  opacity: .85;
+  margin: 0;
+}
+@media (max-width: 480px) {
+  .modal-info-grid { grid-template-columns: 1fr; gap: .9rem; }
+}
+.modal-cta-row { display: flex; gap: .75rem; flex-wrap: wrap; margin-top: 1.75rem; }
 .modal-cta-row .btn { flex: 1 1 auto; text-align: center; justify-content: center; }
 
 /* ── Event card permanente (Jeux Maths) ──────────────────────────── */
@@ -1799,6 +1830,13 @@ fieldset.wizard-step {
   transition: color .18s;
 }
 .footer-col a:hover { color: #fff; }
+.footer-col .footer-note {
+  display: block;
+  font-size: .78rem;
+  font-style: italic;
+  color: rgba(255,255,255,.35);
+  cursor: default;
+}
 .footer-bottom {
   display: flex; align-items: center; justify-content: space-between;
   flex-wrap: wrap; gap: 1rem;
