@@ -1428,22 +1428,52 @@ fieldset.wizard-step {
 }
 .impact-card p { font-size: .875rem; opacity: .75; }
 
-/* ── Groupes thématiques (objets, statuts) ─────────────────────── */
-.objets-group { margin-top: 2.75rem; }
+/* ── Groupes thématiques (objets, statuts) — accordéons ──────────
+   <details class="objets-group"><summary class="objets-group-title">
+   pour replier le mur de texte juridique et le rendre scannable. */
+.objets-group {
+  margin-top: 1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--white);
+  overflow: hidden;
+}
 .objets-group:first-of-type { margin-top: 0; }
 .objets-group-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
   font-family: var(--mono);
-  font-size: .72rem;
-  letter-spacing: .1em;
+  font-size: .78rem;
+  letter-spacing: .08em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--text);
   font-weight: 600;
-  margin: 0 0 .25rem;
-  padding-bottom: .85rem;
-  border-bottom: 2px solid var(--gold);
+  margin: 0;
+  padding: 1.25rem 1.5rem;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
 }
-.objets-group .numbered-list { margin-top: 0; }
+.objets-group-title::-webkit-details-marker { display: none; }
+.objets-group-title::marker { content: ''; }
+.objets-group[open] .objets-group-title { border-bottom: 1px solid var(--border); }
+.objets-group-toggle {
+  flex-shrink: 0;
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: var(--gold-light);
+  color: var(--gold);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem;
+  line-height: 1;
+  transition: transform .2s ease;
+}
+.objets-group[open] .objets-group-toggle { transform: rotate(45deg); }
+.objets-group .numbered-list { margin-top: 0; padding: 0 1.5rem 1rem; }
 .objets-group .numbered-list > li:first-child { border-top: none; padding-top: 1rem; }
+.objets-group .numbered-list > li:last-child { border-bottom: none; }
 
 /* ── Liste numérotée (objets, statuts) ─────────────────────────── */
 .numbered-list { list-style: none; margin: 2rem 0 0; padding: 0; counter-reset: nlist; }
