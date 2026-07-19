@@ -42,6 +42,8 @@ async function handleSubmit(request, env, ctx) {
       await handleNewsletter(formData, env, ctx);
     } else if (formType === "consentement") {
       await handleConsentement(formData, env, ctx, request);
+    } else if (formType === "autorisation_image") {
+      await handleAutorisationImage(formData, env, ctx, request);
     } else {
       return jsonResponse({ error: "Type de formulaire inconnu." }, 400);
     }
@@ -200,6 +202,57 @@ async function handleConsentement(formData, env, ctx, request) {
       env,
       `Nouveau consentement Loi 25 — ${nomParent}`,
       `Un parent a donné son consentement en ligne à la politique de confidentialité.\n\nParent : ${nomParent} (${lienEnfant || "lien non précisé"})\nEnfant : ${nomEnfant || "non précisé"}\nCourriel : ${email}\nTéléphone : ${telephone || "non précisé"}\nSignature électronique : ${signature}\nVersion de la politique acceptée : ${versionPolitique || "non précisée"}\nAdresse IP : ${ip || "non précisée"}`
+    ).catch(() => {})
+  );
+}
+
+async function handleAutorisationImage(formData, env, ctx, request) {
+  const nomParent = str(formData, "nom_parent");
+  const lienEnfant = str(formData, "lien_enfant");
+  const nomEnfant = str(formData, "nom_enfant");
+  const email = str(formData, "email");
+  const telephone = str(formData, "telephone");
+  const signature = str(formData, "signature");
+  const autorisation = str(formData, "autorisation"); // "Accordée" ou "Refusée"
+  const contextes = formData.getAll("contextes").map((c) => c.toString());
+  const versionDocument = str(formData, "version_document");
+  const ip = request.headers.get("CF-Connecting-IP") || "";
+
+  if (!nomParent || !email || !signature || !autorisation) {
+    throw new Error("Champs obligatoires manquants (nom, courriel, signature ou choix d'autorisation).");
+  }
+
+  const noteInterne = [
+    `Autorisation droit à l'image donnée en ligne le ${new Date().toISOString()}.`,
+    `Décision : ${autorisation}`,
+    `Enfant : ${nomEnfant || "non précisé"}`,
+    `Lien avec l'enfant : ${lienEnfant || "non précisé"}`,
+    `Contextes autorisés : ${contextes.length ? contextes.join(", ") : "non précisé"}`,
+    `Version du document accepté : ${versionDocument || "non précisée"}`,
+    `Adresse IP : ${ip || "non précisée"}`,
+  ].join("\n");
+
+  await createNotionPage(env, {
+    "Nom de l'enfant": title(nomEnfant || `Autorisation image — ${nomParent}`),
+    "Nom parent": richText(nomParent),
+    "Courriel parent": email ? { email } : undefined,
+    "Téléphone parent": telephone ? { phone_number: telephone } : undefined,
+    "Lien avec enfant": select(lienEnfant),
+    "Type": select("Autorisation image"),
+    "Source": select("Site web"),
+    "Statut": select("Nouveau"),
+    "Autorisation image": select(autorisation),
+    "Version document accepté": richText(versionDocument),
+    "Signature électronique": richText(signature),
+    "Adresse IP": richText(ip),
+    "Note interne": richText(noteInterne),
+  });
+
+  ctx.waitUntil(
+    sendNotificationEmail(
+      env,
+      `Autorisation image (${autorisation}) — ${nomParent}`,
+      `Un parent a répondu au formulaire d'autorisation droit à l'image.\n\nDécision : ${autorisation}\nParent : ${nomParent} (${lienEnfant || "lien non précisé"})\nEnfant : ${nomEnfant || "non précisé"}\nCourriel : ${email}\nTéléphone : ${telephone || "non précisé"}\nContextes autorisés : ${contextes.length ? contextes.join(", ") : "non précisé"}\nSignature électronique : ${signature}\nVersion du document accepté : ${versionDocument || "non précisée"}\nAdresse IP : ${ip || "non précisée"}`
     ).catch(() => {})
   );
 }

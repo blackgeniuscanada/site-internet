@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Autorisation droit à l'image · BlackGenius Canada</title>
+  <meta name="description" content="Autorisez ou déclinez en ligne l'utilisation des photos et vidéos de votre enfant lors des activités BlackGenius Canada et dans nos publications.">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/img/favicon-192.png">
+  <link rel="apple-touch-icon" href="assets/img/favicon-192.png">
+  <link rel="stylesheet" href="assets/css/style.css?v=14">
+  <meta property="og:title" content="Autorisation droit à l'image · BlackGenius Canada">
+  <meta property="og:description" content="Autorisez ou déclinez en ligne l'utilisation des photos et vidéos de votre enfant.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://blackgeniuscanada.org/autorisation-image.html">
+  <meta property="og:image" content="https://blackgeniuscanada.org/assets/img/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="robots" content="noindex">
+  <link rel="alternate" hreflang="fr" href="https://blackgeniuscanada.org/autorisation-image.html">
+  <link rel="alternate" hreflang="en" href="https://blackgeniuscanada.org/en/autorisation-image.html">
+  <link rel="alternate" hreflang="x-default" href="https://blackgeniuscanada.org/autorisation-image.html">
+</head>
+<body>
+
+
+<header class="site-header"><div class="container">
+  <a class="brand" href="index.html"><img src="assets/img/favicon-192.png" alt="BlackGenius Canada" style="width:36px;height:36px;border-radius:6px;"><span class="brand-text"><span class="name">Black<em>Genius</em> Canada</span><span class="tagline">Ensemble pour l'Excellence</span></span></a>
+  <button class="menu-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  <nav class="main-nav"><ul>
+    <li><a href="mission.html">Mission</a></li>
+    <li><a href="programmes.html">Programmes</a></li>
+    <li><a href="evenements.html">Événements</a></li>
+    <li><a href="actualites.html">Journal</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="https://maths.blackgeniuscanada.org/" target="_blank" rel="noopener" style="color:var(--gold);">Jeux Maths</a></li>
+    <li><a href="https://parents.blackgeniuscanada.org/" target="_blank" rel="noopener" style="color:var(--gold);">Espace famille</a></li>
+    <li><a href="en/autorisation-image.html" style="color:var(--muted); font-family:var(--mono); font-size:.8rem;">EN</a></li>
+    <li><a class="cta-nav" href="inscription.html">S'inscrire</a></li>
+  </ul></nav>
+</div></header>
+
+<section class="page-hero">
+  <div class="container">
+    <div class="breadcrumb"><a href="index.html">Accueil</a> &nbsp;·&nbsp; <a href="confidentialite.html">Confidentialité</a> &nbsp;·&nbsp; Autorisation image</div>
+    <h1>L'image de votre enfant,<br>entre <em>de bonnes mains</em>.</h1>
+    <p class="lead">Lors des activités, événements et sessions BlackGenius Canada, il arrive que nous prenions des photos ou des vidéos des enfants membres. Ce formulaire vous permet d'autoriser — ou de décliner — leur utilisation, et de préciser dans quels contextes.</p>
+  </div>
+</section>
+
+<section>
+  <div class="container-narrow">
+
+    <div class="callout" style="margin-bottom: 40px;">
+      Cette autorisation est <strong>entièrement optionnelle</strong> et n'affecte pas la participation de votre enfant aux programmes. Vous pouvez la retirer à tout moment en écrivant à <a href="mailto:contact@blackgeniuscanada.org" style="color:var(--gold); border-bottom:1px solid var(--gold);">contact@blackgeniuscanada.org</a>. Voir aussi notre <a href="confidentialite.html" target="_blank" rel="noopener" style="color:var(--gold); border-bottom:1px solid var(--gold);">politique de confidentialité</a>.
+    </div>
+
+    <form data-formspree action="/api/submit" method="POST" class="contact-form" id="image-form">
+      <input type="hidden" name="form_type" value="autorisation_image">
+      <input type="hidden" name="version_document" value="19 juillet 2026">
+      <!-- Honeypot anti-bot — invisible aux humains, rempli par les bots -->
+      <div aria-hidden="true" style="position:absolute; left:-10000px; top:auto; width:1px; height:1px; overflow:hidden;">
+        <label>Ne pas remplir ce champ</label>
+        <input type="text" name="website_url" tabindex="-1" autocomplete="off">
+      </div>
+
+      <div class="form-grid">
+        <div class="field full"><label>Nom complet du parent ou tuteur légal <span class="req">*</span></label><input name="nom_parent" required></div>
+        <div class="field full">
+          <label>Lien avec l'enfant <span class="req">*</span></label>
+          <div class="radio-group" role="radiogroup">
+            <label class="radio-card"><input type="radio" name="lien_enfant" value="Mère" required><span>Mère</span></label>
+            <label class="radio-card"><input type="radio" name="lien_enfant" value="Père"><span>Père</span></label>
+            <label class="radio-card"><input type="radio" name="lien_enfant" value="Tuteur"><span>Tuteur légal</span></label>
+          </div>
+        </div>
+        <div class="field full"><label>Nom complet de l'enfant <span class="req">*</span></label><input name="nom_enfant" required></div>
+        <div class="field"><label>Courriel <span class="req">*</span></label><input type="email" name="email" required></div>
+        <div class="field"><label>Téléphone</label><input type="tel" name="telephone"></div>
+      </div>
+
+      <div class="form-grid" style="margin-top: 28px;">
+        <div class="field full">
+          <label>Ma décision <span class="req">*</span></label>
+          <div class="radio-group" role="radiogroup">
+            <label class="radio-card"><input type="radio" name="autorisation" value="Accordée" required><span>J'autorise</span></label>
+            <label class="radio-card"><input type="radio" name="autorisation" value="Refusée"><span>Je n'autorise pas</span></label>
+          </div>
+        </div>
+      </div>
+
+      <div class="engagements-box" style="margin-top: 28px;">
+        <span class="field-hint" style="display:block; margin-bottom: 12px;">Si vous autorisez, précisez dans quels contextes (cochez tout ce qui s'applique) :</span>
+        <label class="check-line"><input type="checkbox" name="contextes" value="Site web"><span>Site web de BlackGenius Canada</span></label>
+        <label class="check-line"><input type="checkbox" name="contextes" value="Réseaux sociaux"><span>Réseaux sociaux (Facebook, Instagram, YouTube, LinkedIn)</span></label>
+        <label class="check-line"><input type="checkbox" name="contextes" value="Publications imprimées"><span>Publications imprimées ou promotionnelles (rapports, affiches, dépliants)</span></label>
+        <label class="check-line"><input type="checkbox" name="contextes" value="Archives internes"><span>Archives internes de l'OSBL (album des événements, non publié publiquement)</span></label>
+      </div>
+
+      <div class="engagements-box" style="margin-top: 20px;">
+        <label class="check-line"><input type="checkbox" required><span>J'ai lu et je comprends les conditions de cette autorisation. Je sais que je peux la retirer à tout moment.</span></label>
+      </div>
+
+      <div class="form-grid" style="margin-top: 28px;">
+        <div class="field full">
+          <label>Signature électronique — tapez votre nom complet <span class="req">*</span></label>
+          <input name="signature" required placeholder="Votre nom et prénom">
+          <span class="field-hint">La saisie de votre nom complet ci-dessus vaut signature électronique et engage votre responsabilité comme le ferait une signature manuscrite.</span>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary" style="margin-top:30px;">Envoyer ma réponse →</button>
+      <p class="form-feedback" style="display:none; margin-top:30px; padding:18px 22px; background:var(--text); border-left:2px solid var(--gold); font-family: var(--serif); font-style: italic; color: var(--white);"></p>
+    </form>
+
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-cols">
+      <div class="footer-brand">
+        <a class="brand" href="index.html">
+          <img src="assets/img/favicon-192.png" alt="BlackGenius Canada" style="width:36px;height:36px;border-radius:6px;">
+          <span class="brand-text">
+            <span class="name">Black<em>Genius</em> Canada</span>
+            <span class="tagline">Ensemble pour l'Excellence</span>
+          </span>
+        </a>
+        <p class="footer-follow-label">Suivez-nous sur :</p>
+        <div class="footer-social">
+          <a href="https://www.facebook.com/profile.php?id=61590323911528" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.51 1.49-3.89 3.78-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.77l-.44 2.89h-2.33v6.99A10 10 0 0 0 22 12z"/></svg></a>
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+          <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.95v5.66H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zm-1.78 13.02h3.55V9H3.56v11.45z"/></svg></a>
+          <a href="https://www.youtube.com/@BlackGenius225" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M21.58 7.19a2.5 2.5 0 0 0-1.76-1.77C18.25 5 12 5 12 5s-6.25 0-7.82.42A2.5 2.5 0 0 0 2.42 7.19 26 26 0 0 0 2 12a26 26 0 0 0 .42 4.81 2.5 2.5 0 0 0 1.76 1.77C5.75 19 12 19 12 19s6.25 0 7.82-.42a2.5 2.5 0 0 0 1.76-1.77A26 26 0 0 0 22 12a26 26 0 0 0-.42-4.81zM10 15V9l5.2 3-5.2 3z"/></svg></a>
+        </div>
+        <p class="footer-address"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" xmlns="http://www.w3.org/2000/svg" width="14" height="14"><path d="M12 22s-7-7.5-7-13a7 7 0 0 1 14 0c0 5.5-7 13-7 13z"/><circle cx="12" cy="9" r="2.5"/></svg><span>Montréal · Québec<br><a href="mailto:contact@blackgeniuscanada.org" style="color: var(--gold);">contact@blackgeniuscanada.org</a></span></p>
+        <a class="btn btn-primary footer-cta" href="don.html">Faire un don</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Mission</h4>
+        <ul>
+          <li><a href="mission.html">Notre mission</a></li>
+          <li><a href="mission.html#vision">Vision 2035</a></li>
+          <li><a href="mission.html#valeurs">Nos valeurs</a></li>
+          <li><a href="equipe.html">Équipe et gouvernance</a></li>
+          <li><a href="impact.html">Notre impact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Programmes</h4>
+        <ul>
+          <li><a href="programmes.html">Tous les programmes</a></li>
+          <li><a href="https://maths.blackgeniuscanada.org/" target="_blank" rel="noopener" style="color:var(--gold);">Jeux Maths</a></li>
+          <li><a href="evenements.html">Événements</a></li>
+          <li><a href="actualites.html">Journal</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>S'engager</h4>
+        <ul>
+          <li><a href="inscription.html">Inscrire un enfant</a></li>
+          <li><a href="benevoles.html">Devenir bénévole</a></li>
+          <li><a href="don.html">Faire un don</a></li>
+          <li><a href="contact.html">Partenariats</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Espace membres</h4>
+        <ul>
+          <li><a href="https://parents.blackgeniuscanada.org/" target="_blank" rel="noopener" style="color: var(--gold);">Espace famille →</a></li>
+          <li>Réservé aux familles inscrites</li>
+          <li><a href="contact.html">Formulaire de contact</a></li>
+          <li><a href="mailto:contact@blackgeniuscanada.org">Nous écrire</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div>© <span id="year">2026</span> BlackGenius Canada · blackgeniuscanada.org</div>
+      <div>
+        <a href="confidentialite.html">Confidentialité (Loi 25)</a>
+        <a href="mentions-legales.html">Mentions légales</a>
+        <span class="lang-switch"><strong>FR</strong> · <a href="en/autorisation-image.html">EN</a></span>
+      </div>
+    </div>
+  </div>
+</footer>
+<script src="assets/js/main.js?v=2"></script>
+</body></html>

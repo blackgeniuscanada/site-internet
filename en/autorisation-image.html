@@ -2,21 +2,22 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Legal Notice · BlackGenius Canada</title>
-  <meta name="description" content="Legal notice for the BlackGenius Canada website.">
+  <title>Image Rights Authorization · BlackGenius Canada</title>
+  <meta name="description" content="Authorize or decline online the use of photos and videos of your child during BlackGenius Canada activities and in our publications.">
   <link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicon-32.png">
   <link rel="icon" type="image/png" sizes="192x192" href="../assets/img/favicon-192.png">
   <link rel="apple-touch-icon" href="../assets/img/favicon-192.png">
-  <link rel="stylesheet" href="../assets/css/style.css?v=15">
-  <meta property="og:title" content="Legal Notice · BlackGenius Canada">
-  <meta property="og:description" content="Legal notice for the BlackGenius Canada website.">
+  <link rel="stylesheet" href="../assets/css/style.css?v=14">
+  <meta property="og:title" content="Image Rights Authorization · BlackGenius Canada">
+  <meta property="og:description" content="Authorize or decline online the use of photos and videos of your child.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://blackgeniuscanada.org/en/mentions-legales.html">
+  <meta property="og:url" content="https://blackgeniuscanada.org/en/autorisation-image.html">
   <meta property="og:image" content="https://blackgeniuscanada.org/assets/img/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="alternate" hreflang="fr" href="https://blackgeniuscanada.org/mentions-legales.html">
-  <link rel="alternate" hreflang="en" href="https://blackgeniuscanada.org/en/mentions-legales.html">
-  <link rel="alternate" hreflang="x-default" href="https://blackgeniuscanada.org/mentions-legales.html">
+  <meta name="robots" content="noindex">
+  <link rel="alternate" hreflang="fr" href="https://blackgeniuscanada.org/autorisation-image.html">
+  <link rel="alternate" hreflang="en" href="https://blackgeniuscanada.org/en/autorisation-image.html">
+  <link rel="alternate" hreflang="x-default" href="https://blackgeniuscanada.org/autorisation-image.html">
 </head>
 <body>
 
@@ -31,54 +32,84 @@
     <li><a href="contact.html">Contact</a></li>
     <li><a href="https://maths.blackgeniuscanada.org/" target="_blank" rel="noopener" style="color:var(--gold);">Math Games</a></li>
     <li><a href="https://parents.blackgeniuscanada.org/" target="_blank" rel="noopener" style="color:var(--gold);">Family space</a></li>
-    <li><a href="../mentions-legales.html" style="color:var(--muted); font-family:var(--mono); font-size:.8rem;">FR</a></li>
+    <li><a href="../autorisation-image.html" style="color:var(--muted); font-family:var(--mono); font-size:.8rem;">FR</a></li>
     <li><a class="cta-nav" href="inscription.html">Enroll</a></li>
   </ul></nav>
 </div></header>
 
 <section class="page-hero">
   <div class="container">
-    <div class="breadcrumb"><a href="index.html">Home</a> &nbsp;·&nbsp; Legal Notice</div>
-    <h1>Legal <em>Notice</em>.</h1>
-    <p class="lead">Legal information regarding the blackgeniuscanada.org website and the BlackGenius Canada nonprofit.</p>
+    <div class="breadcrumb"><a href="index.html">Home</a> &nbsp;·&nbsp; <a href="confidentialite.html">Privacy</a> &nbsp;·&nbsp; Image authorization</div>
+    <h1>Your child's image,<br>in <em>good hands</em>.</h1>
+    <p class="lead">During BlackGenius Canada activities, events and sessions, we sometimes take photos or videos of member children. This form lets you authorize — or decline — their use, and specify in which contexts.</p>
   </div>
 </section>
 
 <section>
-  <div class="container-prose">
-    <p style="font-style: italic; color: var(--muted);">This English version is provided for convenience. In the event of any discrepancy, the <a href="../mentions-legales.html" style="color:var(--gold); border-bottom:1px solid var(--gold);">French version</a> governs.</p>
+  <div class="container-narrow">
 
-    <h2 style="margin-top: 32px;">Site publisher</h2>
-    <p><strong>BlackGenius Canada</strong> — Academic excellence nonprofit<br>
-    In the process of incorporating as a non-profit organization (NPO) — incorporation targeted for July 2026<br>
-    Montreal · Quebec · Canada<br>
-    Email: <a href="mailto:contact@blackgeniuscanada.org" style="color:var(--gold); border-bottom:1px solid var(--gold);">contact@blackgeniuscanada.org</a></p>
+    <div class="callout" style="margin-bottom: 40px;">
+      This authorization is <strong>entirely optional</strong> and does not affect your child's participation in our programs. You may withdraw it at any time by writing to <a href="mailto:contact@blackgeniuscanada.org" style="color:var(--gold); border-bottom:1px solid var(--gold);">contact@blackgeniuscanada.org</a>. See also our <a href="confidentialite.html" target="_blank" rel="noopener" style="color:var(--gold); border-bottom:1px solid var(--gold);">privacy policy</a>.
+    </div>
 
-    <p style="margin-top: 32px;">The Quebec enterprise number (NEQ) will be published once incorporation is official.</p>
+    <form data-formspree action="/api/submit" method="POST" class="contact-form" id="image-form">
+      <input type="hidden" name="form_type" value="autorisation_image">
+      <input type="hidden" name="version_document" value="July 19, 2026">
+      <!-- Honeypot anti-bot — invisible to humans, filled by bots -->
+      <div aria-hidden="true" style="position:absolute; left:-10000px; top:auto; width:1px; height:1px; overflow:hidden;">
+        <label>Do not fill this field</label>
+        <input type="text" name="website_url" tabindex="-1" autocomplete="off">
+      </div>
 
-    <h2 style="margin-top: 48px;">Publication director</h2>
-    <p>The founding committee of BlackGenius Canada, represented by its rotating coordination.</p>
+      <div class="form-grid">
+        <div class="field full"><label>Full name of parent or legal guardian <span class="req">*</span></label><input name="nom_parent" required></div>
+        <div class="field full">
+          <label>Relationship to child <span class="req">*</span></label>
+          <div class="radio-group" role="radiogroup">
+            <label class="radio-card"><input type="radio" name="lien_enfant" value="Mère" required><span>Mother</span></label>
+            <label class="radio-card"><input type="radio" name="lien_enfant" value="Père"><span>Father</span></label>
+            <label class="radio-card"><input type="radio" name="lien_enfant" value="Tuteur"><span>Legal guardian</span></label>
+          </div>
+        </div>
+        <div class="field full"><label>Full name of the child <span class="req">*</span></label><input name="nom_enfant" required></div>
+        <div class="field"><label>Email <span class="req">*</span></label><input type="email" name="email" required></div>
+        <div class="field"><label>Phone</label><input type="tel" name="telephone"></div>
+      </div>
 
-    <h2 style="margin-top: 48px;">Hosting</h2>
-    <p>The site is hosted by <strong>Cloudflare</strong> (Cloudflare, Inc., 101 Townsend Street, San Francisco, CA 94107, USA), with servers distributed across their global CDN network.</p>
+      <div class="form-grid" style="margin-top: 28px;">
+        <div class="field full">
+          <label>My decision <span class="req">*</span></label>
+          <div class="radio-group" role="radiogroup">
+            <label class="radio-card"><input type="radio" name="autorisation" value="Accordée" required><span>I authorize</span></label>
+            <label class="radio-card"><input type="radio" name="autorisation" value="Refusée"><span>I do not authorize</span></label>
+          </div>
+        </div>
+      </div>
 
-    <h2 style="margin-top: 48px;">Design and development</h2>
-    <p>Institutional website designed and developed in 2026 for BlackGenius Canada. All rights reserved. The text content, logo, photos and graphic elements are the exclusive property of the nonprofit and may not be reproduced without prior written authorization.</p>
+      <div class="engagements-box" style="margin-top: 28px;">
+        <span class="field-hint" style="display:block; margin-bottom: 12px;">If you authorize, please specify the contexts (check all that apply):</span>
+        <label class="check-line"><input type="checkbox" name="contextes" value="Site web"><span>BlackGenius Canada website</span></label>
+        <label class="check-line"><input type="checkbox" name="contextes" value="Réseaux sociaux"><span>Social media (Facebook, Instagram, YouTube, LinkedIn)</span></label>
+        <label class="check-line"><input type="checkbox" name="contextes" value="Publications imprimées"><span>Printed or promotional publications (reports, posters, flyers)</span></label>
+        <label class="check-line"><input type="checkbox" name="contextes" value="Archives internes"><span>Internal nonprofit archives (event album, not publicly published)</span></label>
+      </div>
 
-    <h2 style="margin-top: 48px;">Typography credits</h2>
-    <p>The site uses the DM Serif Display, Fraunces, Inter and JetBrains Mono typefaces, under an Open Font License via Google Fonts.</p>
+      <div class="engagements-box" style="margin-top: 20px;">
+        <label class="check-line"><input type="checkbox" required><span>I have read and understand the terms of this authorization. I know I can withdraw it at any time.</span></label>
+      </div>
 
-    <h2 style="margin-top: 48px;">Intellectual property</h2>
-    <p>All elements making up this site (text, images, logos, videos, structure) are protected under Canadian copyright law. Any reproduction or use, even partial, requires prior authorization. The <strong>BlackGenius Canada</strong> mark is used by the founding nonprofit.</p>
+      <div class="form-grid" style="margin-top: 28px;">
+        <div class="field full">
+          <label>Electronic signature — type your full name <span class="req">*</span></label>
+          <input name="signature" required placeholder="Your first and last name">
+          <span class="field-hint">Typing your full name above constitutes an electronic signature and carries the same weight as a handwritten one.</span>
+        </div>
+      </div>
 
-    <h2 style="margin-top: 48px;">Limitation of liability</h2>
-    <p>The information published on this site is provided for informational purposes. BlackGenius Canada strives to keep it accurate and up to date, but cannot be held liable for any errors or omissions.</p>
+      <button type="submit" class="btn btn-primary" style="margin-top:30px;">Send my response →</button>
+      <p class="form-feedback" style="display:none; margin-top:30px; padding:18px 22px; background:var(--text); border-left:2px solid var(--gold); font-family: var(--serif); font-style: italic; color: var(--white);"></p>
+    </form>
 
-    <h2 style="margin-top: 48px;">External links</h2>
-    <p>The site may contain links to third-party sites (YouTube, Family Space, etc.). BlackGenius Canada is not responsible for the content of those sites.</p>
-
-    <h2 style="margin-top: 48px;">Governing law</h2>
-    <p>This site is governed by the laws of Quebec and Canada. In the event of a dispute, the courts of the judicial district of Montreal have sole jurisdiction.</p>
   </div>
 </section>
 
@@ -139,7 +170,7 @@
         <h4>Members area</h4>
         <ul>
           <li><a href="https://parents.blackgeniuscanada.org/" target="_blank" rel="noopener" style="color: var(--gold);">Family space →</a></li>
-          <li class="footer-note">Reserved for enrolled families</li>
+          <li>Reserved for enrolled families</li>
           <li><a href="contact.html">Contact form</a></li>
           <li><a href="mailto:contact@blackgeniuscanada.org">Write to us</a></li>
         </ul>
@@ -151,7 +182,7 @@
       <div>
         <a href="confidentialite.html">Privacy (Bill 25)</a>
         <a href="mentions-legales.html">Legal notice</a>
-        <span class="lang-switch"><strong>EN</strong> · <a href="../mentions-legales.html">FR</a></span>
+        <span class="lang-switch"><strong>EN</strong> · <a href="../autorisation-image.html">FR</a></span>
       </div>
     </div>
   </div>
