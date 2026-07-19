@@ -1526,6 +1526,11 @@ fieldset.wizard-step {
 .objets-group .numbered-list { margin-top: 0; padding: 0 1.5rem 1rem; }
 .objets-group .numbered-list > li:first-child { border-top: none; padding-top: 1rem; }
 .objets-group .numbered-list > li:last-child { border-bottom: none; }
+.objets-group-body { padding: 0 1.5rem 1.5rem; }
+.objets-group-body > p:first-child { margin-top: 0; }
+.objets-group-body > p:last-child { margin-bottom: 0; }
+.objets-group-body .bullet-list { margin-top: 1rem; }
+.objets-group-body .bullet-list:first-child { margin-top: 0; }
 
 /* ── Liste numérotée (objets, statuts) ─────────────────────────── */
 .numbered-list { list-style: none; margin: 2rem 0 0; padding: 0; counter-reset: nlist; }
@@ -1547,6 +1552,25 @@ fieldset.wizard-step {
   line-height: 1.7;
 }
 .numbered-list p { margin: 0; line-height: 1.7; }
+
+/* ── Liste à puces (pages prose : confidentialité, mentions légales) ── */
+.bullet-list { list-style: none; margin: 1.25rem 0 0; padding: 0; }
+.bullet-list > li {
+  position: relative;
+  padding: .55rem 0 .55rem 1.6rem;
+  line-height: 1.7;
+  border-top: 1px solid var(--border);
+}
+.bullet-list > li:last-child { border-bottom: 1px solid var(--border); }
+.bullet-list > li::before {
+  content: '';
+  position: absolute;
+  left: .1rem;
+  top: 1.15rem;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--gold);
+}
 
 /* ── Section Liste signatures ──────────────────────────────────── */
 .signatures-list { list-style: none; margin: 2.5rem 0 0; padding: 0; }

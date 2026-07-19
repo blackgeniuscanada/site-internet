@@ -23,6 +23,7 @@
       formSending: 'Envoi en cours...',
       formSuccess: 'Merci. Votre message est bien reçu. Un coordinateur revient vers vous sous 5 jours ouvrables.',
       formSuccessNewsletter: 'Merci ! Vous êtes bien abonné(e) à notre infolettre.',
+      formSuccessConsentement: 'Merci. Votre consentement a bien été enregistré et archivé de façon sécurisée.',
       formErrorGeneric: "Erreur d'envoi. Réessayez ou écrivez à contact@blackgeniuscanada.org.",
       formErrorConnection: 'Connexion impossible. Réessayez ou écrivez à contact@blackgeniuscanada.org.',
       formSendDefault: 'Envoyer'
@@ -47,6 +48,7 @@
       formSending: 'Sending...',
       formSuccess: 'Thank you. Your message has been received. A coordinator will get back to you within 5 business days.',
       formSuccessNewsletter: "Thank you! You're now subscribed to our newsletter.",
+      formSuccessConsentement: 'Thank you. Your consent has been recorded and securely archived.',
       formErrorGeneric: 'Submission error. Please try again or write to contact@blackgeniuscanada.org.',
       formErrorConnection: 'Connection failed. Please try again or write to contact@blackgeniuscanada.org.',
       formSendDefault: 'Send'

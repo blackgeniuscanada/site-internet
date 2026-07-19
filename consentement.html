@@ -2,23 +2,25 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mentions légales · BlackGenius Canada</title>
-  <meta name="description" content="Mentions légales du site BlackGenius Canada.">
+  <title>Consentement des parents · BlackGenius Canada</title>
+  <meta name="description" content="Donnez votre consentement en ligne à la politique de confidentialité de BlackGenius Canada (Loi 25). Formulaire sécurisé, archivé pour chaque famille membre.">
   <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
   <link rel="icon" type="image/png" sizes="192x192" href="assets/img/favicon-192.png">
   <link rel="apple-touch-icon" href="assets/img/favicon-192.png">
   <link rel="stylesheet" href="assets/css/style.css?v=13">
-  <meta property="og:title" content="Mentions légales · BlackGenius Canada">
-  <meta property="og:description" content="Mentions légales du site BlackGenius Canada.">
+  <meta property="og:title" content="Consentement des parents · BlackGenius Canada">
+  <meta property="og:description" content="Donnez votre consentement en ligne à la politique de confidentialité de BlackGenius Canada (Loi 25).">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://blackgeniuscanada.org/mentions-legales.html">
+  <meta property="og:url" content="https://blackgeniuscanada.org/consentement.html">
   <meta property="og:image" content="https://blackgeniuscanada.org/assets/img/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="alternate" hreflang="fr" href="https://blackgeniuscanada.org/mentions-legales.html">
-  <link rel="alternate" hreflang="en" href="https://blackgeniuscanada.org/en/mentions-legales.html">
-  <link rel="alternate" hreflang="x-default" href="https://blackgeniuscanada.org/mentions-legales.html">
+  <meta name="robots" content="noindex">
+  <link rel="alternate" hreflang="fr" href="https://blackgeniuscanada.org/consentement.html">
+  <link rel="alternate" hreflang="en" href="https://blackgeniuscanada.org/en/consentement.html">
+  <link rel="alternate" hreflang="x-default" href="https://blackgeniuscanada.org/consentement.html">
 </head>
 <body>
+
 
 <header class="site-header"><div class="container">
   <a class="brand" href="index.html"><img src="assets/img/favicon-192.png" alt="BlackGenius Canada" style="width:36px;height:36px;border-radius:6px;"><span class="brand-text"><span class="name">Black<em>Genius</em> Canada</span><span class="tagline">Ensemble pour l'Excellence</span></span></a>
@@ -31,52 +33,67 @@
     <li><a href="contact.html">Contact</a></li>
     <li><a href="https://maths.blackgeniuscanada.org/" target="_blank" rel="noopener" style="color:var(--gold);">Jeux Maths</a></li>
     <li><a href="https://parents.blackgeniuscanada.org/" target="_blank" rel="noopener" style="color:var(--gold);">Espace famille</a></li>
-    <li><a href="en/mentions-legales.html" style="color:var(--muted); font-family:var(--mono); font-size:.8rem;">EN</a></li>
+    <li><a href="en/consentement.html" style="color:var(--muted); font-family:var(--mono); font-size:.8rem;">EN</a></li>
     <li><a class="cta-nav" href="inscription.html">S'inscrire</a></li>
   </ul></nav>
 </div></header>
 
 <section class="page-hero">
   <div class="container">
-    <div class="breadcrumb"><a href="index.html">Accueil</a> &nbsp;·&nbsp; Mentions légales</div>
-    <h1>Mentions <em>légales</em>.</h1>
-    <p class="lead">Informations légales relatives au site blackgeniuscanada.org et au collectif BlackGenius Canada.</p>
+    <div class="breadcrumb"><a href="index.html">Accueil</a> &nbsp;·&nbsp; <a href="confidentialite.html">Confidentialité</a> &nbsp;·&nbsp; Consentement</div>
+    <h1>Votre accord, <em>en ligne</em>.</h1>
+    <p class="lead">Ce formulaire permet à tout parent ou tuteur légal d'un enfant membre de donner formellement son consentement à notre <a href="confidentialite.html" style="color:var(--gold); border-bottom:1px solid var(--gold);">politique de confidentialité</a>, conformément à la Loi 25 du Québec. Votre réponse est enregistrée et archivée de façon sécurisée.</p>
   </div>
 </section>
 
 <section>
-  <div class="container-prose">
-    <h2>Éditeur du site</h2>
-    <p><strong>BlackGenius Canada</strong> — Collectif d'excellence académique<br>
-    En cours d'incorporation comme organisme sans but lucratif (OSBL) — projection avril 2027<br>
-    Montréal · Québec · Canada<br>
-    Courriel : <a href="mailto:contact@blackgeniuscanada.org" style="color:var(--gold); border-bottom:1px solid var(--gold);">contact@blackgeniuscanada.org</a></p>
+  <div class="container-narrow">
 
-    <p style="margin-top: 32px;">Le numéro d'entreprise du Québec (NEQ) sera publié dès l'incorporation officielle.</p>
+    <div class="callout" style="margin-bottom: 40px;">
+      En résumé : nous collectons uniquement les données nécessaires au suivi de votre enfant (identité, bulletins, coordonnées), nous ne les vendons jamais, et vous pouvez à tout moment demander à les consulter, les corriger ou les supprimer. Le détail complet est dans notre <a href="confidentialite.html" target="_blank" rel="noopener" style="color:var(--gold); border-bottom:1px solid var(--gold);">politique de confidentialité</a>.
+    </div>
 
-    <h2 style="margin-top: 48px;">Directeur de la publication</h2>
-    <p>Le comité fondateur de BlackGenius Canada, représenté par sa coordination tournante.</p>
+    <form data-formspree action="/api/submit" method="POST" class="contact-form" id="consent-form">
+      <input type="hidden" name="form_type" value="consentement">
+      <input type="hidden" name="version_politique" value="21 mai 2026">
+      <!-- Honeypot anti-bot — invisible aux humains, rempli par les bots -->
+      <div aria-hidden="true" style="position:absolute; left:-10000px; top:auto; width:1px; height:1px; overflow:hidden;">
+        <label>Ne pas remplir ce champ</label>
+        <input type="text" name="website_url" tabindex="-1" autocomplete="off">
+      </div>
 
-    <h2 style="margin-top: 48px;">Hébergement</h2>
-    <p>Le site est hébergé par <strong>Cloudflare Pages</strong> (Cloudflare, Inc., 101 Townsend Street, San Francisco, CA 94107, USA), avec serveurs répartis sur leur réseau CDN mondial.</p>
+      <div class="form-grid">
+        <div class="field full"><label>Nom complet du parent ou tuteur légal <span class="req">*</span></label><input name="nom_parent" required></div>
+        <div class="field full">
+          <label>Lien avec l'enfant <span class="req">*</span></label>
+          <div class="radio-group" role="radiogroup">
+            <label class="radio-card"><input type="radio" name="lien_enfant" value="Mère" required><span>Mère</span></label>
+            <label class="radio-card"><input type="radio" name="lien_enfant" value="Père"><span>Père</span></label>
+            <label class="radio-card"><input type="radio" name="lien_enfant" value="Tuteur"><span>Tuteur légal</span></label>
+          </div>
+        </div>
+        <div class="field full"><label>Nom complet de l'enfant <span class="req">*</span></label><input name="nom_enfant" required></div>
+        <div class="field"><label>Courriel <span class="req">*</span></label><input type="email" name="email" required></div>
+        <div class="field"><label>Téléphone</label><input type="tel" name="telephone"></div>
+      </div>
 
-    <h2 style="margin-top: 48px;">Conception et développement</h2>
-    <p>Site institutionnel conçu et développé en 2026 pour BlackGenius Canada. Tous droits réservés. Le contenu textuel, le logo, les photos et les éléments graphiques sont la propriété exclusive du collectif et ne peuvent être reproduits sans autorisation écrite préalable.</p>
+      <div class="engagements-box" style="margin-top: 28px;">
+        <label class="check-line"><input type="checkbox" required><span>J'ai lu et je comprends la <a href="confidentialite.html" target="_blank" rel="noopener" style="color:var(--gold); border-bottom:1px solid var(--gold);">politique de confidentialité de BlackGenius Canada</a> (Loi 25).</span></label>
+        <label class="check-line"><input type="checkbox" required><span>Je consens à ce que BlackGenius Canada collecte, utilise et conserve les renseignements personnels de mon enfant et les miens, conformément à cette politique.</span></label>
+      </div>
 
-    <h2 style="margin-top: 48px;">Crédits typographiques</h2>
-    <p>Le site utilise les polices DM Serif Display, Fraunces, Inter et JetBrains Mono, sous licence Open Font License via Google Fonts.</p>
+      <div class="form-grid" style="margin-top: 28px;">
+        <div class="field full">
+          <label>Signature électronique — tapez votre nom complet <span class="req">*</span></label>
+          <input name="signature" required placeholder="Votre nom et prénom">
+          <span class="field-hint">La saisie de votre nom complet ci-dessus vaut signature électronique et engage votre responsabilité comme le ferait une signature manuscrite.</span>
+        </div>
+      </div>
 
-    <h2 style="margin-top: 48px;">Propriété intellectuelle</h2>
-    <p>L'ensemble des éléments composant ce site (textes, images, logos, vidéos, structure) est protégé par le droit d'auteur canadien. Toute reproduction ou utilisation, même partielle, est soumise à autorisation préalable. La marque <strong>BlackGenius Canada</strong> est utilisée par le collectif fondateur.</p>
+      <button type="submit" class="btn btn-primary" style="margin-top:30px;">Envoyer mon consentement →</button>
+      <p class="form-feedback" style="display:none; margin-top:30px; padding:18px 22px; background:var(--text); border-left:2px solid var(--gold); font-family: var(--serif); font-style: italic; color: var(--white);"></p>
+    </form>
 
-    <h2 style="margin-top: 48px;">Limitation de responsabilité</h2>
-    <p>Les informations publiées sur ce site sont fournies à titre informatif. BlackGenius Canada s'efforce de leur garantir l'exactitude et la mise à jour, mais ne saurait être tenu responsable d'éventuelles erreurs ou omissions.</p>
-
-    <h2 style="margin-top: 48px;">Liens externes</h2>
-    <p>Le site peut contenir des liens vers des sites tiers (YouTube, Espace famille, etc.). BlackGenius Canada n'est pas responsable du contenu de ces sites.</p>
-
-    <h2 style="margin-top: 48px;">Droit applicable</h2>
-    <p>Le présent site est régi par les lois du Québec et du Canada. En cas de litige, les tribunaux du district judiciaire de Montréal sont seuls compétents.</p>
   </div>
 </section>
 
@@ -149,7 +166,7 @@
       <div>
         <a href="confidentialite.html">Confidentialité (Loi 25)</a>
         <a href="mentions-legales.html">Mentions légales</a>
-        <span class="lang-switch"><strong>FR</strong> · <a href="en/mentions-legales.html">EN</a></span>
+        <span class="lang-switch"><strong>FR</strong> · <a href="en/consentement.html">EN</a></span>
       </div>
     </div>
   </div>

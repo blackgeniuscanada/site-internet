@@ -40,6 +40,8 @@ async function handleSubmit(request, env, ctx) {
       await handleContact(formData, env, ctx);
     } else if (formType === "newsletter") {
       await handleNewsletter(formData, env, ctx);
+    } else if (formType === "consentement") {
+      await handleConsentement(formData, env, ctx, request);
     } else {
       return jsonResponse({ error: "Type de formulaire inconnu." }, 400);
     }
@@ -155,6 +157,53 @@ async function handleContact(formData, env, ctx) {
   );
 }
 
+async function handleConsentement(formData, env, ctx, request) {
+  const nomParent = str(formData, "nom_parent");
+  const lienEnfant = str(formData, "lien_enfant");
+  const nomEnfant = str(formData, "nom_enfant");
+  const email = str(formData, "email");
+  const telephone = str(formData, "telephone");
+  const signature = str(formData, "signature");
+  const versionPolitique = str(formData, "version_politique");
+  const ip = request.headers.get("CF-Connecting-IP") || "";
+
+  if (!nomParent || !email || !signature) {
+    throw new Error("Champs obligatoires manquants (nom, courriel ou signature).");
+  }
+
+  const noteInterne = [
+    `Consentement Loi 25 donné en ligne le ${new Date().toISOString()}.`,
+    `Enfant : ${nomEnfant || "non précisé"}`,
+    `Lien avec l'enfant : ${lienEnfant || "non précisé"}`,
+    `Version de la politique acceptée : ${versionPolitique || "non précisée"}`,
+    `Adresse IP : ${ip || "non précisée"}`,
+  ].join("\n");
+
+  await createNotionPage(env, {
+    "Nom de l'enfant": title(nomEnfant || `Consentement — ${nomParent}`),
+    "Nom parent": richText(nomParent),
+    "Courriel parent": email ? { email } : undefined,
+    "Téléphone parent": telephone ? { phone_number: telephone } : undefined,
+    "Lien avec enfant": select(lienEnfant),
+    "Type": select("Consentement"),
+    "Source": select("Site web"),
+    "Statut": select("Nouveau"),
+    "Loi 25 consentement": checkbox(true),
+    "Version politique acceptée": richText(versionPolitique),
+    "Signature électronique": richText(signature),
+    "Adresse IP": richText(ip),
+    "Note interne": richText(noteInterne),
+  });
+
+  ctx.waitUntil(
+    sendNotificationEmail(
+      env,
+      `Nouveau consentement Loi 25 — ${nomParent}`,
+      `Un parent a donné son consentement en ligne à la politique de confidentialité.\n\nParent : ${nomParent} (${lienEnfant || "lien non précisé"})\nEnfant : ${nomEnfant || "non précisé"}\nCourriel : ${email}\nTéléphone : ${telephone || "non précisé"}\nSignature électronique : ${signature}\nVersion de la politique acceptée : ${versionPolitique || "non précisée"}\nAdresse IP : ${ip || "non précisée"}`
+    ).catch(() => {})
+  );
+}
+
 async function handleNewsletter(formData, env, ctx) {
   const email = str(formData, "email");
   if (!email) throw new Error("Courriel manquant.");
@@ -222,6 +271,10 @@ function richText(text) {
 function select(name) {
   if (!name) return undefined;
   return { select: { name } };
+}
+
+function checkbox(value) {
+  return { checkbox: !!value };
 }
 
 async function createNotionPage(env, propertiesRaw) {
