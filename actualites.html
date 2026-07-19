@@ -9,7 +9,10 @@
   <link rel="apple-touch-icon" href="assets/img/favicon-192.png">
   <meta property="og:image" content="https://blackgeniuscanada.org/assets/img/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="stylesheet" href="assets/css/style.css?v=10">
+  <link rel="stylesheet" href="assets/css/style.css?v=11">
+  <link rel="alternate" hreflang="fr" href="https://blackgeniuscanada.org/actualites.html">
+  <link rel="alternate" hreflang="en" href="https://blackgeniuscanada.org/en/actualites.html">
+  <link rel="alternate" hreflang="x-default" href="https://blackgeniuscanada.org/actualites.html">
 </head>
 <body>
 
@@ -25,6 +28,7 @@
     <li><a href="contact.html">Contact</a></li>
     <li><a href="https://maths.blackgeniuscanada.org/" target="_blank" rel="noopener" style="color:var(--gold);">Jeux Maths</a></li>
     <li><a href="https://parents.blackgeniuscanada.org/" target="_blank" rel="noopener" style="color:var(--gold);">Espace famille</a></li>
+    <li><a href="en/actualites.html" style="color:var(--muted); font-family:var(--mono); font-size:.8rem;">EN</a></li>
     <li><a class="cta-nav" href="inscription.html">S'inscrire</a></li>
   </ul></nav>
 </div></header>
@@ -97,11 +101,26 @@
         <h3>Recevoir nos actualités.</h3>
         <p>Un courriel par mois maximum. Annonces, témoignages, et nouvelles dates d'événements directement dans votre boîte.</p>
       </div>
-      <form class="newsletter-form" data-mock>
-        <input type="email" placeholder="votre.courriel@exemple.ca" required>
+      <form class="newsletter-form" data-formspree action="/api/submit" method="POST">
+        <input type="hidden" name="form_type" value="newsletter">
+        <!-- Honeypot anti-bot — invisible aux humains, rempli par les bots -->
+        <div aria-hidden="true" style="position:absolute; left:-10000px; top:auto; width:1px; height:1px; overflow:hidden;">
+          <label>Ne pas remplir ce champ</label>
+          <input type="text" name="website_url" tabindex="-1" autocomplete="off">
+        </div>
+        <input type="email" name="email" placeholder="votre.courriel@exemple.ca" required>
         <button type="submit">S'abonner →</button>
+        <p class="form-feedback" style="display:none; margin-top:16px; width:100%; padding:14px 18px; background:var(--text); border-left:2px solid var(--gold); font-family: var(--serif); font-style: italic; color: var(--white);"></p>
       </form>
     </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="container">
+    <h2>Envie d'en faire partie ?</h2>
+    <p>Ces histoires, ce sont celles de familles qui ont franchi le pas. La prochaine pourrait être la vôtre.</p>
+    <div class="hero-cta-row"><a class="btn btn-primary" href="inscription.html">Inscrire mon enfant</a></div>
   </div>
 </section>
 
@@ -174,9 +193,10 @@
       <div>
         <a href="confidentialite.html">Confidentialité (Loi 25)</a>
         <a href="mentions-legales.html">Mentions légales</a>
+        <span class="lang-switch"><strong>FR</strong> · <a href="en/actualites.html">EN</a></span>
       </div>
     </div>
   </div>
 </footer>
-<script src="assets/js/main.js"></script>
+<script src="assets/js/main.js?v=2"></script>
 </body></html>

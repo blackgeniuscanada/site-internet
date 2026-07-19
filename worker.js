@@ -38,6 +38,8 @@ async function handleSubmit(request, env, ctx) {
       await handleBenevole(formData, env, ctx);
     } else if (formType === "contact") {
       await handleContact(formData, env, ctx);
+    } else if (formType === "newsletter") {
+      await handleNewsletter(formData, env, ctx);
     } else {
       return jsonResponse({ error: "Type de formulaire inconnu." }, 400);
     }
@@ -151,6 +153,56 @@ async function handleContact(formData, env, ctx) {
       `Nouveau message reçu via le formulaire de contact du site.\n\nNom : ${prenom} ${nom}\nCourriel : ${email}\nTéléphone : ${telephone || "non précisé"}\n\n${noteInterne}`
     ).catch(() => {})
   );
+}
+
+async function handleNewsletter(formData, env, ctx) {
+  const email = str(formData, "email");
+  if (!email) throw new Error("Courriel manquant.");
+
+  // On envoie en parallèle vers Notion (suivi interne) et Brevo (envoi réel des
+  // courriels). Si l'un des deux échoue, on ne bloque pas l'autre : l'abonné
+  // ne doit pas voir une erreur juste parce qu'un des deux systèmes a un pépin.
+  const results = await Promise.allSettled([
+    createNotionPage(env, {
+      "Nom de l'enfant": title(`Infolettre — ${email}`),
+      "Courriel parent": { email },
+      "Type": select("Infolettre"),
+      "Source": select("Site web"),
+      "Statut": select("Nouveau"),
+    }),
+    addToBrevo(env, email),
+  ]);
+
+  if (results.every((r) => r.status === "rejected")) {
+    throw new Error("Notion et Brevo ont échoué : " + results.map((r) => r.reason).join(" | "));
+  }
+}
+
+async function addToBrevo(env, email) {
+  if (!env.BREVO_API_KEY || !env.BREVO_LIST_ID) {
+    throw new Error("Brevo non configuré (BREVO_API_KEY ou BREVO_LIST_ID manquant).");
+  }
+  const res = await fetch("https://api.brevo.com/v3/contacts", {
+    method: "POST",
+    headers: {
+      "api-key": env.BREVO_API_KEY,
+      "Content-Type": "application/json",
+      "Accept": "application/json",
+    },
+    body: JSON.stringify({
+      email,
+      listIds: [Number(env.BREVO_LIST_ID)],
+      updateEnabled: true,
+    }),
+  });
+
+  if (!res.ok) {
+    const errText = await res.text();
+    // Déjà abonné = pas une vraie erreur, l'important c'est qu'il soit dans la liste.
+    if (!errText.includes("duplicate_parameter")) {
+      throw new Error(`Brevo API error (${res.status}): ${errText}`);
+    }
+  }
 }
 
 function str(formData, key) {

@@ -7,5 +7,5 @@
 .form-confirm .ref { font-family: var(--mono); font-size: 1.1rem; color: var(--green); font-weight: 600; letter-spacing: .1em; margin: .5rem 0 1rem; }
 .form-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
 @media(max-width:540px) { .form-grid-2 { grid-template-columns: 1fr; } }
-.seuils-info { background: var(--gold-light); border: 1px solid rgba(184,146,61,.3); border-radius: 8px; padding: 1rem 1.25rem; margin-bottom: 1.5rem; font-size: .875rem; }
-.seuils-info strong { color: var(--gold); }
+.seuils-info { background: var(--gold-light); border: 1px solid rgba(232,135,30,.3); border-radius: 8px; padding: 1rem 1.25rem; margin-bottom: 1.5rem; font-size: .875rem; }
+.seuils-info strong { color: var(--green); background: var(--gold); padding: 0 .3em; }

@@ -9,7 +9,7 @@
   <link rel="apple-touch-icon" href="assets/img/favicon-192.png">
   <meta property="og:image" content="https://blackgeniuscanada.org/assets/img/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="stylesheet" href="assets/css/style.css?v=10">
+  <link rel="stylesheet" href="assets/css/style.css?v=11">
 </head>
 <body>
 
@@ -52,7 +52,7 @@
         </ul>
       </div>
       <div>
-        <form data-formspree action="https://formspree.io/f/YOUR_FORM_ID_DON" method="POST" style="background: var(--charcoal-2); border: 1px solid var(--char-line); padding: 44px;">
+        <form data-formspree action="https://formspree.io/f/YOUR_FORM_ID_DON" method="POST" style="background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); padding: 44px;">
         <!-- Honeypot anti-bot — invisible aux humains, rempli par les bots -->
         <div aria-hidden="true" style="position:absolute; left:-10000px; top:auto; width:1px; height:1px; overflow:hidden;">
           <label>Ne pas remplir ce champ</label>
@@ -60,13 +60,13 @@
         </div>
 
           <span class="section-eyebrow no-line">Faire un don maintenant</span>
-          <h3 style="font-family: var(--font-display); margin-top: 0; margin-bottom: 28px;">Montant (CAD)</h3>
+          <h3 style="font-family: var(--serif); margin-top: 0; margin-bottom: 28px;">Montant (CAD)</h3>
 
           <div class="don-options">
-            <input type="radio" name="amount" id="a25" value="25"><label for="a25">25,00 $</label>
-            <input type="radio" name="amount" id="a50" value="50"><label for="a50">50,00 $</label>
-            <input type="radio" name="amount" id="a100" value="100" checked><label for="a100">100,00 $</label>
-            <input type="radio" name="amount" id="a250" value="250"><label for="a250">250,00 $</label>
+            <input type="radio" name="amount" id="a25" value="25"><label for="a25" class="donation-btn">25,00 $</label>
+            <input type="radio" name="amount" id="a50" value="50"><label for="a50" class="donation-btn">50,00 $</label>
+            <input type="radio" name="amount" id="a100" value="100" checked><label for="a100" class="donation-btn">100,00 $</label>
+            <input type="radio" name="amount" id="a250" value="250"><label for="a250" class="donation-btn">250,00 $</label>
           </div>
           <!-- ✅ CORRIGÉ: min="5", step="0.01", pattern pour valider le format, aria-label pour l'accessibilité -->
           <div class="field">
@@ -83,12 +83,12 @@
                 aria-label="Montant personnalisé"
                 inputmode="decimal"
               >
-              <span style="color: var(--char-muted); font-size: 0.9rem;">$</span>
+              <span style="color: var(--muted); font-size: 0.9rem;">$</span>
             </div>
-            <small style="color: var(--char-muted); margin-top: 4px; display: block;">Accepte les formats 75 ou 75,00</small>
+            <small style="color: var(--muted); margin-top: 4px; display: block;">Accepte les formats 75 ou 75,00</small>
           </div>
 
-          <p style="font-family: var(--sans); font-weight: 600; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--char-muted); margin: 28px 0 12px;">Fréquence</p>
+          <p style="font-family: var(--sans); font-weight: 600; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin: 28px 0 12px;">Fréquence</p>
           <div class="check-group">
             <label><input type="radio" name="freq" value="unique" checked> Unique</label>
             <label><input type="radio" name="freq" value="monthly"> Mensuel</label>
@@ -113,14 +113,14 @@
           </div>
 
           <!-- Affichage du montant total (montenant à jour) -->
-          <div style="background: var(--charcoal-3); border: 1px solid var(--char-line); border-radius: 8px; padding: 16px; margin-top: 24px; margin-bottom: 24px;">
-            <div style="font-size: 0.85rem; color: var(--char-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px;">Montant à donner</div>
-            <div style="font-size: 2rem; font-weight: 700; color: var(--gold); font-family: var(--font-display);" id="donationTotal">100,00 $</div>
+          <div style="background: var(--ivory); border: 1px solid var(--border); border-radius: 8px; padding: 16px; margin-top: 24px; margin-bottom: 24px;">
+            <div style="font-size: 0.85rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px;">Montant à donner</div>
+            <div style="font-size: 2rem; font-weight: 700; color: var(--gold); font-family: var(--serif);" id="donationTotal">100,00 $</div>
           </div>
 
           <button type="submit" class="btn btn-primary" style="width:100%;">Procéder au paiement sécurisé</button>
-          <p style="font-size:0.85rem; color:var(--char-muted); margin-top:18px; text-align:center; font-style: italic;">Paiement par Stripe · 100% sécurisé · Reçu officiel ARC dès obtention du statut.</p>
-          <p class="form-feedback" style="display:none; margin-top:24px; padding:18px; background:var(--cream-deep); border-left:2px solid var(--gold); font-family: var(--serif); font-style: italic; color: var(--white);"></p>
+          <p style="font-size:0.85rem; color:var(--muted); margin-top:18px; text-align:center; font-style: italic;">Paiement par Stripe · 100% sécurisé · Reçu officiel ARC dès obtention du statut.</p>
+          <p class="form-feedback" style="display:none; margin-top:24px; padding:18px; background:var(--text); border-left:2px solid var(--gold); font-family: var(--serif); font-style: italic; color: var(--white);"></p>
         </form>
       </div>
     </div>
@@ -160,7 +160,15 @@
       <article class="pillar"><span class="pillar-num">Palier Argent</span><h3>15 000,00 $</h3><p>Tout le palier Bronze + logo sur événements, programme de mentorat employés, communication conjointe.</p></article>
       <article class="pillar"><span class="pillar-num">Palier Or</span><h3>50 000,00 $ et +</h3><p>Tout le palier Argent + sponsor titre d'une édition des Jeux Maths, conférence annuelle dédiée, comité consultatif.</p></article>
     </div>
-    <p class="text-center mt-4"><a class="btn btn-outline" href="contact.html">Demander un dossier partenariat →</a></p>
+    <p class="text-center mt-4"><a class="btn btn-outline-green" href="contact.html">Demander un dossier partenariat →</a></p>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="container">
+    <h2>Votre enfant peut aussi rejoindre le collectif.</h2>
+    <p>Au-delà du don, la première façon de soutenir la mission reste d'inscrire les enfants de votre entourage aux programmes.</p>
+    <div class="hero-cta-row"><a class="btn btn-primary" href="inscription.html">Inscrire mon enfant</a></div>
   </div>
 </section>
 
@@ -239,7 +247,7 @@
 </footer>
 
 <script src="assets/js/format-utils.js"></script>
-<script src="assets/js/main.js"></script>
+<script src="assets/js/main.js?v=2"></script>
 <script>
 // 🔧 Gestion du formulaire de don avec formatage numérique
 document.addEventListener('DOMContentLoaded', function() {

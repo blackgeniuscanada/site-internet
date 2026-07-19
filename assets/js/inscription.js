@@ -7,6 +7,42 @@ const INSCRIPTION_API_URL = 'https://inscription-api.blackgenius225.workers.dev/
   const wizard = document.getElementById('wizard');
   if (!wizard) return;
 
+  const LANG = document.documentElement.lang === 'en' ? 'en' : 'fr';
+  const T = {
+    fr: {
+      missingOne: (n) => 'Il manque ' + n + ' information' + (n > 1 ? 's' : '') + ' pour continuer : ',
+      field: 'champ',
+      thresholdWarn: '<strong>Attention.</strong> Les notes saisies ne respectent pas tous les seuils. La candidature sera examinée à titre exceptionnel.',
+      thresholdOk: '<strong>Parfait.</strong> Toutes les notes respectent les seuils d\'admission.',
+      mentionMissing: 'Mention "Lu et approuvé"',
+      sending: 'Envoi en cours…',
+      submit: "Soumettre l'inscription →",
+      fallbackMsg: 'La connexion à la base est momentanément indisponible. Cliquez ci-dessous pour transmettre votre dossier par courriel.<br><br>',
+      fallbackBtn: 'Envoyer par courriel →',
+      unknownError: 'Erreur inconnue',
+      genericError: 'Une erreur est survenue. Réessayez ou écrivez à inscriptions@blackgeniuscanada.org.',
+      subjectPrefix: 'Inscription — ',
+      firstName: 'Prénom : ', lastName: 'Nom : ', parentEmail: 'Courriel parent : ', phone: 'Téléphone : ', city: 'Ville : ',
+      source: 'site web inscription'
+    },
+    en: {
+      missingOne: (n) => n + ' piece' + (n > 1 ? 's' : '') + ' of information ' + (n > 1 ? 'are' : 'is') + ' missing to continue: ',
+      field: 'field',
+      thresholdWarn: '<strong>Note.</strong> The grades entered do not meet all thresholds. The application will be reviewed as an exception.',
+      thresholdOk: '<strong>Great.</strong> All grades meet the admission thresholds.',
+      mentionMissing: '"Read and approved" statement',
+      sending: 'Sending…',
+      submit: 'Submit enrollment →',
+      fallbackMsg: 'The connection to our database is temporarily unavailable. Click below to send your file by email.<br><br>',
+      fallbackBtn: 'Send by email →',
+      unknownError: 'Unknown error',
+      genericError: 'An error occurred. Please try again or write to inscriptions@blackgeniuscanada.org.',
+      subjectPrefix: 'Enrollment — ',
+      firstName: 'First name: ', lastName: 'Last name: ', parentEmail: 'Parent email: ', phone: 'Phone: ', city: 'City: ',
+      source: 'website enrollment'
+    }
+  }[LANG];
+
   const form = document.getElementById('inscription-form');
   const steps = Array.from(wizard.querySelectorAll('.wizard-step'));
   const dots = Array.from(wizard.querySelectorAll('.wizard-dot'));
@@ -39,7 +75,7 @@ const INSCRIPTION_API_URL = 'https://inscription-api.blackgenius225.workers.dev/
       return;
     }
     banner.style.display = 'block';
-    banner.innerHTML = '<strong>Il manque ' + missingLabels.length + ' information' + (missingLabels.length > 1 ? 's' : '') + ' pour continuer :</strong> ' + missingLabels.join(' · ') + '.';
+    banner.innerHTML = '<strong>' + T.missingOne(missingLabels.length) + '</strong> ' + missingLabels.join(' · ') + '.';
   }
 
   function labelOf(input) {
@@ -53,7 +89,7 @@ const INSCRIPTION_API_URL = 'https://inscription-api.blackgenius225.workers.dev/
       const lbl = rg.previousElementSibling;
       if (lbl && lbl.tagName === 'LABEL') return lbl.textContent.replace('*','').trim();
     }
-    return input.name || 'champ';
+    return input.name || T.field;
   }
 
   function validateStep(n) {
@@ -112,11 +148,11 @@ const INSCRIPTION_API_URL = 'https://inscription-api.blackgenius225.workers.dev/
         if (failed.length > 0) {
           feedback.style.display = 'block';
           feedback.classList.remove('ok');
-          feedback.innerHTML = '<strong>Attention.</strong> Les notes saisies ne respectent pas tous les seuils. La candidature sera examinée à titre exceptionnel.';
+          feedback.innerHTML = T.thresholdWarn;
         } else if (anyFilled) {
           feedback.style.display = 'block';
           feedback.classList.add('ok');
-          feedback.innerHTML = '<strong>Parfait.</strong> Toutes les notes respectent les seuils d\'admission.';
+          feedback.innerHTML = T.thresholdOk;
         } else {
           feedback.style.display = 'none';
         }
@@ -126,12 +162,13 @@ const INSCRIPTION_API_URL = 'https://inscription-api.blackgenius225.workers.dev/
     if (n === 6) {
       const mention = step.querySelector('input[name="mention"]');
       if (mention) {
-        const ok = /^lu et approuvé$/i.test(mention.value.trim());
+        const mentionRe = LANG === 'en' ? /^read and approved$/i : /^lu et approuvé$/i;
+        const ok = mentionRe.test(mention.value.trim());
         mention.classList.toggle('invalid', !ok);
         if (!ok) {
           valid = false;
           if (!firstInvalid) firstInvalid = mention;
-          if (missing.indexOf('Mention "Lu et approuvé"') === -1) missing.push('Mention "Lu et approuvé"');
+          if (missing.indexOf(T.mentionMissing) === -1) missing.push(T.mentionMissing);
         }
       }
     }
@@ -199,7 +236,7 @@ const INSCRIPTION_API_URL = 'https://inscription-api.blackgenius225.workers.dev/
 
     const submitBtn = document.getElementById('submitBtn');
     const feedback = document.getElementById('formFeedback');
-    if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Envoi en cours…'; }
+    if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = T.sending; }
 
     const fd = new FormData(form);
     const data = {};
@@ -220,7 +257,7 @@ const INSCRIPTION_API_URL = 'https://inscription-api.blackgenius225.workers.dev/
       data[k] = !!data[k];
     });
 
-    data._source = 'site web inscription';
+    data._source = T.source;
     data._submittedAt = new Date().toISOString();
 
     function showError(msg) {
@@ -231,18 +268,18 @@ const INSCRIPTION_API_URL = 'https://inscription-api.blackgenius225.workers.dev/
     }
 
     function handleFallback(d) {
-      const subject = encodeURIComponent('Inscription — ' + (d.prenom_enfant || '') + ' ' + (d.nom_enfant || ''));
+      const subject = encodeURIComponent(T.subjectPrefix + (d.prenom_enfant || '') + ' ' + (d.nom_enfant || ''));
       const parts = [];
-      parts.push('Prénom : ' + (d.prenom_enfant || ''));
-      parts.push('Nom : ' + (d.nom_enfant || ''));
-      parts.push('Courriel parent : ' + (d.parent_email || ''));
-      parts.push('Téléphone : ' + (d.parent_telephone || ''));
-      parts.push('Ville : ' + (d.parent_ville || ''));
+      parts.push(T.firstName + (d.prenom_enfant || ''));
+      parts.push(T.lastName + (d.nom_enfant || ''));
+      parts.push(T.parentEmail + (d.parent_email || ''));
+      parts.push(T.phone + (d.parent_telephone || ''));
+      parts.push(T.city + (d.parent_ville || ''));
       const body = encodeURIComponent(parts.join('\n'));
       if (feedback) {
         feedback.style.display = 'block';
         feedback.style.borderLeftColor = 'var(--gold)';
-        feedback.innerHTML = 'La connexion à la base est momentanément indisponible. Cliquez ci-dessous pour transmettre votre dossier par courriel.<br><br><a href="mailto:inscriptions@blackgeniuscanada.org?subject=' + subject + '&body=' + body + '" class="btn btn-primary" style="margin-top: 8px;">Envoyer par courriel →</a>';
+        feedback.innerHTML = T.fallbackMsg + '<a href="mailto:inscriptions@blackgeniuscanada.org?subject=' + subject + '&body=' + body + '" class="btn btn-primary" style="margin-top: 8px;">' + T.fallbackBtn + '</a>';
       }
     }
 
@@ -259,17 +296,17 @@ const INSCRIPTION_API_URL = 'https://inscription-api.blackgenius225.workers.dev/
         if (refEl) refEl.textContent = result.reference || ('BG-' + Date.now().toString().slice(-6));
         showStep(7);
       } else {
-        const err = await response.json().catch(() => ({ error: 'Erreur inconnue' }));
+        const err = await response.json().catch(() => ({ error: T.unknownError }));
         if (response.status === 501 || response.status === 503 || response.status === 404) {
           handleFallback(data);
         } else {
-          showError(err.error || 'Une erreur est survenue. Réessayez ou écrivez à inscriptions@blackgeniuscanada.org.');
+          showError(err.error || T.genericError);
         }
       }
     } catch (err) {
       handleFallback(data);
     } finally {
-      if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = "Soumettre l'inscription →"; }
+      if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = T.submit; }
     }
   });
 

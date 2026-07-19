@@ -9,7 +9,10 @@
   <link rel="apple-touch-icon" href="assets/img/favicon-192.png">
   <meta property="og:image" content="https://blackgeniuscanada.org/assets/img/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="stylesheet" href="assets/css/style.css?v=10">
+  <link rel="stylesheet" href="assets/css/style.css?v=11">
+  <link rel="alternate" hreflang="fr" href="https://blackgeniuscanada.org/don.html">
+  <link rel="alternate" hreflang="en" href="https://blackgeniuscanada.org/en/don.html">
+  <link rel="alternate" hreflang="x-default" href="https://blackgeniuscanada.org/don.html">
 </head>
 <body>
 
@@ -25,6 +28,7 @@
     <li><a href="contact.html">Contact</a></li>
     <li><a href="https://maths.blackgeniuscanada.org/" target="_blank" rel="noopener" style="color:var(--gold);">Jeux Maths</a></li>
     <li><a href="https://parents.blackgeniuscanada.org/" target="_blank" rel="noopener" style="color:var(--gold);">Espace famille</a></li>
+    <li><a href="en/don.html" style="color:var(--muted); font-family:var(--mono); font-size:.8rem;">EN</a></li>
     <li><a class="cta-nav" href="inscription.html">S'inscrire</a></li>
   </ul></nav>
 </div></header>
@@ -52,7 +56,7 @@
         </ul>
       </div>
       <div>
-        <form data-formspree action="/api/submit" method="POST" style="background: var(--charcoal-2); border: 1px solid var(--char-line); padding: 44px;">
+        <form data-formspree action="/api/submit" method="POST" style="background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); padding: 44px;">
         <input type="hidden" name="form_type" value="don">
         <!-- Honeypot anti-bot — invisible aux humains, rempli par les bots -->
         <div aria-hidden="true" style="position:absolute; left:-10000px; top:auto; width:1px; height:1px; overflow:hidden;">
@@ -61,17 +65,17 @@
         </div>
 
           <span class="section-eyebrow no-line">Faire un don maintenant</span>
-          <h3 style="font-family: var(--font-display); margin-top: 0; margin-bottom: 28px;">Montant (CAD)</h3>
+          <h3 style="font-family: var(--serif); margin-top: 0; margin-bottom: 28px;">Montant (CAD)</h3>
 
           <div class="don-options">
-            <input type="radio" name="amount" id="a25" value="25 $"><label for="a25">25 $</label>
-            <input type="radio" name="amount" id="a50" value="50 $"><label for="a50">50 $</label>
-            <input type="radio" name="amount" id="a100" value="100 $" checked><label for="a100">100 $</label>
-            <input type="radio" name="amount" id="a250" value="250 $"><label for="a250">250 $</label>
+            <input type="radio" name="amount" id="a25" value="25 $"><label for="a25" class="donation-btn">25 $</label>
+            <input type="radio" name="amount" id="a50" value="50 $"><label for="a50" class="donation-btn">50 $</label>
+            <input type="radio" name="amount" id="a100" value="100 $" checked><label for="a100" class="donation-btn">100 $</label>
+            <input type="radio" name="amount" id="a250" value="250 $"><label for="a250" class="donation-btn">250 $</label>
           </div>
           <div class="field"><label>Autre montant</label><input type="number" name="autre_montant" min="5" placeholder="Ex. 75"></div>
 
-          <p style="font-family: var(--sans); font-weight: 600; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--char-muted); margin: 28px 0 12px;">Fréquence</p>
+          <p style="font-family: var(--sans); font-weight: 600; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin: 28px 0 12px;">Fréquence</p>
           <div class="check-group">
             <label><input type="radio" name="freq" value="Unique" checked> Unique</label>
             <label><input type="radio" name="freq" value="Mensuel"> Mensuel</label>
@@ -96,8 +100,8 @@
           </div>
 
           <button type="submit" class="btn btn-primary" style="width:100%; margin-top:36px;">Procéder au paiement sécurisé</button>
-          <p style="font-size:0.85rem; color:var(--char-muted); margin-top:18px; text-align:center; font-style: italic;">Paiement par Stripe · 100% sécurisé · Reçu officiel ARC dès obtention du statut.</p>
-          <p class="form-feedback" style="display:none; margin-top:24px; padding:18px; background:var(--cream-deep); border-left:2px solid var(--gold); font-family: var(--serif); font-style: italic; color: var(--white);"></p>
+          <p style="font-size:0.85rem; color:var(--muted); margin-top:18px; text-align:center; font-style: italic;">Paiement par Stripe · 100% sécurisé · Reçu officiel ARC dès obtention du statut.</p>
+          <p class="form-feedback" style="display:none; margin-top:24px; padding:18px; background:var(--text); border-left:2px solid var(--gold); font-family: var(--serif); font-style: italic; color: var(--white);"></p>
         </form>
       </div>
     </div>
@@ -135,7 +139,15 @@
       <article class="pillar"><span class="pillar-num">Palier Argent</span><h3>15 000 $</h3><p>Tout le palier Bronze + logo sur événements, programme de mentorat employés, communication conjointe.</p></article>
       <article class="pillar"><span class="pillar-num">Palier Or</span><h3>50 000 $ et +</h3><p>Tout le palier Argent + sponsor titre d'une édition des Jeux Maths, conférence annuelle dédiée, comité consultatif.</p></article>
     </div>
-    <p class="text-center mt-4"><a class="btn btn-outline" href="contact.html">Demander un dossier partenariat →</a></p>
+    <p class="text-center mt-4"><a class="btn btn-outline-green" href="contact.html">Demander un dossier partenariat →</a></p>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="container">
+    <h2>Votre enfant peut aussi rejoindre le collectif.</h2>
+    <p>Au-delà du don, la première façon de soutenir la mission reste d'inscrire les enfants de votre entourage aux programmes.</p>
+    <div class="hero-cta-row"><a class="btn btn-primary" href="inscription.html">Inscrire mon enfant</a></div>
   </div>
 </section>
 
@@ -208,10 +220,11 @@
       <div>
         <a href="confidentialite.html">Confidentialité (Loi 25)</a>
         <a href="mentions-legales.html">Mentions légales</a>
+        <span class="lang-switch"><strong>FR</strong> · <a href="en/don.html">EN</a></span>
       </div>
     </div>
   </div>
 </footer>
-<script src="assets/js/main.js"></script>
+<script src="assets/js/main.js?v=2"></script>
 </body>
 </html>

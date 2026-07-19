@@ -11,5 +11,8 @@
       "name": "SEB",
       "destination_address": "blackgenius225@gmail.com"
     }
-  ]
+  ],
+  "vars": {
+    "BREVO_LIST_ID": "3"
+  }
 }
