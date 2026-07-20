@@ -775,6 +775,10 @@ section.compact  { padding: 40px 0; }
 .article-card p { font-size: .9rem; margin-bottom: 1rem; flex: 1; }
 .article-card .link-arrow { margin-top: auto; }
 
+/* Cartes "Ailleurs dans le monde" — actualités externes, distinctes des annonces internes */
+.article-card--external { border-left: 3px solid var(--green); }
+.article-meta .cat-inspiration { color: var(--green); }
+
 /* ── Témoignages ───────────────────────────────────────────────── */
 .testimonial-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.25rem; }
 .testimonial-card {
