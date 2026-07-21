@@ -17,6 +17,7 @@
 *.ps1
 wrangler.json
 worker.js
+email-inscriptions.js
 package.json
 package-lock.json
 node_modules

@@ -1,4 +1,5 @@
 import { EmailMessage } from "cloudflare:email";
+import { handleInscriptionEmail } from "./email-inscriptions.js";
 
 const NOTION_DATABASE_ID = "05ba84c1850c4f088fb2bec9ec0da244"; // Database "site internet"
 const NOTIFY_FROM = "noreply@blackgeniuscanada.org";
@@ -13,6 +14,15 @@ export default {
     }
 
     return env.ASSETS.fetch(request);
+  },
+
+  // Déclenché par Cloudflare Email Routing pour les courriels reçus sur
+  // inscriptions@blackgeniuscanada.org — voir email-inscriptions.js pour la
+  // logique complète (transfert, mise à jour Notion, dépôt Google Drive) et
+  // la configuration requise avant que ce soit actif (règle de routage +
+  // compte de service Google).
+  async email(message, env, ctx) {
+    ctx.waitUntil(handleInscriptionEmail(message, env, ctx));
   },
 };
 
