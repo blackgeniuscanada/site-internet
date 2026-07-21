@@ -276,6 +276,18 @@ function normalize(str) {
 // ─── Google Drive ───────────────────────────────────────────────────────
 
 async function uploadAttachmentsToDrive(env, childName, attachments) {
+  // DEBUG TEMPORAIRE — à retirer une fois le pipeline confirmé fonctionnel.
+  // On ne log jamais les valeurs des secrets, seulement leur présence.
+  console.log(
+    "[bulletin-debug] guard check:",
+    JSON.stringify({
+      hasClientId: !!env.GOOGLE_OAUTH_CLIENT_ID,
+      hasClientSecret: !!env.GOOGLE_OAUTH_CLIENT_SECRET,
+      hasRefreshToken: !!env.GOOGLE_OAUTH_REFRESH_TOKEN,
+      hasFolderId: !!env.GOOGLE_PORTFOLIO_FOLDER_ID,
+    })
+  );
+
   if (
     !env.GOOGLE_OAUTH_CLIENT_ID ||
     !env.GOOGLE_OAUTH_CLIENT_SECRET ||
@@ -284,11 +296,16 @@ async function uploadAttachmentsToDrive(env, childName, attachments) {
   ) {
     // Pas encore configuré (voir en-tête du fichier) — on n'échoue pas fort,
     // le transfert courriel + Notion ont déjà eu lieu.
+    console.log("[bulletin-debug] early return: au moins un secret OAuth/dossier manquant");
     return;
   }
 
+  console.log("[bulletin-debug] tous les secrets présents, demande de jeton d'accès...");
   const accessToken = await getGoogleAccessToken(env);
+  console.log("[bulletin-debug] jeton d'accès obtenu:", !!accessToken);
+
   const childFolderId = await findOrCreateFolder(accessToken, childName, env.GOOGLE_PORTFOLIO_FOLDER_ID);
+  console.log("[bulletin-debug] dossier enfant:", childFolderId);
 
   // S'assurer que la structure standard à 9 sous-dossiers existe
   let academicFolderId = null;
@@ -296,9 +313,11 @@ async function uploadAttachmentsToDrive(env, childName, attachments) {
     const id = await findOrCreateFolder(accessToken, subfolder, childFolderId);
     if (subfolder === CHILD_SUBFOLDERS[0]) academicFolderId = id;
   }
+  console.log("[bulletin-debug] dossier académique:", academicFolderId);
 
   for (const att of attachments) {
     await uploadFileToDrive(accessToken, academicFolderId, att.filename || "bulletin.pdf", att.mimeType, att.content);
+    console.log("[bulletin-debug] fichier téléversé:", att.filename);
   }
 }
 
