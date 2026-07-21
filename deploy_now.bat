@@ -12,7 +12,20 @@ echo Etape 1: Suppression du cache local (si present)...
 if exist ".wrangler" rmdir /s /q .wrangler
 echo OK!
 echo.
-echo Etape 2: Redeploiement...
+echo Etape 2: Installation des dependances (npm install)...
+call npm install
+if errorlevel 1 (
+  echo.
+  echo ============================================
+  echo ECHEC DE NPM INSTALL — voir le message d'erreur ci-dessus.
+  echo ============================================
+  echo.
+  pause
+  exit /b 1
+)
+echo OK!
+echo.
+echo Etape 3: Redeploiement...
 call npx wrangler deploy
 if errorlevel 1 (
   echo.
