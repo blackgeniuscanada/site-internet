@@ -28,28 +28,55 @@
 //      > Routing rules > associer inscriptions@blackgeniuscanada.org à
 //      "Send to a Worker" > sélectionner ce Worker (site-internet).
 //
-//   B. Compte de service Google (pour écrire dans Drive sans intervention
-//      humaine) :
-//      1. Google Cloud Console > IAM & Admin > Comptes de service > créer
-//         un compte de service, activer l'API Google Drive.
-//      2. Générer une clé JSON pour ce compte de service.
-//      3. Partager le dossier Drive "02_Portfolio des enfants" avec l'adresse
-//         courriel du compte de service (rôle : Éditeur), pour qu'il puisse
-//         y créer des dossiers et déposer des fichiers.
-//      4. Enregistrer le contenu du JSON comme secret Worker :
-//         wrangler secret put GOOGLE_SERVICE_ACCOUNT_JSON
-//      5. Enregistrer l'ID du dossier racine comme variable :
+//   B. Autorisation OAuth Google (pour écrire dans Drive sans intervention
+//      humaine à chaque fois) :
+//
+//      IMPORTANT : un compte de service seul (sans Google Workspace) n'a PAS
+//      de quota de stockage Drive — il peut créer des dossiers mais pas y
+//      déposer de fichiers (erreur 403 "Service Accounts do not have
+//      storage quota"). On utilise donc une autorisation OAuth classique au
+//      nom du compte Google réel (blackgenius225@gmail.com), qui lui a du
+//      quota.
+//
+//      1. Google Cloud Console > Google Auth Platform > créer un écran de
+//         consentement OAuth (Externe), ajouter le scope
+//         https://www.googleapis.com/auth/drive, puis "Publier l'application"
+//         (sinon le refresh token expire au bout de 7 jours en mode Test).
+//      2. Clients > Créer un client OAuth > type "Application Web", avec
+//         comme URI de redirection autorisé :
+//         https://developers.google.com/oauthplayground
+//      3. Sur https://developers.google.com/oauthplayground : icône
+//         d'engrenage (haut droite) > cocher "Use your own OAuth
+//         credentials" > coller le Client ID et le Client Secret obtenus à
+//         l'étape 2.
+//      4. Dans la liste des scopes à gauche, entrer
+//         https://www.googleapis.com/auth/drive > Authorize APIs > se
+//         connecter avec blackgenius225@gmail.com > accepter l'avertissement
+//         "Google n'a pas validé cette appli" (normal pour une appli à usage
+//         interne) > Autoriser.
+//      5. Cliquer "Exchange authorization code for tokens" et copier le
+//         "Refresh token" affiché.
+//      6. Enregistrer trois secrets Worker :
+//         wrangler secret put GOOGLE_OAUTH_CLIENT_ID
+//         wrangler secret put GOOGLE_OAUTH_CLIENT_SECRET
+//         wrangler secret put GOOGLE_OAUTH_REFRESH_TOKEN
+//      7. Enregistrer l'ID du dossier racine comme variable :
 //         GOOGLE_PORTFOLIO_FOLDER_ID = "1aOTlAwKMFHKK2DlsVkmtUtOFjmbH0QzU"
-//         (déjà l'ID actuel de "02_Portfolio des enfants" — à confirmer)
+//         (déjà l'ID actuel de "02_Portfolio des enfants")
+//      8. Partager le dossier Drive "02_Portfolio des enfants" avec
+//         blackgenius225@gmail.com n'est pas nécessaire (c'est déjà son
+//         propre compte) — si un autre compte Google est utilisé pour
+//         l'autorisation, partager le dossier avec ce compte en Éditeur.
 //
 //   C. Secret Notion déjà existant (NOTION_TOKEN) — aucune action requise,
 //      réutilisé tel quel depuis worker.js.
 //
 // Tant que B n'est pas fait, l'étape 3 (dépôt Drive) échoue silencieusement
-// (voir uploadAttachmentsToDrive : si GOOGLE_SERVICE_ACCOUNT_JSON est absent,
-// la fonction ne fait rien plutôt que de planter tout le traitement du
+// (voir uploadAttachmentsToDrive : si les secrets OAuth sont absents, la
+// fonction ne fait rien plutôt que de planter tout le traitement du
 // courriel — le transfert et la mise à jour Notion continuent de fonctionner
-// même sans Drive configuré).
+// même sans Drive configuré). En cas d'échec d'upload (ex. token expiré),
+// un courriel de triage est envoyé automatiquement au coordinateur.
 // ─────────────────────────────────────────────────────────────────────────
 
 import PostalMime from "postal-mime";
@@ -249,7 +276,12 @@ function normalize(str) {
 // ─── Google Drive ───────────────────────────────────────────────────────
 
 async function uploadAttachmentsToDrive(env, childName, attachments) {
-  if (!env.GOOGLE_SERVICE_ACCOUNT_JSON || !env.GOOGLE_PORTFOLIO_FOLDER_ID) {
+  if (
+    !env.GOOGLE_OAUTH_CLIENT_ID ||
+    !env.GOOGLE_OAUTH_CLIENT_SECRET ||
+    !env.GOOGLE_OAUTH_REFRESH_TOKEN ||
+    !env.GOOGLE_PORTFOLIO_FOLDER_ID
+  ) {
     // Pas encore configuré (voir en-tête du fichier) — on n'échoue pas fort,
     // le transfert courriel + Notion ont déjà eu lieu.
     return;
@@ -335,60 +367,24 @@ function concatArrayBuffers(buffers) {
   return result;
 }
 
-// JWT signé (RS256) pour un compte de service Google, échangé contre un
-// jeton d'accès OAuth2 — implémenté avec Web Crypto (natif aux Workers,
-// aucune dépendance externe nécessaire).
+// Jeton d'accès Google obtenu via un refresh token OAuth2 standard (compte
+// Google réel, pas un compte de service — voir en-tête du fichier pour
+// pourquoi). Le refresh token ne change pas ; on échange contre un nouveau
+// access_token (valide ~1h) à chaque envoi de courriel.
 async function getGoogleAccessToken(env) {
-  const creds = JSON.parse(env.GOOGLE_SERVICE_ACCOUNT_JSON);
-  const now = Math.floor(Date.now() / 1000);
-
-  const header = { alg: "RS256", typ: "JWT" };
-  const claims = {
-    iss: creds.client_email,
-    scope: "https://www.googleapis.com/auth/drive",
-    aud: "https://oauth2.googleapis.com/token",
-    iat: now,
-    exp: now + 3600,
-  };
-
-  const encode = (obj) => base64url(new TextEncoder().encode(JSON.stringify(obj)));
-  const unsigned = `${encode(header)}.${encode(claims)}`;
-
-  const key = await crypto.subtle.importKey(
-    "pkcs8",
-    pemToArrayBuffer(creds.private_key),
-    { name: "RSASSA-PKCS1-v1_5", hash: "SHA-256" },
-    false,
-    ["sign"]
-  );
-  const signature = await crypto.subtle.sign("RSASSA-PKCS1-v1_5", key, new TextEncoder().encode(unsigned));
-  const jwt = `${unsigned}.${base64url(new Uint8Array(signature))}`;
-
   const tokenRes = await fetch("https://oauth2.googleapis.com/token", {
     method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
     body: new URLSearchParams({
-      grant_type: "urn:ietf:params:oauth:grant-type:jwt-bearer",
-      assertion: jwt,
+      grant_type: "refresh_token",
+      client_id: env.GOOGLE_OAUTH_CLIENT_ID,
+      client_secret: env.GOOGLE_OAUTH_CLIENT_SECRET,
+      refresh_token: env.GOOGLE_OAUTH_REFRESH_TOKEN,
     }),
   });
   if (!tokenRes.ok) throw new Error(`Google OAuth error (${tokenRes.status}): ${await tokenRes.text()}`);
   const tokenData = await tokenRes.json();
   return tokenData.access_token;
-}
-
-function base64url(bytes) {
-  let binary = "";
-  for (const b of bytes) binary += String.fromCharCode(b);
-  return btoa(binary).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
-}
-
-function pemToArrayBuffer(pem) {
-  const b64 = pem.replace(/-----BEGIN PRIVATE KEY-----/, "").replace(/-----END PRIVATE KEY-----/, "").replace(/\s/g, "");
-  const binary = atob(b64);
-  const bytes = new Uint8Array(binary.length);
-  for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
-  return bytes.buffer;
 }
 
 // ─── Notifications de triage manuel ────────────────────────────────────
