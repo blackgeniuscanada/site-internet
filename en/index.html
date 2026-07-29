@@ -331,9 +331,16 @@
         <h3>Stay close to the community.</h3>
         <p>Receive our news, event announcements and publications. Maximum one email per month.</p>
       </div>
-      <form class="newsletter-form" data-mock>
-        <input type="email" placeholder="your.email@example.ca" required aria-label="Email address">
+      <form class="newsletter-form" data-formspree action="/api/submit" method="POST">
+        <input type="hidden" name="form_type" value="newsletter">
+        <!-- Honeypot anti-bot — invisible to humans, filled in by bots -->
+        <div aria-hidden="true" style="position:absolute; left:-10000px; top:auto; width:1px; height:1px; overflow:hidden;">
+          <label>Leave this field empty</label>
+          <input type="text" name="website_url" tabindex="-1" autocomplete="off">
+        </div>
+        <input type="email" name="email" placeholder="your.email@example.ca" required aria-label="Email address">
         <button type="submit">Subscribe →</button>
+        <p class="form-feedback" style="display:none; margin-top:16px; width:100%; padding:14px 18px; background:var(--text); border-left:2px solid var(--gold); font-family: var(--serif); font-style: italic; color: var(--white);"></p>
       </form>
     </div>
   </div>
