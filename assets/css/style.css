@@ -87,6 +87,7 @@ strong { font-weight: 600; }
 section          { padding: 56px 0; }
 section.compact  { padding: 40px 0; }
 .alt-bg          { background: var(--ivory); }
+.gold-bg         { background: var(--gold-light); }
 .green-bg, .forest-bg { background: var(--green); color: var(--white); }
 .green-bg h1,.green-bg h2,.green-bg h3,
 .forest-bg h1,.forest-bg h2,.forest-bg h3 { color: var(--white); }
