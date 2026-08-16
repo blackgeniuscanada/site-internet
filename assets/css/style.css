@@ -274,7 +274,7 @@ section.compact  { padding: 40px 0; }
 .grid-2 { display: grid; grid-template-columns: repeat(2,1fr); gap: 1.5rem; }
 .grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }
 .grid-4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.25rem; }
-@media(max-width:900px) { .grid-3 { grid-template-columns:repeat(2,1fr); } }
+@media(max-width:900px) { .grid-3, .grid-4 { grid-template-columns:repeat(2,1fr); } }
 @media(max-width:640px) { .grid-2,.grid-3,.grid-4 { grid-template-columns:1fr; } }
 
 /* ── Bandeau pré-lancement ─────────────────────────────────────── */
@@ -1841,36 +1841,48 @@ fieldset.wizard-step {
 .split-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
 @media(max-width:900px) { .split-2 { grid-template-columns: 1fr; gap: 2.5rem; } }
 
-.contact-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1rem; margin-top: 1.75rem; }
-@media(max-width:640px) { .contact-grid { grid-template-columns: 1fr; } }
+.contact-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; margin-top: 1.75rem; }
 
-.contact-card .contact-eyebrow {
+.contact-grid .contact-card {
+  border-top: 3px solid var(--gold);
+  padding: 1.35rem 1.6rem;
   display: block;
+}
+.contact-grid .contact-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+.contact-grid .contact-card.no-link:hover { transform: none; box-shadow: none; }
+.contact-grid .contact-card .contact-eyebrow {
   font-family: var(--mono);
-  font-size: .68rem;
-  letter-spacing: .12em;
+  font-size: .66rem;
+  letter-spacing: .08em;
   text-transform: uppercase;
   color: var(--green);
-  margin-bottom: .5rem;
+  margin-bottom: .45rem;
 }
 .contact-card .contact-value {
   display: block;
-  font-size: 1.05rem;
+  font-size: 1rem;
   font-weight: 600;
   color: var(--text);
-  margin-bottom: .5rem;
-  overflow-wrap: anywhere;
+  margin-bottom: .35rem;
+  white-space: nowrap;
+  overflow-wrap: normal;
+  word-break: keep-all;
 }
 .contact-card .contact-value.contact-italic {
   font-family: var(--serif);
   font-style: italic;
   font-weight: 400;
+  white-space: normal;
 }
 .contact-card .contact-desc {
   display: block;
-  font-size: .875rem;
+  font-size: .85rem;
   line-height: 1.5;
   color: var(--muted);
+  white-space: normal;
+}
+@media(max-width:400px) {
+  .contact-card .contact-value { font-size: .9rem; white-space: normal; }
 }
 
 .contact-form {
