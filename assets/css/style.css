@@ -666,6 +666,12 @@ section.compact  { padding: 40px 0; }
 .pillar p  { font-size: .95rem; margin-bottom: 1rem; }
 .pillar .link-arrow { font-weight: 600; }
 
+/* Aligne les descriptions sur une même ligne quand les titres ont des longueurs différentes */
+.support-grid .pillar { display: flex; flex-direction: column; }
+.support-grid .pillar h3 { min-height: 4.8em; display: flex; align-items: flex-end; }
+@media(max-width:900px) { .support-grid .pillar h3 { min-height: 3.6em; } }
+@media(max-width:640px) { .support-grid .pillar h3 { min-height: 0; } }
+
 /* ── Feature rows ──────────────────────────────────────────────── */
 .feature-row {
   display: grid;
