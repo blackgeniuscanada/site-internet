@@ -6,7 +6,7 @@
     fr: {
       menuMission: 'Mission', menuNotreMission: 'Notre mission', menuVision: 'Vision 2035', menuValeurs: 'Nos valeurs',
       menuEquipe: 'Équipe et gouvernance', menuImpact: 'Notre impact',
-      menuProgrammes: 'Programmes', menuTousProgrammes: 'Tous les programmes', menuJeuxMaths: 'Jeux Maths',
+      menuProgrammes: 'Programmes', menuTousProgrammes: 'Tous les programmes', menuJeuxMaths: 'Jeu Maths',
       menuEvenements: 'Événements', menuJournal: 'Journal',
       menuEngager: "S'engager", menuInscrireEnfant: 'Inscrire un enfant', menuBenevole: 'Devenir bénévole',
       menuDon: 'Faire un don', menuPartenariats: 'Partenariats',
@@ -33,7 +33,7 @@
     en: {
       menuMission: 'Mission', menuNotreMission: 'Our mission', menuVision: 'Vision 2035', menuValeurs: 'Our values',
       menuEquipe: 'Team and governance', menuImpact: 'Our impact',
-      menuProgrammes: 'Programs', menuTousProgrammes: 'All programs', menuJeuxMaths: 'Math Games',
+      menuProgrammes: 'Programs', menuTousProgrammes: 'All programs', menuJeuxMaths: 'Math Game',
       menuEvenements: 'Events', menuJournal: 'Newsroom',
       menuEngager: 'Get involved', menuInscrireEnfant: 'Enroll a child', menuBenevole: 'Become a volunteer',
       menuDon: 'Donate', menuPartenariats: 'Partnerships',
