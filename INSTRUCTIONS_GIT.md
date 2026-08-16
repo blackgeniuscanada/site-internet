@@ -1,12 +1,14 @@
 # 🚀 Instructions de Déploiement via Git + GitHub
 
+> **Mise à jour (16 août 2026)** — Le déploiement continu est maintenant actif : le Worker Cloudflare `site-internet` est connecté au dépôt GitHub `blackgeniuscanada/site-internet` (branche `main`) via Cloudflare Workers Builds. Chaque `git push origin main` déclenche automatiquement `npx wrangler deploy`. Les instructions ci-dessous (basées sur l'ancien flux Cloudflare Pages) sont conservées à titre historique.
+
 ## Résumé du Problème
 Wrangler CLI ne détectait pas les modifications aux fichiers HTML et CSS. **Solution: Utiliser Git + GitHub + Cloudflare Pages.**
 
 ## État Actuel
 - ✅ Dépôt Git initialisé localement
 - ✅ Fichiers modifiés committés
-- ❌ **À faire: Créer un dépôt GitHub et connecter**
+- ✅ Dépôt GitHub créé et connecté à Cloudflare (Workers Builds)
 
 ---
 
