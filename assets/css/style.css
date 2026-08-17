@@ -913,6 +913,7 @@ section.compact  { padding: 40px 0; }
   padding: 4rem 0 3.5rem;
   color: #fff;
 }
+.page-hero.compact { padding: 2.4rem 0 2.1rem; }
 .page-hero { overflow-x: hidden; }
 .page-hero h1 { color: #fff; line-height: 1.6; margin-bottom: .3em; }
 .page-hero h1 em {
