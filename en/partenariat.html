@@ -200,11 +200,57 @@
 <section class="cta-band">
   <div class="container">
     <h2>Let's discuss your partnership.</h2>
-    <p>Write to us directly at our dedicated partnerships address: a coordinator will get back to you within 5 business days.</p>
+    <p>Write to us directly at our dedicated partnerships address, or use the form below: a coordinator will get back to you within 5 business days.</p>
     <div class="hero-cta-row">
       <a class="btn btn-primary" href="mailto:partenariats@blackgeniuscanada.org">partenariats@blackgeniuscanada.org</a>
-      <a class="btn btn-outline-green" href="contact.html">Use the contact form →</a>
+      <a class="btn btn-outline-green" href="#partenariat-form">Use the form below ↓</a>
     </div>
+  </div>
+</section>
+
+<section id="partenariat-form">
+  <div class="container">
+    <div class="section-head centered">
+      <span class="section-eyebrow">Form</span>
+      <h2>Write to us.</h2>
+      <p class="lead">The subject "Partnership / sponsorship" is already pre-selected — just fill in your details and your message.</p>
+    </div>
+    <form data-formspree action="/api/submit" method="POST" class="contact-form" style="max-width: 720px; margin: 0 auto;">
+      <input type="hidden" name="form_type" value="contact">
+      <!-- Honeypot anti-bot — invisible to humans, filled by bots -->
+      <div aria-hidden="true" style="position:absolute; left:-10000px; top:auto; width:1px; height:1px; overflow:hidden;">
+        <label>Do not fill this field</label>
+        <input type="text" name="website_url" tabindex="-1" autocomplete="off">
+      </div>
+
+      <div class="form-grid">
+        <div class="field"><label>First name <span class="req">*</span></label><input name="prenom" required></div>
+        <div class="field"><label>Last name <span class="req">*</span></label><input name="nom" required></div>
+        <div class="field"><label>Email <span class="req">*</span></label><input type="email" name="email" required></div>
+        <div class="field"><label>Phone</label><input type="tel" name="telephone"></div>
+        <div class="field full">
+          <label>Subject <span class="req">*</span></label>
+          <select name="sujet" required>
+            <option value="">— Choose —</option>
+            <option>Child enrollment</option>
+            <option>Question about the programs</option>
+            <option>BlackGenius Math Game</option>
+            <option>Volunteering / mentorship</option>
+            <option selected>Partnership / sponsorship</option>
+            <option>Press / media</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="field full"><label>Your message <span class="req">*</span></label><textarea name="message" required placeholder="Organization, type of collaboration in mind, timeline..."></textarea></div>
+      </div>
+
+      <label style="display:flex; gap:12px; align-items:flex-start; margin-top:18px;"><input type="checkbox" required style="margin-top:6px;"><span style="font-size:0.9rem; color: var(--muted);">I agree that BlackGenius Canada may keep and use my contact information to respond to me, in accordance with the <a href="confidentialite.html" style="color: var(--gold); border-bottom: 1px solid var(--gold);">privacy policy (Bill 25)</a>.</span></label>
+
+      <div class="text-center">
+        <button type="submit" class="btn btn-primary" style="margin-top:30px;">Send the message</button>
+      </div>
+      <p class="form-feedback" style="display:none; margin-top:30px; padding:18px 22px; background:var(--text); border-left:2px solid var(--gold); font-family: var(--serif); font-style: italic; color: var(--white);"></p>
+    </form>
   </div>
 </section>
 
