@@ -1,5 +1,6 @@
 import { EmailMessage } from "cloudflare:email";
 import { handleInscriptionEmail } from "./email-inscriptions.js";
+import { buildRawEmail } from "./mail-utils.js";
 
 const NOTION_DATABASE_ID = "05ba84c1850c4f088fb2bec9ec0da244"; // Database "site internet"
 const NOTIFY_FROM = "noreply@blackgeniuscanada.org";
@@ -41,6 +42,15 @@ async function handleSubmit(request, env, ctx) {
 
   const formType = (formData.get("form_type") || "").toString();
 
+  // BUG FIX : une adresse mal formee etait envoyee telle quelle a Notion, dont
+  // la propriete « email » la refuse — le visiteur recevait « Erreur d'envoi »
+  // (500) sans savoir quoi corriger. On valide ici, une seule fois pour tous
+  // les formulaires.
+  const emailSaisi = (formData.get("email") || "").toString().trim();
+  if (emailSaisi && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(emailSaisi)) {
+    return jsonResponse({ error: "Adresse courriel invalide." }, 400);
+  }
+
   try {
     if (formType === "don") {
       await handleDon(formData, env, ctx);
@@ -61,6 +71,7 @@ async function handleSubmit(request, env, ctx) {
     if (err instanceof ValidationError) {
       return jsonResponse({ error: err.message }, 400);
     }
+    console.error(`[/api/submit] echec (form_type=${formType}) :`, err && err.stack ? err.stack : String(err));
     return jsonResponse({
       error: "Erreur d'envoi. Réessayez ou écrivez à contact@blackgeniuscanada.org.",
     }, 500);
@@ -119,7 +130,7 @@ async function handleDon(formData, env, ctx) {
       env,
       `Nouveau don — ${prenom} ${nom}`.trim(),
       `Nouvelle intention de don reçue sur le site.\n\nNom : ${prenom} ${nom}\nCourriel : ${email}\n\n${noteInterne}`
-    ).catch(() => {})
+    ).catch((e) => console.error("[notification] envoi impossible :", String(e)))
   );
 }
 
@@ -154,7 +165,7 @@ async function handleBenevole(formData, env, ctx) {
       env,
       `Nouvelle candidature bénévole — ${prenom} ${nom}`.trim(),
       `Nouvelle candidature bénévole reçue sur le site.\n\nNom : ${prenom} ${nom}\nCourriel : ${email}\nTéléphone : ${telephone || "non précisé"}\n\n${noteInterne}\n\nMotivation :\n${motivation || "(non précisée)"}`
-    ).catch(() => {})
+    ).catch((e) => console.error("[notification] envoi impossible :", String(e)))
   );
 }
 
@@ -168,6 +179,7 @@ async function handleContact(formData, env, ctx) {
 
   const noteInterne = [
     `Sujet : ${sujet || "non précisé"}`,
+    `Acceptation politique de confidentialité : ${str(formData, "consentement_donnees") ? "oui" : "non transmis"}`,
     `Message : ${message || "non précisé"}`,
   ].join("\n");
 
@@ -188,7 +200,7 @@ async function handleContact(formData, env, ctx) {
       env,
       `Nouveau message de contact — ${prenom} ${nom}`.trim(),
       `Nouveau message reçu via le formulaire de contact du site.\n\nNom : ${prenom} ${nom}\nCourriel : ${email}\nTéléphone : ${telephone || "non précisé"}\n\n${noteInterne}`
-    ).catch(() => {})
+    ).catch((e) => console.error("[notification] envoi impossible :", String(e)))
   );
 }
 
@@ -202,12 +214,17 @@ async function handleConsentement(formData, env, ctx, request) {
   const versionPolitique = str(formData, "version_politique");
   const ip = request.headers.get("CF-Connecting-IP") || "";
 
+  // BUG FIX : un Error simple etait rattrape comme une panne technique et
+  // renvoyait « Erreur d'envoi » (500). ValidationError renvoie le vrai motif
+  // au visiteur, avec un code 400.
   if (!nomParent || !email || !signature) {
-    throw new Error("Champs obligatoires manquants (nom, courriel ou signature).");
+    throw new ValidationError("Champs obligatoires manquants (nom, courriel ou signature).");
   }
 
   const noteInterne = [
     `Consentement Loi 25 donné en ligne le ${new Date().toISOString()}.`,
+    `Politique lue et comprise : ${str(formData, "politique_lue") ? "oui" : "non transmis"}`,
+    `Consentement à la collecte : ${str(formData, "consentement_donnees") ? "oui" : "non transmis"}`,
     `Enfant : ${nomEnfant || "non précisé"}`,
     `Lien avec l'enfant : ${lienEnfant || "non précisé"}`,
     `Version de la politique acceptée : ${versionPolitique || "non précisée"}`,
@@ -235,7 +252,7 @@ async function handleConsentement(formData, env, ctx, request) {
       env,
       `Nouveau consentement Loi 25 — ${nomParent}`,
       `Un parent a donné son consentement en ligne à la politique de confidentialité.\n\nParent : ${nomParent} (${lienEnfant || "lien non précisé"})\nEnfant : ${nomEnfant || "non précisé"}\nCourriel : ${email}\nTéléphone : ${telephone || "non précisé"}\nSignature électronique : ${signature}\nVersion de la politique acceptée : ${versionPolitique || "non précisée"}\nAdresse IP : ${ip || "non précisée"}`
-    ).catch(() => {})
+    ).catch((e) => console.error("[notification] envoi impossible :", String(e)))
   );
 }
 
@@ -252,12 +269,13 @@ async function handleAutorisationImage(formData, env, ctx, request) {
   const ip = request.headers.get("CF-Connecting-IP") || "";
 
   if (!nomParent || !email || !signature || !autorisation) {
-    throw new Error("Champs obligatoires manquants (nom, courriel, signature ou choix d'autorisation).");
+    throw new ValidationError("Champs obligatoires manquants (nom, courriel, signature ou choix d'autorisation).");
   }
 
   const noteInterne = [
     `Autorisation droit à l'image donnée en ligne le ${new Date().toISOString()}.`,
     `Décision : ${autorisation}`,
+    `Conditions lues et comprises : ${str(formData, "conditions_lues") ? "oui" : "non transmis"}`,
     `Enfant : ${nomEnfant || "non précisé"}`,
     `Lien avec l'enfant : ${lienEnfant || "non précisé"}`,
     `Contextes autorisés : ${contextes.length ? contextes.join(", ") : "non précisé"}`,
@@ -286,13 +304,13 @@ async function handleAutorisationImage(formData, env, ctx, request) {
       env,
       `Autorisation image (${autorisation}) — ${nomParent}`,
       `Un parent a répondu au formulaire d'autorisation droit à l'image.\n\nDécision : ${autorisation}\nParent : ${nomParent} (${lienEnfant || "lien non précisé"})\nEnfant : ${nomEnfant || "non précisé"}\nCourriel : ${email}\nTéléphone : ${telephone || "non précisé"}\nContextes autorisés : ${contextes.length ? contextes.join(", ") : "non précisé"}\nSignature électronique : ${signature}\nVersion du document accepté : ${versionDocument || "non précisée"}\nAdresse IP : ${ip || "non précisée"}`
-    ).catch(() => {})
+    ).catch((e) => console.error("[notification] envoi impossible :", String(e)))
   );
 }
 
 async function handleNewsletter(formData, env, ctx) {
   const email = str(formData, "email");
-  if (!email) throw new Error("Courriel manquant.");
+  if (!email) throw new ValidationError("Courriel manquant.");
 
   // On envoie en parallèle vers Notion (suivi interne) et Brevo (envoi réel des
   // courriels). Si l'un des deux échoue, on ne bloque pas l'autre : l'abonné
@@ -390,15 +408,12 @@ async function createNotionPage(env, propertiesRaw) {
 
 async function sendNotificationEmail(env, subject, body) {
   if (!env.SEB) return;
-  const safeSubject = subject.replace(/[\r\n]/g, " ");
-  const raw =
-    `From: BlackGenius Canada <${NOTIFY_FROM}>\r\n` +
-    `To: ${NOTIFY_TO}\r\n` +
-    `Subject: ${safeSubject}\r\n` +
-    `MIME-Version: 1.0\r\n` +
-    `Content-Type: text/plain; charset=UTF-8\r\n\r\n` +
-    body;
-
+  // BUG FIX : l'objet et le corps partaient en UTF-8 brut dans un message
+  // RFC 822 — les accents (« bénévole », « Décision ») arrivaient mutiles chez
+  // le destinataire — et il manquait les entetes Date et Message-ID attendus
+  // par les serveurs de reception. buildRawEmail() (mail-utils.js) encode
+  // l'objet en RFC 2047 et le corps en base64.
+  const raw = buildRawEmail(NOTIFY_FROM, NOTIFY_TO, subject, body);
   const message = new EmailMessage(NOTIFY_FROM, NOTIFY_TO, raw);
   await env.SEB.send(message);
 }

@@ -7,42 +7,42 @@ const path = require('path');
 
 let issues = [];
 
-// Test 1: Vérifier que don-fixed.html inclut format-utils.js
+// Test 1: Vérifier que don.html inclut format-utils.js
 console.log('\n🧪 TESTS HTML\n');
 console.log('='.repeat(50));
 
-console.log('\n📌 Test: don-fixed.html\n');
+console.log('\n📌 Test: don.html\n');
 
 const donHtml = fs.readFileSync(
-  path.join(__dirname, 'don-fixed.html'),
+  path.join(__dirname, 'don.html'),
   'utf8'
 );
 
 if (donHtml.includes('format-utils.js')) {
   console.log('✓ Inclut format-utils.js');
 } else {
-  issues.push('don-fixed.html: Manque format-utils.js');
+  issues.push('don.html: Manque format-utils.js');
   console.log('✗ Manque format-utils.js');
 }
 
-if (donHtml.includes('<input type="number"')) {
-  console.log('✓ Contient input type="number"');
+if (donHtml.includes('id="amount-custom"') && donHtml.includes('inputmode="decimal"')) {
+  console.log('✓ Champ « autre montant » en texte + inputmode="decimal" (virgule acceptee)');
 } else {
-  issues.push('don-fixed.html: Pas d\'input type="number"');
-  console.log('✗ Pas d\'input type="number"');
+  issues.push('don.html: champ autre montant sans inputmode="decimal"');
+  console.log('✗ Champ « autre montant » sans inputmode="decimal"');
 }
 
 if (donHtml.includes('id="donationTotal"')) {
   console.log('✓ Affichage total du don (id="donationTotal")');
 } else {
-  issues.push('don-fixed.html: Pas d\'affichage total (id="donationTotal")');
+  issues.push('don.html: Pas d\'affichage total (id="donationTotal")');
   console.log('✗ Pas d\'affichage total');
 }
 
 if (donHtml.includes('step="0.01"') || donHtml.includes('inputmode="decimal"')) {
   console.log('✓ Support des décimales (step ou inputmode)');
 } else {
-  issues.push('don-fixed.html: Pas de support décimales');
+  issues.push('don.html: Pas de support décimales');
   console.log('✗ Pas de support décimales');
 }
 
@@ -54,7 +54,9 @@ const inscriptionHtml = fs.readFileSync(
   'utf8'
 );
 
-if (inscriptionHtml.includes('step="1"')) {
+// Faux positif : le wizard utilise data-step="1" pour numeroter ses etapes.
+// On ne cherche que l'attribut step d'un champ de saisie.
+if (/(?<!data-)step="1"/.test(inscriptionHtml)) {
   issues.push('inscription.html: Encore step="1" (devrait être step="0.01")');
   console.log('✗ Encore step="1" (devrait être step="0.01")');
 } else {
@@ -73,23 +75,23 @@ if (inscriptionHtml.includes('maxlength=')) {
   console.log('⚠ Aucun maxlength (peut être ajouté)');
 }
 
-// Test 3: Vérifier inscription-fixed.js
-console.log('\n📌 Test: inscription-fixed.js\n');
+// Test 3: Vérifier inscription.js
+console.log('\n📌 Test: inscription.js\n');
 
 const inscriptionJs = fs.readFileSync(
-  path.join(__dirname, 'assets/js/inscription-fixed.js'),
+  path.join(__dirname, 'assets/js/inscription.js'),
   'utf8'
 );
 
 if (inscriptionJs.includes('normalizeNumber')) {
   console.log('✓ Utilise normalizeNumber()');
 } else {
-  issues.push('inscription-fixed.js: N\'utilise pas normalizeNumber()');
+  issues.push('inscription.js: N\'utilise pas normalizeNumber()');
   console.log('✗ N\'utilise pas normalizeNumber()');
 }
 
 if (inscriptionJs.includes('parseFloat(input.value)') && !inscriptionJs.includes('normalizeNumber(input.value)')) {
-  issues.push('inscription-fixed.js: Utilise toujours parseFloat() au lieu de normalizeNumber()');
+  issues.push('inscription.js: Utilise toujours parseFloat() au lieu de normalizeNumber()');
   console.log('✗ Utilise parseFloat() au lieu de normalizeNumber()');
 } else {
   console.log('✓ Utilise normalizeNumber()');

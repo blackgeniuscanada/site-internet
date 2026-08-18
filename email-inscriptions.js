@@ -80,6 +80,7 @@
 // ─────────────────────────────────────────────────────────────────────────
 
 import PostalMime from "postal-mime";
+import { buildRawEmail } from "./mail-utils.js";
 
 const NOTION_DATABASE_URL_SOURCE = "6493824d-ccc1-400c-9e54-5e94234492f8"; // data source "site internet"
 const INSCRIPTIONS_ADDRESS = "inscriptions@blackgeniuscanada.org";
@@ -245,7 +246,12 @@ async function findInscriptionPage(env, { candidateEmails, childNameGuess }) {
       });
       if (match) return match;
     }
-    if (results.length >= 1) return results[0]; // dernier repli : la plus récente correspondance sur ce courriel
+    // BUG FIX : en cas de correspondances multiples sans nom d'enfant fiable,
+    // le code prenait la premiere fiche venue — un bulletin pouvait donc etre
+    // rattache au mauvais enfant. On prefere ne rien faire et declencher un
+    // signalement pour rattachement manuel.
+    if (results.length > 1) return null;
+    if (results.length === 1) return results[0];
   }
   return null;
 }
@@ -269,7 +275,7 @@ function normalize(str) {
   return str
     .toLowerCase()
     .normalize("NFD")
-    .replace(/[̀-ͯ]/g, "") // diacritiques combinants après NFD
+    .replace(/[\u0300-\u036f]/g, "") // diacritiques combinants après NFD
     .replace(/[^a-z0-9]/g, "");
 }
 
@@ -393,13 +399,8 @@ async function getGoogleAccessToken(env) {
 async function notifyTriage(env, subject, body) {
   if (!env.SEB) return;
   const { EmailMessage } = await import("cloudflare:email");
-  const raw =
-    `From: BlackGenius Canada <noreply@blackgeniuscanada.org>\r\n` +
-    `To: ${MAIN_MAILBOX}\r\n` +
-    `Subject: [Bulletin] ${subject.replace(/[\r\n]/g, " ")}\r\n` +
-    `MIME-Version: 1.0\r\n` +
-    `Content-Type: text/plain; charset=UTF-8\r\n\r\n` +
-    body;
-  const message = new EmailMessage("noreply@blackgeniuscanada.org", MAIN_MAILBOX, raw);
+  const from = "noreply@blackgeniuscanada.org";
+  const raw = buildRawEmail(from, MAIN_MAILBOX, `[Bulletin] ${subject}`, body);
+  const message = new EmailMessage(from, MAIN_MAILBOX, raw);
   await env.SEB.send(message);
 }

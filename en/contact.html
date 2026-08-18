@@ -10,9 +10,10 @@
   <meta property="og:image" content="https://blackgeniuscanada.org/assets/img/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="stylesheet" href="../assets/css/style.css?v=25">
-  <link rel="alternate" hreflang="fr" href="https://blackgeniuscanada.org/contact.html">
-  <link rel="alternate" hreflang="en" href="https://blackgeniuscanada.org/en/contact.html">
-  <link rel="alternate" hreflang="x-default" href="https://blackgeniuscanada.org/contact.html">
+  <link rel="canonical" href="https://blackgeniuscanada.org/en/contact">
+  <link rel="alternate" hreflang="fr" href="https://blackgeniuscanada.org/contact">
+  <link rel="alternate" hreflang="en" href="https://blackgeniuscanada.org/en/contact">
+  <link rel="alternate" hreflang="x-default" href="https://blackgeniuscanada.org/contact">
 </head>
 <body>
 
@@ -104,10 +105,10 @@
             <div class="field full"><label>Your message <span class="req">*</span></label><textarea name="message" required placeholder="A few lines are enough for us to understand your request."></textarea></div>
           </div>
 
-          <label style="display:flex; gap:12px; align-items:flex-start; margin-top:18px;"><input type="checkbox" required style="margin-top:6px;"><span style="font-size:0.9rem; color: var(--muted);">I agree that BlackGenius Canada may keep and use my contact information to respond to me, in accordance with the <a href="confidentialite.html" style="color: var(--gold); border-bottom: 1px solid var(--gold);">privacy policy (Bill 25)</a>.</span></label>
+          <label style="display:flex; gap:12px; align-items:flex-start; margin-top:18px;"><input type="checkbox" name="consentement_donnees" value="oui" required style="margin-top:6px;"><span style="font-size:0.9rem; color: var(--muted);">I agree that BlackGenius Canada may keep and use my contact information to respond to me, in accordance with the <a href="confidentialite.html" style="color: var(--gold); border-bottom: 1px solid var(--gold);">privacy policy (Bill 25)</a>.</span></label>
 
           <button type="submit" class="btn btn-primary" style="margin-top:30px;">Send the message</button>
-          <p class="form-feedback" style="display:none; margin-top:30px; padding:18px 22px; background:var(--text); border-left:2px solid var(--gold); font-family: var(--serif); font-style: italic; color: var(--white);"></p>
+          <p class="form-feedback" role="status" aria-live="polite" style="display:none; margin-top:30px; padding:18px 22px; background:var(--text); border-left:2px solid var(--gold); font-family: var(--serif); font-style: italic; color: var(--white);"></p>
         </form>
       </div>
     </div>
@@ -214,6 +215,6 @@
     </div>
   </div>
 </footer>
-<script src="../assets/js/main.js?v=4"></script>
+<script src="../assets/js/main.js?v=5"></script>
 </body>
 </html>

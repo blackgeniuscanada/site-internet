@@ -10,14 +10,15 @@
   <meta property="og:title" content="Enrollment · BlackGenius Canada">
   <meta property="og:description" content="Join BlackGenius Canada — online enrollment form in 6 steps.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://blackgeniuscanada.org/en/inscription.html">
+  <meta property="og:url" content="https://blackgeniuscanada.org/en/inscription">
   <meta property="og:image" content="https://blackgeniuscanada.org/assets/img/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="stylesheet" href="../assets/css/style.css?v=25">
   <link rel="stylesheet" href="../assets/css/inscription.css?v=3">
-  <link rel="alternate" hreflang="fr" href="https://blackgeniuscanada.org/inscription.html">
-  <link rel="alternate" hreflang="en" href="https://blackgeniuscanada.org/en/inscription.html">
-  <link rel="alternate" hreflang="x-default" href="https://blackgeniuscanada.org/inscription.html">
+  <link rel="canonical" href="https://blackgeniuscanada.org/en/inscription">
+  <link rel="alternate" hreflang="fr" href="https://blackgeniuscanada.org/inscription">
+  <link rel="alternate" hreflang="en" href="https://blackgeniuscanada.org/en/inscription">
+  <link rel="alternate" hreflang="x-default" href="https://blackgeniuscanada.org/inscription">
 </head>
 <body>
 
@@ -98,7 +99,7 @@
     <div class="wizard" id="wizard">
 
       <!-- Barre de progression -->
-      <div class="wizard-progress" aria-label="Form progress">
+      <div class="wizard-progress" role="progressbar" aria-valuemin="1" aria-valuemax="6" aria-valuenow="1" aria-label="Form progress">
         <div class="wizard-progress-bar"><div class="wizard-progress-fill" id="progressFill"></div></div>
         <div class="wizard-progress-dots">
           <button type="button" class="wizard-dot active" data-go="1"><span class="dot-num">01</span><span class="dot-label">Child</span></button>
@@ -110,7 +111,7 @@
         </div>
       </div>
 
-      <form id="inscription-form" novalidate>
+      <form id="inscription-form" method="post" novalidate>
         <!-- Honeypot anti-bot — invisible to humans, filled by bots -->
         <div aria-hidden="true" style="position:absolute; left:-10000px; top:auto; width:1px; height:1px; overflow:hidden;">
           <label>Do not fill this field</label>
@@ -403,7 +404,7 @@
             <button type="submit" class="btn btn-primary" id="submitBtn">Submit enrollment →</button>
           </div>
 
-          <p class="form-feedback" id="formFeedback" style="display:none; margin-top:30px; padding:18px 22px; background:var(--text); border-left:2px solid var(--gold); font-family: var(--serif); font-style: italic; color: var(--white); border-radius: 8px;"></p>
+          <p class="form-feedback" role="status" aria-live="polite" id="formFeedback" style="display:none; margin-top:30px; padding:18px 22px; background:var(--text); border-left:2px solid var(--gold); font-family: var(--serif); font-style: italic; color: var(--white); border-radius: 8px;"></p>
         </fieldset>
 
         <!-- ====== STEP 07 — Confirmation ====== -->
@@ -566,7 +567,7 @@
     </div>
   </div>
 </footer>
-<script src="../assets/js/main.js?v=4"></script>
+<script src="../assets/js/main.js?v=5"></script>
 <script src="../assets/js/format-utils.js?v=2"></script>
-<script src="../assets/js/inscription.js?v=2"></script>
+<script src="../assets/js/inscription.js?v=3"></script>
 </body></html>

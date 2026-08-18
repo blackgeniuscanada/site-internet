@@ -61,6 +61,8 @@ const INSCRIPTION_API_URL = 'https://inscription-api.blackgenius225.workers.dev/
       d.classList.toggle('done', i < n);
     });
     if (fill) fill.style.width = (Math.min(n, totalSteps) / totalSteps) * 100 + '%';
+    const bar = wizard.querySelector('.wizard-progress[role="progressbar"]');
+    if (bar) bar.setAttribute('aria-valuenow', String(Math.min(n, totalSteps)));
     if (n > 1) wizard.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 

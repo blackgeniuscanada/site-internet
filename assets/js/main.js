@@ -61,9 +61,11 @@
 
   function altLangHref() {
     const path = window.location.pathname;
-    if (path.startsWith('/en/')) return path.replace('/en/', '/') || '/';
-    const file = path.split('/').pop() || 'index.html';
-    return '/en/' + file;
+    // Fonctionne aussi bien avec /en/mission.html qu'avec /en/mission ou /en/.
+    if (path === '/en' || path.startsWith('/en/')) {
+      return path.replace(/^\/en(\/|$)/, '/') || '/';
+    }
+    return path === '/' ? '/en/' : '/en' + path;
   }
 
   const toggle = document.querySelector('.menu-toggle');
@@ -94,7 +96,7 @@
         +   '<a href="inscription.html">' + T.menuInscrireEnfant + '</a>'
         +   '<a href="benevoles.html">' + T.menuBenevole + '</a>'
         +   '<a href="don.html">' + T.menuDon + '</a>'
-        +   '<a href="contact.html">' + T.menuPartenariats + '</a>'
+        +   '<a href="partenariat.html">' + T.menuPartenariats + '</a>'
         + '</div>'
         + '<div class="menu-section"><h5>' + T.menuEspaceMembres + '</h5>'
         +   '<a href="https://parents.blackgeniuscanada.org/" target="_blank" rel="noopener" style="color: var(--gold);">' + T.menuEspaceFamille + '</a>'
@@ -172,10 +174,23 @@
     updateDonTotal();
   })();
 
-  const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+  // BUG FIX : le site est servi en URL sans extension (/actualites), alors que
+  // les liens pointent vers actualites.html — la comparaison par suffixe ne
+  // trouvait donc plus jamais la page courante (aucun lien surligne), et sur la
+  // page d'accueil c'est le lien « EN » (en/index.html) qui heritait du
+  // surlignage. On compare desormais des chemins normalises.
+  function normPath(p) {
+    p = p.replace(/^\/+/, '').replace(/\.html$/, '');
+    if (p === '' || p.endsWith('/')) p += 'index';
+    return p;
+  }
+  const currentPath = normPath(window.location.pathname);
   document.querySelectorAll('.main-nav a').forEach(a => {
     const href = a.getAttribute('href');
-    if (href && href.endsWith(currentPath)) a.classList.add('active');
+    if (!href || /^(https?:|mailto:|tel:|#)/.test(href)) return;
+    let resolved;
+    try { resolved = normPath(new URL(href, window.location.href).pathname); } catch (e) { return; }
+    if (resolved === currentPath) a.classList.add('active');
   });
 
   const yearEl = document.getElementById('year');
@@ -228,7 +243,10 @@
           showMessage(successMsg);
           form.reset();
         } else {
-          const data = await response.json();
+          // Une reponse d'erreur peut ne pas etre du JSON (502 de Cloudflare,
+          // page HTML d'erreur...) : on ne veut pas que response.json() jette et
+          // fasse afficher « connexion impossible » a la place du vrai message.
+          const data = await response.json().catch(() => ({}));
           showMessage(data.error || T.formErrorGeneric, true);
         }
       } catch (err) {

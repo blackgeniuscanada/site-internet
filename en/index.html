@@ -17,9 +17,10 @@
   <meta property="og:description" content="We're not preparing students. We're building a generation.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://blackgeniuscanada.org/en/">
-  <link rel="alternate" hreflang="fr" href="https://blackgeniuscanada.org/index.html">
-  <link rel="alternate" hreflang="en" href="https://blackgeniuscanada.org/en/index.html">
-  <link rel="alternate" hreflang="x-default" href="https://blackgeniuscanada.org/index.html">
+  <link rel="canonical" href="https://blackgeniuscanada.org/en/">
+  <link rel="alternate" hreflang="fr" href="https://blackgeniuscanada.org/">
+  <link rel="alternate" hreflang="en" href="https://blackgeniuscanada.org/en/">
+  <link rel="alternate" hreflang="x-default" href="https://blackgeniuscanada.org/">
 </head>
 <body>
 
@@ -331,7 +332,7 @@
         <span class="link-arrow">See</span>
       </a>
 
-      <button class="event-item event-item--orange" onclick="document.getElementById('modal-jeux').classList.add('open')">
+      <a class="event-item event-item--orange" href="#modal-jeux" onclick="document.getElementById('modal-jeux').classList.add('open'); return false;">
         <div class="event-date event-date--permanent"><span class="month">Ongoing</span></div>
         <div class="event-content">
           <h3>BlackGenius Math Game</h3>
@@ -340,7 +341,7 @@
           <span class="event-tag event-tag--gold">Prizes &amp; scholarships at stake</span>
         </div>
         <span class="link-arrow">Learn more</span>
-      </button>
+      </a>
 
       <!-- Modal Jeux Maths -->
       <div id="modal-jeux" class="modal-overlay" onclick="if(event.target===this)this.classList.remove('open')">
@@ -446,7 +447,7 @@
         </div>
         <input type="email" name="email" placeholder="your.email@example.ca" required aria-label="Email address">
         <button type="submit">Subscribe →</button>
-        <p class="form-feedback" style="display:none; margin-top:16px; width:100%; padding:14px 18px; background:var(--text); border-left:2px solid var(--gold); font-family: var(--serif); font-style: italic; color: var(--white);"></p>
+        <p class="form-feedback" role="status" aria-live="polite" style="display:none; margin-top:16px; width:100%; padding:14px 18px; background:var(--text); border-left:2px solid var(--gold); font-family: var(--serif); font-style: italic; color: var(--white);"></p>
       </form>
     </div>
   </div>
@@ -540,5 +541,5 @@
     </div>
   </div>
 </footer>
-<script src="../assets/js/main.js?v=4"></script>
+<script src="../assets/js/main.js?v=5"></script>
 </body></html>

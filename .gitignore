@@ -1,3 +1,8 @@
 node_modules/
 .wrangler/
 .dev.vars
+
+# Documents personnels — a NE JAMAIS publier : la racine du depot est le
+# dossier deploye, tout fichier commite devient telechargeable publiquement.
+Photo_portrait/
+*.docx
