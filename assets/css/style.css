@@ -306,14 +306,18 @@ section.compact  { padding: 40px 0; }
 .brand {
   display: flex; align-items: center; gap: .75rem;
   text-decoration: none;
+  min-width: 0;
 }
-.brand img { width: 38px; height: 38px; object-fit: contain; }
-.brand-text { display: flex; flex-direction: column; line-height: 1.15; }
+.brand img { width: 38px; height: 38px; object-fit: contain; flex-shrink: 0; }
+.brand-text { display: flex; flex-direction: column; line-height: 1.15; min-width: 0; }
 .brand .name {
   font-family: var(--display);
   font-size: 1.05rem;
   font-weight: 700;
   color: var(--green);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .brand .name em { font-style: normal; color: var(--gold); }
 .brand .tagline {
@@ -322,8 +326,22 @@ section.compact  { padding: 40px 0; }
   letter-spacing: .1em;
   text-transform: uppercase;
   color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .tagline-orange { color: var(--gold); font-style: normal; }
+
+/* Sur petits écrans, "BlackGenius Canada" + logo + bouton menu manquaient
+   de place : le nom se coupait au milieu du mot, entre "BlackGenius" et
+   "Canada", ce qui rendait l'en-tête moche et cassait la transition vers
+   le hero. On réduit logo/texte pour que tout tienne sur une seule ligne. */
+@media(max-width:480px) {
+  .brand { gap: .5rem; }
+  .brand img { width: 30px; height: 30px; }
+  .brand .name { font-size: .82rem; }
+  .brand .tagline { font-size: .48rem; letter-spacing: .05em; }
+}
 
 /* ── Nav ───────────────────────────────────────────────────────── */
 .main-nav ul {
@@ -682,6 +700,14 @@ section.compact  { padding: 40px 0; }
   line-height: 1.4;
 }
 .pillar h3 { margin-bottom: .6rem; }
+/* Titres de concours : souvent longs (2-3 lignes) — le display bold devient
+   illisible et brouillon une fois enroulé, donc on privilégie le sans-serif */
+.pillar h3.contest-title {
+  font-family: var(--sans);
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -.01em;
+}
 .pillar p  { font-size: .95rem; margin-bottom: 1rem; }
 .pillar .link-arrow { font-weight: 600; }
 .contest-dates {
