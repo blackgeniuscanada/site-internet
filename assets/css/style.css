@@ -685,13 +685,14 @@ section.compact  { padding: 40px 0; }
 .pillar p  { font-size: .95rem; margin-bottom: 1rem; }
 .pillar .link-arrow { font-weight: 600; }
 .contest-dates {
-  font-family: var(--mono);
-  font-size: .78rem;
-  line-height: 1.7;
+  font-family: var(--sans);
+  font-size: .85rem;
+  line-height: 1.6;
   color: var(--text);
   background: var(--ivory);
   border-left: 2px solid var(--gold);
-  padding: .5rem .75rem;
+  border-radius: 0 6px 6px 0;
+  padding: .65rem .85rem;
   margin: auto 0 0 !important;
 }
 /* Aligne toutes les dates sur la même ligne, quelle que soit la longueur du texte au-dessus */
