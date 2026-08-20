@@ -319,6 +319,53 @@
     document.body.appendChild(bar);
   }
 
+  // ===== Concours de maths/logique : tri et statut auto selon la date du jour =====
+  // Chaque carte porte data-order (date à partir de laquelle elle devient la plus
+  // pertinente) et, si applicable, data-end (dernier jour où elle est active).
+  // À chaque chargement de page, on retrie les cartes par proximité avec "aujourd'hui"
+  // et on marque "Terminé" celles dont la date de fin est dépassée — sans jamais
+  // avoir à retoucher le HTML à la main.
+  (function () {
+    const pillars = document.querySelectorAll('.pillar[data-order]');
+    if (pillars.length) {
+      const today = new Date();
+      const todayNum = today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + today.getDate();
+      const toNum = iso => parseInt(iso, 10);
+      const groups = new Map();
+      pillars.forEach(p => {
+        const parent = p.parentElement;
+        if (!groups.has(parent)) groups.set(parent, []);
+        groups.get(parent).push(p);
+      });
+      groups.forEach((items, parent) => {
+        items.forEach(p => {
+          const end = p.getAttribute('data-end');
+          if (end && toNum(end) < todayNum && !p.classList.contains('is-past')) {
+            p.classList.add('is-past');
+            const num = p.querySelector('.pillar-num');
+            if (num) {
+              const badge = document.createElement('span');
+              badge.className = 'past-badge';
+              badge.textContent = LANG === 'en' ? 'Ended' : 'Terminé';
+              num.appendChild(badge);
+            }
+          }
+        });
+        items.sort((a, b) => {
+          const aPast = a.classList.contains('is-past');
+          const bPast = b.classList.contains('is-past');
+          if (aPast !== bPast) return aPast ? 1 : -1;
+          return toNum(a.getAttribute('data-order')) - toNum(b.getAttribute('data-order'));
+        });
+        items.forEach(p => parent.appendChild(p));
+      });
+
+      document.querySelectorAll('.contest-calendar-list li[data-date]').forEach(li => {
+        if (toNum(li.getAttribute('data-date')) < todayNum) li.classList.add('is-past');
+      });
+    }
+  })();
+
   // ===== Banniere consentement Loi 25 =====
   const CK = 'bg_consent_v1';
   let stored = null;

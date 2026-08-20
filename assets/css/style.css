@@ -765,6 +765,23 @@ section.compact  { padding: 40px 0; }
 }
 .contest-dates strong { color: var(--green); font-weight: 700; }
 
+/* Statut "Terminé" injecté par JS quand data-end est dépassée (voir main.js) */
+.pillar.is-past { opacity: .55; }
+.past-badge {
+  display: inline-block;
+  margin-left: .5rem;
+  font-family: var(--mono);
+  font-size: .62rem;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: var(--border);
+  border-radius: 100px;
+  padding: .15rem .55rem;
+}
+.contest-calendar-list li.is-past { opacity: .45; text-decoration: line-through; }
+.contest-calendar-list li.is-past .cc-add { text-decoration: none; }
+
 /* ── Feature rows ──────────────────────────────────────────────── */
 .feature-row {
   display: grid;
