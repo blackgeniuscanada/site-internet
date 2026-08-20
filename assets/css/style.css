@@ -675,6 +675,90 @@ section.compact  { padding: 40px 0; }
   padding: .5rem .75rem;
   margin: -.25rem 0 0 !important;
 }
+
+/* ── Calendrier des concours (accordéon) ──────────────────────────
+   <details class="contest-calendar"><summary>...</summary>
+   <div class="contest-calendar-body">...<ul class="contest-calendar-list">
+   <li><span class="cc-date">...</span><span class="cc-name">...</span><a class="cc-add">...</a></li></ul></div></details> */
+.contest-calendar {
+  margin-top: 2.5rem;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--gold);
+  border-radius: var(--radius);
+  padding: 0 1.5rem;
+}
+.contest-calendar > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.25rem 0;
+  cursor: pointer;
+  list-style: none;
+  font-family: var(--mono);
+  font-size: .85rem;
+  font-weight: 600;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--text);
+  -webkit-tap-highlight-color: transparent;
+}
+.contest-calendar > summary::-webkit-details-marker { display: none; }
+.contest-calendar > summary::after {
+  content: '+';
+  flex-shrink: 0;
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: var(--gold-light);
+  color: var(--gold);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem;
+  line-height: 1;
+  transition: transform .2s ease;
+}
+.contest-calendar[open] > summary::after { transform: rotate(45deg); }
+.contest-calendar-body { padding: 0 0 1.5rem; }
+.contest-calendar-intro { font-size: .9rem; color: var(--muted); margin-bottom: 1rem; }
+.contest-calendar-download { margin-bottom: 1.5rem; }
+.contest-calendar-list { list-style: none; margin: 0; padding: 0; }
+.contest-calendar-list li {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: .5rem 1rem;
+  padding: .75rem 0;
+  border-top: 1px solid var(--border);
+}
+.contest-calendar-list li:last-child { border-bottom: 1px solid var(--border); }
+.cc-date {
+  flex-shrink: 0;
+  width: 6.5rem;
+  font-family: var(--mono);
+  font-size: .75rem;
+  font-weight: 700;
+  color: var(--gold);
+  text-transform: uppercase;
+}
+.cc-name { flex: 1; min-width: 200px; font-size: .9rem; }
+.cc-add {
+  flex-shrink: 0;
+  font-family: var(--mono);
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .04em;
+  color: var(--green);
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  padding: .35rem .85rem;
+  white-space: nowrap;
+  transition: background .2s, border-color .2s;
+}
+.cc-add:hover { background: var(--green-light); border-color: var(--green); }
+@media(max-width:600px) {
+  .contest-calendar-list li { flex-direction: column; align-items: flex-start; gap: .35rem; }
+  .cc-date { width: auto; }
+}
 .contest-dates strong { color: var(--green); font-weight: 700; }
 
 /* ── Feature rows ──────────────────────────────────────────────── */

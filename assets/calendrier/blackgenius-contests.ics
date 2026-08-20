@@ -1,0 +1,89 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//BlackGenius Canada//Math and logic competitions//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Math and logic competitions — BlackGenius Canada
+X-WR-TIMEZONE:America/Toronto
+BEGIN:VEVENT
+UID:kangourou-open-2026-en@blackgeniuscanada.org
+DTSTAMP:20260820T000000Z
+DTSTART;VALUE=DATE:20260901
+DTEND;VALUE=DATE:20260902
+SUMMARY:Registration opens — Math Kangaroo Canada
+DESCRIPTION:Reduced fee before December. https://mathkangaroo.ca/
+URL:https://mathkangaroo.ca/
+END:VEVENT
+BEGIN:VEVENT
+UID:noetic-deadline-2026-en@blackgeniuscanada.org
+DTSTAMP:20260820T000000Z
+DTSTART;VALUE=DATE:20261022
+DTEND;VALUE=DATE:20261023
+SUMMARY:Registration deadline — Noetic Learning Math Contest (At-Home Edition)
+DESCRIPTION:Register before this date. https://www.noetic-learning.com/mathcontest/registration_athome.jsp
+URL:https://www.noetic-learning.com/mathcontest/registration_athome.jsp
+END:VEVENT
+BEGIN:VEVENT
+UID:aqjm-open-2026-en@blackgeniuscanada.org
+DTSTAMP:20260820T000000Z
+DTSTART;VALUE=DATE:20261101
+DTEND;VALUE=DATE:20261102
+SUMMARY:Opens — Championnat international des jeux mathématiques et logiques (AQJM)
+DESCRIPTION:Registration and qualifying round, free and individual. https://lamagiedesmaths.ulaval.ca/championnat/quart-de-finale
+URL:https://lamagiedesmaths.ulaval.ca/championnat/quart-de-finale
+END:VEVENT
+BEGIN:VEVENT
+UID:noetic-contest-2026-en@blackgeniuscanada.org
+DTSTAMP:20260820T000000Z
+DTSTART;VALUE=DATE:20261127
+DTEND;VALUE=DATE:20261205
+SUMMARY:Contest — Noetic Learning Math Contest (At-Home Edition)
+DESCRIPTION:At-home contest window. https://www.noetic-learning.com/mathcontest/
+URL:https://www.noetic-learning.com/mathcontest/
+END:VEVENT
+BEGIN:VEVENT
+UID:aqjm-close-2027-en@blackgeniuscanada.org
+DTSTAMP:20260820T000000Z
+DTSTART;VALUE=DATE:20270115
+DTEND;VALUE=DATE:20270116
+SUMMARY:Qualifying round ends — Championnat AQJM
+DESCRIPTION:Last day to complete the qualifying round. https://lamagiedesmaths.ulaval.ca/championnat/quart-de-finale
+URL:https://lamagiedesmaths.ulaval.ca/championnat/quart-de-finale
+END:VEVENT
+BEGIN:VEVENT
+UID:wpfgp-start-2027-en@blackgeniuscanada.org
+DTSTAMP:20260820T000000Z
+DTSTART;VALUE=DATE:20270101
+DTEND;VALUE=DATE:20270102
+SUMMARY:Season starts — WPF Sudoku & Puzzle Grand Prix
+DESCRIPTION:8 online rounds through August. https://gp.worldpuzzle.org/
+URL:https://gp.worldpuzzle.org/
+END:VEVENT
+BEGIN:VEVENT
+UID:purplecomet-open-2027-en@blackgeniuscanada.org
+DTSTAMP:20260820T000000Z
+DTSTART;VALUE=DATE:20270201
+DTEND;VALUE=DATE:20270202
+SUMMARY:Registration opens — Purple Comet! Math Meet
+DESCRIPTION:https://purplecomet.org/supervisors
+URL:https://purplecomet.org/supervisors
+END:VEVENT
+BEGIN:VEVENT
+UID:kangourou-contest-2027-en@blackgeniuscanada.org
+DTSTAMP:20260820T000000Z
+DTSTART;VALUE=DATE:20270318
+DTEND;VALUE=DATE:20270319
+SUMMARY:Contest day — Math Kangaroo Canada
+DESCRIPTION:https://mathkangaroo.ca/
+URL:https://mathkangaroo.ca/
+END:VEVENT
+BEGIN:VEVENT
+UID:purplecomet-contest-2027-en@blackgeniuscanada.org
+DTSTAMP:20260820T000000Z
+DTSTART;VALUE=DATE:20270406
+DTEND;VALUE=DATE:20270416
+SUMMARY:Contest — Purple Comet! Math Meet
+DESCRIPTION:10-day window, choose your own start time. https://purplecomet.org/
+URL:https://purplecomet.org/
+END:VEVENT
+END:VCALENDAR
