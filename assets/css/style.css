@@ -828,7 +828,6 @@ section.compact  { padding: 40px 0; }
   .contest-calendar-list li { flex-direction: column; align-items: flex-start; gap: .35rem; }
   .cc-date { width: auto; }
 }
-.contest-dates strong { color: var(--green); font-weight: 700; }
 
 /* Statut "Terminé" injecté par JS quand data-end est dépassée (voir main.js) */
 .pillar.is-past { opacity: .55; }
