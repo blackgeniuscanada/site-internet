@@ -622,6 +622,8 @@ section.compact  { padding: 40px 0; }
 }
 .pillar {
   position: relative;
+  display: flex;
+  flex-direction: column;
   background: var(--white);
   border: 1px solid var(--border);
   border-top: 3px solid var(--gold);
@@ -673,8 +675,10 @@ section.compact  { padding: 40px 0; }
   background: var(--ivory);
   border-left: 2px solid var(--gold);
   padding: .5rem .75rem;
-  margin: -.25rem 0 0 !important;
+  margin: auto 0 0 !important;
 }
+/* Aligne toutes les dates sur la même ligne, quelle que soit la longueur du texte au-dessus */
+.pillar .contest-dates { margin-top: auto !important; }
 
 /* ── Calendrier des concours (accordéon) ──────────────────────────
    <details class="contest-calendar"><summary>...</summary>
