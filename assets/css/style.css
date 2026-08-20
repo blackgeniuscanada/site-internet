@@ -2200,9 +2200,11 @@ fieldset.wizard-step {
   box-shadow: 0 4px 20px rgba(10,10,10,.25);
   cursor: pointer;
   text-decoration: none;
-  transition: transform .2s, box-shadow .2s, background .2s, color .2s;
+  transition: transform .2s, box-shadow .2s, background .2s, color .2s, opacity .2s;
 }
 .whatsapp-float:hover { transform: translateY(-2px); background: var(--gold); color: var(--green); box-shadow: 0 6px 28px rgba(232,135,30,.4); }
+/* Masqué quand le pied de page est visible pour ne pas cacher les liens du footer */
+.whatsapp-float.is-hidden { opacity: 0; pointer-events: none; transform: translateY(8px); }
 .whatsapp-float svg { width: 20px; height: 20px; flex-shrink: 0; }
 
 /* ── Barre mobile ──────────────────────────────────────────────── */
